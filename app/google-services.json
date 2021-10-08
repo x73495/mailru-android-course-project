@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "716894943383",
+    "project_id": "androidproject-19cdf",
+    "storage_bucket": "androidproject-19cdf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:716894943383:android:d5f69d1098432ef19151d2",
+        "android_client_info": {
+          "package_name": "com.airdron.mailcourse"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "716894943383-pnju939a5ab91atdd6jkobomg121jvug.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA8pYmCwNgp8hPQjlwFuNk9bfL7pviyreI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "716894943383-pnju939a5ab91atdd6jkobomg121jvug.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
