@@ -12,6 +12,6 @@
 - [Чернова Мария](https://github.com/Mashhch)
 - [Алексей Боженко](https://github.com/Entuazism)
 
-
+## Материалы
 Макеты(https://www.figma.com/file/aeNSef7fdikzzQVh3JLjxP/Основной-дизайн?node-id=39%3A9195)
 ТЗ(https://docs.google.com/document/d/1Z58RtLOAQrvk_KuZOj3W3zMMSMkAHBpdeEb0gB0uLr4/edit#heading=h.2uielsff8hk2)
