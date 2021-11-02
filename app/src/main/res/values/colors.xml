@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Default -->
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>
     <color name="purple_700">#FF3700B3</color>
@@ -7,4 +8,22 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <!-- RTP -->
+    <color name="bg">#FFFFFF</color>
+    <color name="green">#3CA64C</color>
+    <color name="green_inactive">#993CA64C</color>
+    <color name="failed">#FF0000</color>
+    <color name="unfocused_tf_border_color_light">#1F000000</color>
+    <color name="unfocused_tf_placeholder_color_light">#979797</color>
+    <color name="unfocused_tf_assisted_text_color_light">#99000000</color>
+    <color name="input_text_field_text_color_light">#DE000000</color>
+    <color name="btn_disabled">#DBDBDB</color>
+
+    <!-- RTP night -->
+    <color name="bg_night">#121212</color>
+    <color name="bg_night_light">#1F1F1F</color>
+    <color name="green_night">#59D189</color>
+    <color name="green_night_inactive">#9959D189</color>
+    <color name="unfocused_tf_night">#666666</color>
 </resources>
