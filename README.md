@@ -11,3 +11,7 @@
 - [Андрей Опарин](https://github.com/airdron)
 - [Чернова Мария](https://github.com/Mashhch)
 - [Алексей Боженко](https://github.com/Entuazism)
+
+## Материалы
+- [Макеты](https://www.figma.com/file/aeNSef7fdikzzQVh3JLjxP/Основной-дизайн)
+- [ТЗ](https://docs.google.com/document/d/1Z58RtLOAQrvk_KuZOj3W3zMMSMkAHBpdeEb0gB0uLr4/edit?usp=sharing)
