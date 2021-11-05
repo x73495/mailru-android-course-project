@@ -2,10 +2,15 @@ package com.airdron.mailcourse
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainActivity : AppCompatActivity() {
+
+    private var bottomNavigation: BottomNavigationView? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -17,6 +22,33 @@ class MainActivity : AppCompatActivity() {
             }
 
             startActivity(intent)
+        }
+
+        initViews()
+        setupHandlers()
+    }
+
+    private fun initViews() {
+        bottomNavigation = findViewById(R.id.bottom_navigation)
+    }
+
+    private fun setupHandlers() {
+        setupBottomNavigationHandler()
+    }
+
+    private fun setupBottomNavigationHandler() {
+        bottomNavigation?.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.profile_page -> {
+                    Log.d("test", "test profile")
+                    true
+                }
+                R.id.schedule_page -> {
+                    Log.d("test", "test schedule")
+                    true
+                }
+                else -> false
+            }
         }
     }
 }
