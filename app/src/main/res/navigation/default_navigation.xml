@@ -8,11 +8,85 @@
     <fragment
         android:id="@+id/navigation_schedule"
         android:name="com.airdron.mailcourse.fragments.schedule.FragmentScheduleHome"
-        tools:layout="@layout/fragment_schedule" />
+        tools:layout="@layout/fragment_schedule" >
+        <action
+                android:id="@+id/action_navigation_schedule_to_fragmentCourseEdit2"
+                app:destination="@id/fragmentCourseEdit" />
+        <action
+                android:id="@+id/action_navigation_schedule_to_fragmentCourseAdd"
+                app:destination="@id/fragmentCourseAdd" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.airdron.mailcourse.fragments.profile.FragmentProfileHome"
-        tools:layout="@layout/fragment_profile" />
+        tools:layout="@layout/fragment_profile" >
+        <action
+                android:id="@+id/action_navigation_profile_to_fragmentDrugList"
+                app:destination="@id/fragmentDrugList" />
+        <action
+                android:id="@+id/action_navigation_profile_to_fragmentCourseHistory"
+                app:destination="@id/fragmentCourseHistory" />
+    </fragment>
+    <fragment
+            android:id="@+id/fragmentCourseEdit"
+            android:name="com.airdron.mailcourse.fragments.schedule.FragmentCourseEdit"
+            android:label="fragment_edit_course"
+            tools:layout="@layout/fragment_course_edit" >
+        <action
+                android:id="@+id/action_fragmentCourseEdit_to_navigation_schedule"
+                app:destination="@id/navigation_schedule" />
+    </fragment>
+    <fragment
+            android:id="@+id/fragmentDrugList"
+            android:name="com.airdron.mailcourse.fragments.profile.FragmentDrugList"
+            android:label="fragment_drugs"
+            tools:layout="@layout/fragment_drug_list" >
+        <action
+                android:id="@+id/action_fragmentDrugList_to_fragmentDrugAdd2"
+                app:destination="@id/fragmentDrugAdd" />
+        <action
+                android:id="@+id/action_fragmentDrugList_to_fragmentDrugEdit"
+                app:destination="@id/fragmentDrugEdit" />
+        <action
+                android:id="@+id/action_fragmentDrugList_to_navigation_profile"
+                app:destination="@id/navigation_profile" />
+    </fragment>
+    <fragment
+            android:id="@+id/fragmentCourseAdd"
+            android:name="com.airdron.mailcourse.fragments.schedule.FragmentCourseAdd"
+            android:label="fragment_course_add"
+            tools:layout="@layout/fragment_course_add" >
+        <action
+                android:id="@+id/action_fragmentCourseAdd_to_navigation_schedule"
+                app:destination="@id/navigation_schedule" />
+    </fragment>
+    <fragment
+            android:id="@+id/fragmentDrugAdd"
+            android:name="com.airdron.mailcourse.fragments.profile.FragmentDrugAdd"
+            android:label="fragment_drug_add"
+            tools:layout="@layout/fragment_drug_add" >
+        <action
+                android:id="@+id/action_fragmentDrugAdd_to_fragmentDrugList"
+                app:destination="@id/fragmentDrugList" />
+    </fragment>
+    <fragment
+            android:id="@+id/fragmentDrugEdit"
+            android:name="com.airdron.mailcourse.fragments.profile.FragmentDrugEdit"
+            android:label="fragment_drug_edit"
+            tools:layout="@layout/fragment_drug_edit" >
+        <action
+                android:id="@+id/action_fragmentDrugEdit_to_fragmentDrugList"
+                app:destination="@id/fragmentDrugList" />
+    </fragment>
+    <fragment
+            android:id="@+id/fragmentCourseHistory"
+            android:name="com.airdron.mailcourse.fragments.profile.FragmentCourseHistory"
+            android:label="fragment_course_history"
+            tools:layout="@layout/fragment_course_history" >
+        <action
+                android:id="@+id/action_fragmentCourseHistory_to_navigation_profile"
+                app:destination="@id/navigation_profile" />
+    </fragment>
 
 </navigation>
