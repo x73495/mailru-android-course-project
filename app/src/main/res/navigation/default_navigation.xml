@@ -10,7 +10,7 @@
         android:name="com.airdron.mailcourse.fragments.schedule.FragmentSchedule"
         tools:layout="@layout/fragment_schedule" >
         <action
-                android:id="@+id/action_fragmentSchedule_to_fragmentCourseEdit2"
+                android:id="@+id/action_fragmentSchedule_to_fragmentCourseEdit"
                 app:destination="@id/fragmentCourseEdit" />
         <action
                 android:id="@+id/action_fragmentSchedule_to_fragmentCourseAdd"
@@ -39,7 +39,7 @@
             android:label="fragment_drugs"
             tools:layout="@layout/fragment_drug_list" >
         <action
-                android:id="@+id/action_fragmentDrugList_to_fragmentDrugAdd2"
+                android:id="@+id/action_fragmentDrugList_to_fragmentDrugAdd"
                 app:destination="@id/fragmentDrugAdd" />
         <action
                 android:id="@+id/action_fragmentDrugList_to_fragmentDrugEdit"
