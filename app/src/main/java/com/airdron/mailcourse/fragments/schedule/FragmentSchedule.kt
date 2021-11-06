@@ -1,4 +1,4 @@
-package com.airdron.mailcourse.fragments.profile
+package com.airdron.mailcourse.fragments.schedule
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -7,13 +7,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.airdron.mailcourse.R
 
-class FragmentProfileHome : Fragment() {
+class FragmentSchedule : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_profile, container, false)
+        return inflater.inflate(R.layout.fragment_schedule, container, false)
     }
 }
