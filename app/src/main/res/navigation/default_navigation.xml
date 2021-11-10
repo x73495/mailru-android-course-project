@@ -50,7 +50,7 @@
     <fragment
             android:id="@+id/fragmentCourseAdd"
             android:name="com.airdron.mailcourse.fragments.schedule.FragmentCourseAdd"
-            android:label="fragment_course_add"
+            android:label="@string/add_course"
             tools:layout="@layout/fragment_course" />
     <fragment
             android:id="@+id/fragmentDrugAdd"
