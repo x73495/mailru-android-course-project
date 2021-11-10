@@ -7,7 +7,7 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/p_fragment_profile"
+            android:text="@string/profile"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -16,7 +16,7 @@
             android:id="@+id/textView2" />
 
     <Button
-            android:text="@string/p_fragment_drug_list"
+            android:text="@string/drugs"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_to_drug_list"
@@ -26,7 +26,7 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
     <Button
-            android:text="@string/p_fragment_course_history"
+            android:text="@string/course_history"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_to_course_history"

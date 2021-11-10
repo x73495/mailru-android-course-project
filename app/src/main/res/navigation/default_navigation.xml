@@ -11,13 +11,9 @@
             tools:layout="@layout/fragment_schedule"
             android:label="@string/schedule">
         <action
-                android:id="@+id/action_fragmentSchedule_to_fragmentCourseEdit"
-                app:destination="@id/fragmentCourseEdit" />
-        <action
-                android:id="@+id/action_fragmentSchedule_to_fragmentCourseAdd"
-                app:destination="@id/fragmentCourseAdd" />
+                android:id="@+id/action_fragmentSchedule_to_fragmentCourse"
+                app:destination="@id/fragmentCourse" />
     </fragment>
-
     <fragment
             android:id="@+id/fragmentProfile"
             android:name="com.airdron.mailcourse.fragments.profile.FragmentProfile"
@@ -31,37 +27,32 @@
                 app:destination="@id/fragmentCourseHistory" />
     </fragment>
     <fragment
-            android:id="@+id/fragmentCourseEdit"
-            android:name="com.airdron.mailcourse.fragments.schedule.FragmentCourseEdit"
-            android:label="@string/edit_course"
-            tools:layout="@layout/fragment_course" />
-    <fragment
             android:id="@+id/fragmentDrugList"
             android:name="com.airdron.mailcourse.fragments.profile.FragmentDrugList"
             android:label="@string/drugs"
             tools:layout="@layout/fragment_drug_list">
         <action
-                android:id="@+id/action_fragmentDrugList_to_fragmentDrugAdd"
-                app:destination="@id/fragmentDrugAdd" />
-        <action
-                android:id="@+id/action_fragmentDrugList_to_fragmentDrugEdit"
-                app:destination="@id/fragmentDrugEdit" />
+                android:id="@+id/action_fragmentDrugList_to_fragmentDrug"
+                app:destination="@id/fragmentDrug" />
     </fragment>
     <fragment
-            android:id="@+id/fragmentCourseAdd"
-            android:name="com.airdron.mailcourse.fragments.schedule.FragmentCourseAdd"
-            android:label="@string/add_course"
-            tools:layout="@layout/fragment_course" />
+            android:id="@+id/fragmentCourse"
+            android:name="com.airdron.mailcourse.fragments.schedule.FragmentCourse"
+            android:label="@string/course"
+            tools:layout="@layout/fragment_course">
+        <argument
+                android:name="action"
+                app:argType="string" />
+    </fragment>
     <fragment
-            android:id="@+id/fragmentDrugAdd"
-            android:name="com.airdron.mailcourse.fragments.profile.FragmentDrugAdd"
-            android:label="fragment_drug_add"
-            tools:layout="@layout/fragment_drug" />
-    <fragment
-            android:id="@+id/fragmentDrugEdit"
-            android:name="com.airdron.mailcourse.fragments.profile.FragmentDrugEdit"
-            android:label="@string/edit_drug"
-            tools:layout="@layout/fragment_drug" />
+            android:id="@+id/fragmentDrug"
+            android:name="com.airdron.mailcourse.fragments.profile.FragmentDrug"
+            android:label="@string/drug"
+            tools:layout="@layout/fragment_drug">
+        <argument
+                android:name="action"
+                app:argType="string" />
+    </fragment>
     <fragment
             android:id="@+id/fragmentCourseHistory"
             android:name="com.airdron.mailcourse.fragments.profile.FragmentCourseHistory"

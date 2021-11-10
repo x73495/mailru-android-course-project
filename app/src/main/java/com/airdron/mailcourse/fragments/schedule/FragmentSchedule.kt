@@ -21,11 +21,13 @@ class FragmentSchedule : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         view.findViewById<Button>(R.id.button_to_course_edit).setOnClickListener {
-            it.findNavController().navigate(R.id.action_fragmentSchedule_to_fragmentCourseEdit)
+            val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse("edit")
+            it.findNavController().navigate(action)
         }
 
         view.findViewById<Button>(R.id.button_to_course_add).setOnClickListener {
-            it.findNavController().navigate(R.id.action_fragmentSchedule_to_fragmentCourseAdd)
+            val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse("add")
+            it.findNavController().navigate(action)
         }
 
         super.onViewCreated(view, savedInstanceState)

@@ -7,7 +7,7 @@
     <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/p_fragment_schedule"
+            android:text="@string/schedule"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
@@ -16,7 +16,7 @@
             android:id="@+id/textView" />
 
     <Button
-            android:text="@string/p_fragment_course_edit"
+            android:text="@string/edit_course"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_to_course_edit"
@@ -26,7 +26,7 @@
             app:layout_constraintBottom_toBottomOf="parent" />
 
     <Button
-            android:text="@string/p_fragment_course_add"
+            android:text="@string/add_course"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/button_to_course_add"
