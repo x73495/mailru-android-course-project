@@ -1,54 +1,35 @@
 package com.airdron.mailcourse
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
+import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
+import androidx.navigation.ui.*
 
 class MainActivity : AppCompatActivity() {
 
-    private var bottomNavigation: BottomNavigationView? = null
+    private lateinit var appBarConfiguration: AppBarConfiguration
+
+    override fun onSupportNavigateUp(): Boolean {
+        val navController = findNavController(R.id.nav_host_fragment)
+        return navController.navigateUp(appBarConfiguration)
+                || super.onSupportNavigateUp()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_main)
-        supportActionBar?.setDisplayHomeAsUpEnabled(true)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_back)
-        findViewById<TextView>(R.id.hello_world_text_view).setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java).apply {
-                putExtra("", "")
-            }
-
-            startActivity(intent)
-        }
-
         initViews()
-        setupHandlers()
     }
 
     private fun initViews() {
-        bottomNavigation = findViewById(R.id.bottom_navigation)
-    }
+        setContentView(R.layout.activity_main)
 
-    private fun setupHandlers() {
-        setupBottomNavigationHandler()
-    }
+        val navController = findNavController(R.id.nav_host_fragment)
+        val navView = findViewById<BottomNavigationView>(R.id.bottom_navigation_view)
 
-    private fun setupBottomNavigationHandler() {
-        bottomNavigation?.setOnItemSelectedListener { item ->
-            when (item.itemId) {
-                R.id.profile_page -> {
-                    Log.d("test", "test profile")
-                    true
-                }
-                R.id.schedule_page -> {
-                    Log.d("test", "test schedule")
-                    true
-                }
-                else -> false
-            }
-        }
+        navView.setupWithNavController(navController)
+
+        appBarConfiguration = AppBarConfiguration(navView.menu)
+        setupActionBarWithNavController(navController, appBarConfiguration)
     }
 }

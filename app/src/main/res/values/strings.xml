@@ -53,4 +53,16 @@
     <string name="time_medication">Время приема</string>
     <string name="add_time_medication">Добавить время приема</string>
     <string name="missed_medication">Пропущено</string>
+
+    <!-- placeholders -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="p_fragment_schedule">Расписание</string>
+    <string name="p_fragment_profile">Профиль</string>
+    <string name="p_fragment_course_add">Добавление курса</string>
+    <string name="p_fragment_course_edit">Редактирование курса</string>
+    <string name="p_fragment_course_history">История приёмов</string>
+    <string name="p_fragment_drug_add">Добавление препарата</string>
+    <string name="p_fragment_drug_edit">Редактирование препарата</string>
+    <string name="p_fragment_drug_list">Препараты</string>
 </resources>
