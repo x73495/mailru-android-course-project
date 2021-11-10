@@ -49,12 +49,12 @@
             android:id="@+id/fragmentCourseAdd"
             android:name="com.airdron.mailcourse.fragments.schedule.FragmentCourseAdd"
             android:label="fragment_course_add"
-            tools:layout="@layout/fragment_course_add" />
+            tools:layout="@layout/fragment_course" />
     <fragment
             android:id="@+id/fragmentDrugAdd"
             android:name="com.airdron.mailcourse.fragments.profile.FragmentDrugAdd"
             android:label="fragment_drug_add"
-            tools:layout="@layout/fragment_drug_add" />
+            tools:layout="@layout/fragment_drug" />
     <fragment
             android:id="@+id/fragmentDrugEdit"
             android:name="com.airdron.mailcourse.fragments.profile.FragmentDrugEdit"

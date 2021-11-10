@@ -13,6 +13,6 @@ class FragmentCourseEdit : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_course_edit, container, false)
+        return inflater.inflate(R.layout.fragment_course, container, false)
     }
 }

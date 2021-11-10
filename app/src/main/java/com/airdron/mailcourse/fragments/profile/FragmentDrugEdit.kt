@@ -13,6 +13,6 @@ class FragmentDrugEdit : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_drug_edit, container, false)
+        return inflater.inflate(R.layout.fragment_drug, container, false)
     }
 }
