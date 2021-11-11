@@ -1,11 +1,11 @@
-package com.airdron.mailcourse.fragments.profile
+package company.vk.education.androidcourse.rememberthepills.fragments.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.airdron.mailcourse.R
+import company.vk.education.androidcourse.rememberthepills.R
 
 class FragmentCourseHistory : Fragment() {
 

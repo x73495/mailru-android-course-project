@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/fragmentSchedule"
-            android:name="com.airdron.mailcourse.fragments.schedule.FragmentSchedule"
+            android:name="company.vk.education.androidcourse.rememberthepills.fragments.schedule.FragmentSchedule"
             tools:layout="@layout/fragment_schedule"
             android:label="@string/schedule">
         <action
@@ -16,7 +16,7 @@
     </fragment>
     <fragment
             android:id="@+id/fragmentProfile"
-            android:name="com.airdron.mailcourse.fragments.profile.FragmentProfile"
+            android:name="company.vk.education.androidcourse.rememberthepills.fragments.profile.FragmentProfile"
             tools:layout="@layout/fragment_profile"
             android:label="@string/profile">
         <action
@@ -28,7 +28,7 @@
     </fragment>
     <fragment
             android:id="@+id/fragmentDrugList"
-            android:name="com.airdron.mailcourse.fragments.profile.FragmentDrugList"
+            android:name="company.vk.education.androidcourse.rememberthepills.fragments.profile.FragmentDrugList"
             android:label="@string/drugs"
             tools:layout="@layout/fragment_drug_list">
         <action
@@ -37,7 +37,7 @@
     </fragment>
     <fragment
             android:id="@+id/fragmentCourse"
-            android:name="com.airdron.mailcourse.fragments.schedule.FragmentCourse"
+            android:name="company.vk.education.androidcourse.rememberthepills.fragments.schedule.FragmentCourse"
             android:label="@string/course"
             tools:layout="@layout/fragment_course">
         <argument
@@ -46,7 +46,7 @@
     </fragment>
     <fragment
             android:id="@+id/fragmentDrug"
-            android:name="com.airdron.mailcourse.fragments.profile.FragmentDrug"
+            android:name="company.vk.education.androidcourse.rememberthepills.fragments.profile.FragmentDrug"
             android:label="@string/drug"
             tools:layout="@layout/fragment_drug">
         <argument
@@ -55,7 +55,7 @@
     </fragment>
     <fragment
             android:id="@+id/fragmentCourseHistory"
-            android:name="com.airdron.mailcourse.fragments.profile.FragmentCourseHistory"
+            android:name="company.vk.education.androidcourse.rememberthepills.fragments.profile.FragmentCourseHistory"
             android:label="@string/course_history"
             tools:layout="@layout/fragment_course_history" />
 

@@ -1,4 +1,4 @@
-package com.airdron.mailcourse.fragments.profile
+package company.vk.education.androidcourse.rememberthepills.fragments.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -7,8 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.navigation.fragment.navArgs
-import com.airdron.mailcourse.R
-import com.airdron.mailcourse.fragments.schedule.FragmentCourseArgs
+import company.vk.education.androidcourse.rememberthepills.R
 
 class FragmentDrug : Fragment() {
 

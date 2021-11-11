@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MailCourse</string>
+    <string name="app_name">RememberThePills</string>
     <string name="profile">Профиль</string>
     <string name="course_history">История приёмов</string>
     <string name="add_drug">Добавление препарата</string>
