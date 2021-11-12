@@ -11,7 +11,7 @@ import company.vk.education.androidcourse.rememberthepills.R
 
 class FragmentCourse : Fragment() {
 
-    val args: FragmentCourseArgs by navArgs()
+    private val args: FragmentCourseArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -23,7 +23,7 @@ class FragmentCourse : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         when (args.action) {
             "add" -> view.findViewById<TextView>(R.id.p_text_course_action).setText(R.string.add_course)
-            "edit" -> view.findViewById<TextView>(R.id.p_text_course_action).setText(R.string.edit_course)
+            "edit" -> view.findViewById<TextView>(R.id.p_text_course_action).text = "${getString(R.string.edit_course)} с ID ${args.idOfCourse}"
         }
     }
 }

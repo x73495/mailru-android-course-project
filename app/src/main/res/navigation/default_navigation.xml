@@ -12,7 +12,12 @@
             android:label="@string/schedule">
         <action
                 android:id="@+id/action_fragmentSchedule_to_fragmentCourse"
-                app:destination="@id/fragmentCourse" />
+                app:destination="@id/fragmentCourse"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right">
+        </action>
     </fragment>
     <fragment
             android:id="@+id/fragmentProfile"
@@ -43,6 +48,9 @@
         <argument
                 android:name="action"
                 app:argType="string" />
+        <argument
+                android:name="idOfCourse"
+                app:argType="integer" />
     </fragment>
     <fragment
             android:id="@+id/fragmentDrug"

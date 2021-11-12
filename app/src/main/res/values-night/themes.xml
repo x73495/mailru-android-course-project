@@ -1,19 +1,21 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.RememberThePills" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
+
+    <style name="Theme.RememberThePills" parent="Theme.MaterialComponents">
         <item name="colorPrimary">@color/blue_900</item>
         <item name="colorPrimaryVariant">@color/blue_900</item>
         <item name="colorOnPrimary">@color/white</item>
 
-        <!-- Status bar color. -->
+        <item name="colorSecondary">@color/blue_900</item>
+        <item name="colorOnSecondary">@color/white</item>
+
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
 
-        <!-- Customize your theme here. -->
         <item name="bottom_navigation_background_color">@color/blue_900</item>
         <item name="bottom_navigation_item_color">@color/bottom_navigation_item_dark_color</item>
 
         <!-- tell action bar to use the primary color -->
         <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Primary</item>
+
+        <item name="buttonTint">@color/button_tint</item>
     </style>
 </resources>
