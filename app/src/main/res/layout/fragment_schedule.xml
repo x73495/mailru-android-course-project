@@ -10,7 +10,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:theme="@style/Theme.RememberThePills.Placeholder"
+            android:theme="@style/Theme.RTP.Placeholder"
             android:id="@+id/frameLayout">
 
         <TextView
@@ -18,7 +18,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="недельный календарь"
-                android:theme="@style/Theme.RememberThePills.Placeholder"
+                android:theme="@style/Theme.RTP.Placeholder"
                 android:layout_gravity="center" />
     </FrameLayout>
 
@@ -30,6 +30,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             android:layout_margin="16dp"
             app:srcCompat="@drawable/ic_add"
+            app:maxImageSize="14dp"
             android:contentDescription="@string/add_drug" />
 
     <androidx.recyclerview.widget.RecyclerView

@@ -37,10 +37,11 @@
                 android:textColor="@color/red_500"
                 android:visibility="gone"
                 tools:visibility="visible"
+                style="@style/TextAppearance.RTP.Caption2"
                 app:layout_constraintTop_toBottomOf="@+id/layout_drug_info"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/layout_drug_info"
-                android:layout_marginTop="8dp" />
+                android:layout_marginTop="4dp" />
 
         <LinearLayout
                 android:orientation="vertical"
@@ -55,14 +56,32 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/text_course_entry_name_of_drug"
-                    tools:text="name of drug" />
+                    style="@style/TextAppearance.RTP.Title2"
+                    tools:text="name of drug"
+                    android:textColor="@color/course_entry_name_of_drug" />
 
-            <TextView
+            <LinearLayout
+                    android:orientation="horizontal"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/text_course_entry_amount_of_drug"
-                    tools:text="amount of drug" />
+                    android:layout_height="wrap_content">
 
+                <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_course_entry_amount_of_drug"
+                        style="@style/TextAppearance.RTP.Caption2"
+                        android:textColor="@color/course_entry_amount_of_drug"
+                        tools:text="amount of drug" />
+
+                <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_course_entry_measurement_of_drug"
+                        android:layout_weight="1"
+                        android:layout_marginStart="4dp"
+                        android:textColor="@color/course_entry_amount_of_drug"
+                        tools:text="msrmnt of drug" />
+            </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -42,6 +42,8 @@ class CourseEntryAdapter(private val courseEntries: List<CourseEntry>) :
             itemView.findViewById(R.id.text_course_entry_amount_of_drug)
         private val isDone: CheckBox = itemView.findViewById(R.id.checkbox_course_entry_is_done)
         private val missed: TextView = itemView.findViewById(R.id.text_course_entry_missed)
+        private val measurementOfDrug: TextView =
+            itemView.findViewById(R.id.text_course_entry_measurement_of_drug)
 
         fun bind(courseEntry: CourseEntry) {
             itemView.findViewById<Button>(R.id.button_course_entry_info).setOnClickListener {
@@ -55,7 +57,10 @@ class CourseEntryAdapter(private val courseEntries: List<CourseEntry>) :
 
             nameOfDrug.text = courseEntry.nameOfDrug
             amountOfDrug.text = courseEntry.amountOfDrug.toString()
+            measurementOfDrug.text = courseEntry.measurementOfDrug
+
             isDone.isChecked = courseEntry.isDone
+
             if (courseEntry.isMissed) missed.visibility = View.VISIBLE
         }
     }

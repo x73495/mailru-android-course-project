@@ -5,5 +5,6 @@ data class CourseEntry(
     val amountOfDrug: Int,
     val isDone: Boolean,
     val isMissed: Boolean,
-    val idOfCourse: Int
+    val idOfCourse: Int,
+    val measurementOfDrug: String
 )

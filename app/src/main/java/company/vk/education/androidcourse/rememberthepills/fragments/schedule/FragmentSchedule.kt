@@ -60,35 +60,72 @@ class FragmentSchedule : Fragment() {
                 12,
                 isDone = false,
                 isMissed = true,
-                1
+                1,
+                "шт"
+            ),
+            CourseEntry(
+                "Фуфломицин",
+                12,
+                isDone = true,
+                isMissed = false,
+                2,
+                "шт"
             ),
             CourseEntry(
                 "Фуфломицин",
                 12,
                 isDone = false,
                 isMissed = false,
-                2
-            ),
-            CourseEntry(
-                "Фуфломицин",
-                12,
-                isDone = true,
-                isMissed = false,
-                3
+                3,
+                "шт"
             ),
             CourseEntry(
                 "препаратНейм",
                 1337,
                 isDone = true,
                 isMissed = true,
-                4
+                4,
+                "мг"
             ),
             CourseEntry(
                 "lol",
                 -1,
                 isDone = true,
                 isMissed = true,
-                5
+                5,
+                "ед"
+            ),
+            CourseEntry(
+                "idk",
+                0,
+                isDone = false,
+                isMissed = false,
+                5,
+                "ед"
+            ),
+            CourseEntry(
+                "aaaaaaaaa",
+                4444,
+                isDone = true,
+                isMissed = false,
+                6,
+                "ед"
+            ),
+            CourseEntry(
+                "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+                999999999,
+                isDone = true,
+                isMissed = true,
+                6,
+                "ед"
+            ),
+            CourseEntry(
+                "c",
+                1,
+                isDone = false,
+                isMissed = false,
+                7,
+                "ед"
             )
         )
     }
