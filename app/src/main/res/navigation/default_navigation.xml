@@ -16,8 +16,14 @@
                 app:enterAnim="@anim/slide_in_right"
                 app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right">
-        </action>
+                app:popExitAnim="@anim/slide_out_right" />
+        <action
+                android:id="@+id/action_fragmentSchedule_to_fragmentDrugList"
+                app:destination="@id/fragmentDrugList"
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
             android:id="@+id/fragmentProfile"
@@ -39,6 +45,9 @@
         <action
                 android:id="@+id/action_fragmentDrugList_to_fragmentDrug"
                 app:destination="@id/fragmentDrug" />
+        <action
+                android:id="@+id/action_fragmentDrugList_to_fragmentCourse"
+                app:destination="@id/fragmentCourse" />
     </fragment>
     <fragment
             android:id="@+id/fragmentCourse"
@@ -51,6 +60,9 @@
         <argument
                 android:name="idOfCourse"
                 app:argType="integer" />
+        <action
+                android:id="@+id/action_fragmentCourse_to_fragmentSchedule"
+                app:destination="@id/fragmentSchedule" />
     </fragment>
     <fragment
             android:id="@+id/fragmentDrug"
