@@ -26,10 +26,7 @@ class FragmentSchedule : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         view.findViewById<FloatingActionButton>(R.id.button_to_course_add).setOnClickListener {
             val action =
-                FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse(
-                    "add",
-                    -1
-                )
+                FragmentScheduleDirections.actionFragmentScheduleToFragmentDrugList("choose")
             it.findNavController().navigate(action)
         }
 

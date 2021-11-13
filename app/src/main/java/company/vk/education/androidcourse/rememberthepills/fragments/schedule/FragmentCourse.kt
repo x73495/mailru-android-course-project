@@ -19,11 +19,4 @@ class FragmentCourse : Fragment() {
     ): View? {
         return inflater.inflate(R.layout.fragment_course, container, false)
     }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        when (args.action) {
-            "add" -> view.findViewById<TextView>(R.id.p_text_course_action).setText(R.string.add_course)
-            "edit" -> view.findViewById<TextView>(R.id.p_text_course_action).text = "${getString(R.string.edit_course)} с ID ${args.idOfCourse}"
-        }
-    }
 }

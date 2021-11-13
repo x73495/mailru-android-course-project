@@ -48,10 +48,7 @@ class CourseEntryAdapter(private val courseEntries: List<CourseEntry>) :
         fun bind(courseEntry: CourseEntry) {
             itemView.findViewById<Button>(R.id.button_course_entry_info).setOnClickListener {
                 val action =
-                    FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse(
-                        "edit",
-                        courseEntry.idOfCourse
-                    )
+                    FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse(courseEntry.idOfCourse)
                 it.findNavController().navigate(action)
             }
 

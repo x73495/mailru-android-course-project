@@ -48,15 +48,15 @@
         <action
                 android:id="@+id/action_fragmentDrugList_to_fragmentCourse"
                 app:destination="@id/fragmentCourse" />
+        <argument
+                android:name="intent"
+                app:argType="string" />
     </fragment>
     <fragment
             android:id="@+id/fragmentCourse"
             android:name="company.vk.education.androidcourse.rememberthepills.fragments.schedule.FragmentCourse"
             android:label="@string/course"
             tools:layout="@layout/fragment_course">
-        <argument
-                android:name="action"
-                app:argType="string" />
         <argument
                 android:name="idOfCourse"
                 app:argType="integer" />
@@ -78,5 +78,4 @@
             android:name="company.vk.education.androidcourse.rememberthepills.fragments.profile.FragmentCourseHistory"
             android:label="@string/course_history"
             tools:layout="@layout/fragment_course_history" />
-
 </navigation>
