@@ -13,6 +13,9 @@
         <action
                 android:id="@+id/action_fragmentSchedule_to_fragmentCourse"
                 app:destination="@id/fragmentCourse" />
+        <action
+                android:id="@+id/action_fragmentSchedule_to_fragmentDrugList"
+                app:destination="@id/fragmentDrugList" />
     </fragment>
     <fragment
             android:id="@+id/fragmentProfile"
@@ -34,6 +37,9 @@
         <action
                 android:id="@+id/action_fragmentDrugList_to_fragmentDrug"
                 app:destination="@id/fragmentDrug" />
+        <action
+                android:id="@+id/action_fragmentDrugList_to_fragmentCourse"
+                app:destination="@id/fragmentCourse" />
     </fragment>
     <fragment
             android:id="@+id/fragmentCourse"
@@ -43,6 +49,9 @@
         <argument
                 android:name="action"
                 app:argType="string" />
+        <action
+                android:id="@+id/action_fragmentCourse_to_fragmentSchedule"
+                app:destination="@id/fragmentSchedule" />
     </fragment>
     <fragment
             android:id="@+id/fragmentDrug"
