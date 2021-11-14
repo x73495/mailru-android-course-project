@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import company.vk.education.androidcourse.rememberthepills.R
-import company.vk.education.androidcourse.rememberthepills.adapters.DrugEntryAdapter
+import company.vk.education.androidcourse.rememberthepills.drugList.view.adapter.DrugListAdapter
 import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugEntry
 
 class FragmentDrugList : Fragment() {
@@ -38,7 +38,7 @@ class FragmentDrugList : Fragment() {
         val drugEntries = generateDrugEntries().toMutableList()
 
         val recycler: RecyclerView = view.findViewById(R.id.recycler_drug_list)
-        val adapter = DrugEntryAdapter(drugEntries, args.intent)
+        val adapter = DrugListAdapter(drugEntries, args.intent)
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(requireContext())
     }

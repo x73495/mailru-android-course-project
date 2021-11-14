@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import company.vk.education.androidcourse.rememberthepills.R
-import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.CourseEntryAdapter
+import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.CourseListAdapter
 import company.vk.education.androidcourse.rememberthepills.schedule.model.CourseEntry
 
 class FragmentSchedule : Fragment() {
@@ -35,7 +35,7 @@ class FragmentSchedule : Fragment() {
         val courseEntries = generateCourseEntries().toMutableList()
 
         val recycler: RecyclerView = view.findViewById(R.id.recycler_course_entries_by_date)
-        val adapter = CourseEntryAdapter(courseEntries)
+        val adapter = CourseListAdapter(courseEntries)
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(requireContext())
     }

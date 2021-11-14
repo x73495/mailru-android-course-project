@@ -13,8 +13,8 @@ import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.schedule.model.CourseEntry
 import company.vk.education.androidcourse.rememberthepills.schedule.view.FragmentScheduleDirections
 
-class CourseEntryAdapter(private val courseEntries: List<CourseEntry>) :
-    RecyclerView.Adapter<CourseEntryAdapter.CourseEntryViewHolder>() {
+class CourseListAdapter(private val courseEntries: List<CourseEntry>) :
+    RecyclerView.Adapter<CourseListAdapter.CourseEntryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseEntryViewHolder {
         val view =
