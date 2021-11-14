@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!-- Default -->
+
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
     <color name="blue_900">#0D47A1</color>
@@ -15,4 +15,9 @@
     <color name="gray_800">#424242</color>
     <color name="gray_900">#212121</color>
 
+    <color name="course_entry_name_of_drug">@color/gray_900</color>
+    <color name="course_entry_amount_of_drug">@color/gray_800</color>
+
+    <color name="border_course_entry">@color/gray_400</color>
+    <color name="button_course_entry_info">@color/black</color>
 </resources>
