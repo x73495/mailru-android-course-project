@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -12,8 +13,11 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.CourseListAdapter
 import company.vk.education.androidcourse.rememberthepills.schedule.model.CourseEntry
+import company.vk.education.androidcourse.rememberthepills.schedule.viewModel.ScheduleViewModel
 
 class FragmentSchedule : Fragment() {
+
+    private val scheduleViewModel: ScheduleViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
