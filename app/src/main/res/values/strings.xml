@@ -53,4 +53,13 @@
     <string name="time_medication">Время приема</string>
     <string name="add_time_medication">Добавить время приема</string>
     <string name="missed_medication">Пропущено</string>
+
+    <string name="pick_intake_time">Выберите время приёма</string>
+    <string name="pick_course_start">Выберите дату начала приёма</string>
+    <string name="pick_course_end">Выберите дату окончания приёма</string>
+
+    <string name="course_removal_confirmation_title">Удаление курса</string>
+    <string name="course_removal_confirmation_message">Вы действительно хотите удалить курс?</string>
+    <string name="course_removal_confirmation_answer_yes">Да</string>
+    <string name="course_removal_confirmation_answer_no">Отмена</string>
 </resources>

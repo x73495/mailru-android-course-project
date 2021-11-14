@@ -92,7 +92,7 @@
             app:icon="@drawable/ic_edit"
             app:iconGravity="textStart"
             app:iconTint="@color/button_course_entry_info"
-            style="@style/Widget.App.Button.IconOnly"
+            style="@style/Widget.RTP.Button.IconOnly"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent" />
