@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -25,8 +26,7 @@ class FragmentSchedule : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         view.findViewById<FloatingActionButton>(R.id.button_to_course_add).setOnClickListener {
-            val action =
-                FragmentScheduleDirections.actionFragmentScheduleToFragmentDrugList("choose")
+            val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentDrugList("choose")
             it.findNavController().navigate(action)
         }
 

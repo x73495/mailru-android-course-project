@@ -7,9 +7,17 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.navigation.findNavController
+import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import company.vk.education.androidcourse.rememberthepills.R
+import company.vk.education.androidcourse.rememberthepills.adapters.DrugEntryAdapter
+import company.vk.education.androidcourse.rememberthepills.models.DrugEntry
 
 class FragmentDrugList : Fragment() {
+
+    private val args: FragmentDrugListArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -20,22 +28,38 @@ class FragmentDrugList : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        view.findViewById<Button>(R.id.button_to_drug_add).setOnClickListener {
+        view.findViewById<FloatingActionButton>(R.id.button_to_drug_add).setOnClickListener {
             val action =
-                FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug(
-                    "add"
-                )
+                FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug("add", -1)
             it.findNavController().navigate(action)
         }
 
-        view.findViewById<Button>(R.id.button_to_drug_edit).setOnClickListener {
-            val action =
-                FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug(
-                    "edit"
-                )
-            it.findNavController().navigate(action)
-        }
+        val drugEntries = generateDrugEntries().toMutableList()
 
-        super.onViewCreated(view, savedInstanceState)
+        val recycler: RecyclerView = view.findViewById(R.id.recycler_drug_list)
+        val adapter = DrugEntryAdapter(drugEntries, args.intent)
+        recycler.adapter = adapter
+        recycler.layoutManager = LinearLayoutManager(requireContext())
+    }
+
+    // TODO TEMPORARY
+    private fun generateDrugEntries(): List<DrugEntry> {
+        return listOf(
+            DrugEntry(
+                "Фуфломицин",
+                "Свеча",
+                1
+            ),
+            DrugEntry(
+                "Фуфломицин",
+                "Свеча",
+                2
+            ),
+            DrugEntry(
+                "препаратНейм",
+                "Спрей",
+                3
+            )
+        )
     }
 }

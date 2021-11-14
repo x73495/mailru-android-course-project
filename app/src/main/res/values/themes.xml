@@ -12,7 +12,9 @@
 
         <item name="bottom_navigation_background_color">@color/white</item>
         <item name="bottom_navigation_item_color">@color/bottom_navigation_item_light_color</item>
-        
+
+        <item name="colorAccent">@color/indigo_A700</item>
+
         <item name="buttonTint">@color/button_tint</item>
     </style>
 

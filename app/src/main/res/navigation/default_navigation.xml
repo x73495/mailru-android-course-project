@@ -58,11 +58,17 @@
             android:label="@string/course"
             tools:layout="@layout/fragment_course">
         <argument
-                android:name="idOfCourse"
-                app:argType="integer" />
+                android:name="action"
+                app:argType="string" />
         <action
                 android:id="@+id/action_fragmentCourse_to_fragmentSchedule"
                 app:destination="@id/fragmentSchedule" />
+        <argument
+                android:name="idOfDrug"
+                app:argType="integer" />
+        <argument
+                android:name="idOfCourse"
+                app:argType="integer" />
     </fragment>
     <fragment
             android:id="@+id/fragmentDrug"
@@ -72,6 +78,9 @@
         <argument
                 android:name="action"
                 app:argType="string" />
+        <argument
+                android:name="idOfDrug"
+                app:argType="integer" />
     </fragment>
     <fragment
             android:id="@+id/fragmentCourseHistory"

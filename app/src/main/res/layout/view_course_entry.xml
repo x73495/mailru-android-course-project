@@ -15,7 +15,7 @@
             android:id="@+id/layout_course_entry"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/button_course_entry_info">
+            app:layout_constraintEnd_toStartOf="@+id/button_course_entry_edit">
 
         <CheckBox
                 android:layout_width="wrap_content"
@@ -88,7 +88,7 @@
     <Button
             android:layout_width="wrap_content"
             android:layout_height="0dp"
-            android:id="@+id/button_course_entry_info"
+            android:id="@+id/button_course_entry_edit"
             app:icon="@drawable/ic_edit"
             app:iconGravity="textStart"
             app:iconTint="@color/button_course_entry_info"

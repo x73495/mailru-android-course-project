@@ -20,4 +20,8 @@
 
     <color name="border_course_entry">@color/gray_400</color>
     <color name="button_course_entry_info">@color/black</color>
+    <color name="drug_title">@color/black</color>
+    <color name="drug_subtitle">@color/gray_800</color>
+
+    <color name="button_icon">@color/black</color>
 </resources>
