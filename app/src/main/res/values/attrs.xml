@@ -9,4 +9,8 @@
     <attr name="drug_title_text_color" format="color"/>
     <attr name="drug_subtitle_text_color" format="color"/>
     <attr name="edit_button_color" format="color"/>
+    <attr name="text_course_drug_name_text_color" format="color"/>
+    <attr name="text_course_drug_type_text_color" format="color"/>
+    <attr name="text_course_section_color" format="color"/>
+    <attr name="button_course_add_time_medication_color" format="color"/>
 </resources>

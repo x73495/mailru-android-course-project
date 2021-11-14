@@ -33,11 +33,6 @@ class DrugListAdapter(private val drugEntries: List<DrugEntry>, private val inte
         private val typeOfDrug: TextView = itemView.findViewById(R.id.text_drug_list_type_of_drug)
 
         fun bind(drugEntry: DrugEntry, intentForEntries: String) {
-            itemView.findViewById<Button>(R.id.button_drug_entry_edit).setOnClickListener {
-                val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug("edit", drugEntry.idOfDrug)
-                it.findNavController().navigate(action)
-            }
-
             // TODO: do sth with all these hardcode values
             if (intentForEntries == "choose") {
                 itemView.findViewById<LinearLayout>(R.id.layout_drug_entry_info).setOnClickListener {
