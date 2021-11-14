@@ -16,8 +16,14 @@
         <!-- tell action bar to use the primary color -->
         <item name="actionBarStyle">@style/Widget.MaterialComponents.ActionBar.Primary</item>
 
-        <item name="buttonTint">@color/button_tint</item>
-
         <item name="colorAccent">@color/blue_900</item>
+
+        <item name="course_entry_name_of_drug_color">@color/white</item>
+        <item name="course_entry_amount_of_drug_text_color">@color/white</item>
+        <item name="border_course_entry_color">@color/white</item>
+        <item name="button_course_entry_info_color">@color/white</item>
+        <item name="drug_title_text_color">@color/white</item>
+        <item name="drug_subtitle_text_color">@color/gray_400</item>
+        <item name="edit_button_color">@color/black</item>
     </style>
 </resources>

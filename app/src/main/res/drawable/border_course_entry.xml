@@ -4,6 +4,6 @@
     <solid android:color="@android:color/transparent" />
     <stroke
             android:width="1dp"
-            android:color="@color/border_course_entry" />
+            android:color="?attr/border_course_entry_color" />
     <corners android:radius="8dp" />
 </shape>
