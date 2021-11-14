@@ -24,4 +24,10 @@
     <color name="drug_subtitle">@color/gray_800</color>
 
     <color name="button_icon">@color/black</color>
+
+    <color name="text_course_drug_name">@color/black</color>
+    <color name="text_course_drug_type">@color/gray_800</color>
+    <color name="text_course_section">@color/gray_500</color>
+
+    <color name="button_course_add_time_medication">@color/indigo_A700</color>
 </resources>
