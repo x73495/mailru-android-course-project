@@ -110,6 +110,10 @@
                             android:id="@+id/input_course_quantity"
                             android:hint="@string/quantity"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                            app:boxBackgroundColor="?attr/common_background_color"
+                            app:boxStrokeColor="?attr/text_field_stroke_color"
+                            android:textColorHint="?attr/text_field_hint_text_color"
+                            app:hintTextColor="?attr/text_field_collapsed_hint_text_color"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 

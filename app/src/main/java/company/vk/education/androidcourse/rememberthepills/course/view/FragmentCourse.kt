@@ -44,7 +44,7 @@ class FragmentCourse : Fragment() {
             getString(R.string.drug_type_unit_tablespoons)
         )
         val adapterItemsMeasurement =
-            ArrayAdapter(requireContext(), R.layout.list_item, itemsMeasurement)
+            ArrayAdapter(requireContext(), R.layout.drop_down_text_view_list_item, itemsMeasurement)
         (view.findViewById<AutoCompleteTextView>(R.id.input_text_course_measurement)).setAdapter(
             adapterItemsMeasurement
         )
@@ -56,7 +56,7 @@ class FragmentCourse : Fragment() {
             getString(R.string.food_addiction_not_depend)
         )
         val adapterItemsFoodDependency =
-            ArrayAdapter(requireContext(), R.layout.list_item, itemsFoodDependency)
+            ArrayAdapter(requireContext(), R.layout.drop_down_text_view_list_item, itemsFoodDependency)
         (view.findViewById<AutoCompleteTextView>(R.id.input_text_course_food_dependency)).setAdapter(
             adapterItemsFoodDependency
         )
