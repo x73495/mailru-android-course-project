@@ -6,4 +6,9 @@
 
     <color name="border_course_entry">@color/white</color>
     <color name="button_course_entry_info">@color/white</color>
+
+    <color name="drug_title">@color/white</color>
+    <color name="drug_subtitle">@color/gray_400</color>
+
+    <color name="button_icon">@color/white</color>
 </resources>

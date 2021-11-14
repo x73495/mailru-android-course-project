@@ -23,7 +23,9 @@ class FragmentDrug : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         when (args.action) {
             "add" -> view.findViewById<TextView>(R.id.p_text_drug_action).setText(R.string.add_drug)
-            "edit" -> view.findViewById<TextView>(R.id.p_text_drug_action).setText(R.string.edit_drug)
+            "edit" -> {
+                view.findViewById<TextView>(R.id.p_text_drug_action).text = "${getString(R.string.edit_drug)} с ID ${args.idOfDrug}"
+            }
         }
     }
 }
