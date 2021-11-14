@@ -2,4 +2,11 @@
 <resources>
     <attr name="bottom_navigation_background_color" format="color" />
     <attr name="bottom_navigation_item_color" format="color"/>
+    <attr name="course_entry_name_of_drug_color" format="color"/>
+    <attr name="course_entry_amount_of_drug_text_color" format="color"/>
+    <attr name="border_course_entry_color" format="color"/>
+    <attr name="button_course_entry_info_color" format="color"/>
+    <attr name="drug_title_text_color" format="color"/>
+    <attr name="drug_subtitle_text_color" format="color"/>
+    <attr name="edit_button_color" format="color"/>
 </resources>
