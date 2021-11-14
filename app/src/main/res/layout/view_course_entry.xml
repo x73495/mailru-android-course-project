@@ -58,7 +58,7 @@
                     android:id="@+id/text_course_entry_name_of_drug"
                     style="@style/TextAppearance.RTP.Title2"
                     tools:text="name of drug"
-                    android:textColor="@color/course_entry_name_of_drug" />
+                    android:textColor="?attr/course_entry_name_of_drug_color" />
 
             <LinearLayout
                     android:orientation="horizontal"
@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/text_course_entry_amount_of_drug"
                         style="@style/TextAppearance.RTP.Caption2"
-                        android:textColor="@color/course_entry_amount_of_drug"
+                        android:textColor="?attr/course_entry_amount_of_drug_text_color"
                         tools:text="amount of drug" />
 
                 <TextView
@@ -79,7 +79,7 @@
                         android:id="@+id/text_course_entry_measurement_of_drug"
                         android:layout_weight="1"
                         android:layout_marginStart="4dp"
-                        android:textColor="@color/course_entry_amount_of_drug"
+                        android:textColor="?attr/course_entry_amount_of_drug_text_color"
                         tools:text="msrmnt of drug" />
             </LinearLayout>
         </LinearLayout>
@@ -91,7 +91,7 @@
             android:id="@+id/button_course_entry_edit"
             app:icon="@drawable/ic_edit"
             app:iconGravity="textStart"
-            app:iconTint="@color/button_course_entry_info"
+            app:iconTint="?attr/button_course_entry_info_color"
             style="@style/Widget.RTP.Button.IconOnly"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"

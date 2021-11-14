@@ -1,4 +1,4 @@
-package company.vk.education.androidcourse.rememberthepills.models
+package company.vk.education.androidcourse.rememberthepills.drugList.model
 
 data class DrugEntry(
     val nameOfDrug: String,

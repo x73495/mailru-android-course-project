@@ -1,4 +1,4 @@
-package company.vk.education.androidcourse.rememberthepills.adapters
+package company.vk.education.androidcourse.rememberthepills.drugList.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -9,11 +9,11 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import company.vk.education.androidcourse.rememberthepills.R
-import company.vk.education.androidcourse.rememberthepills.fragments.profile.FragmentDrugListDirections
-import company.vk.education.androidcourse.rememberthepills.models.DrugEntry
+import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugEntry
+import company.vk.education.androidcourse.rememberthepills.drugList.view.FragmentDrugListDirections
 
-class DrugEntryAdapter(private val drugEntries: List<DrugEntry>, private val intentForEntries: String) :
-    RecyclerView.Adapter<DrugEntryAdapter.DrugEntryViewHolder>() {
+class DrugListAdapter(private val drugEntries: List<DrugEntry>, private val intentForEntries: String) :
+    RecyclerView.Adapter<DrugListAdapter.DrugEntryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrugEntryViewHolder {
         val view =
