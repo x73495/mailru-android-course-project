@@ -37,16 +37,6 @@ class FragmentSchedule : Fragment() {
         val adapter = CourseEntryAdapter(courseEntries)
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(requireContext())
-
-//        Toast.makeText(context, recycler.canScrollVertically(-1).toString(), Toast.LENGTH_SHORT).show()
-//
-//        if (recycler.canScrollVertically(1)) {
-//            recycler.setOnScrollChangeListener { view, i, i2, i3, i4 ->
-//                if (!recycler.canScrollVertically(1)) {
-//                    Toast.makeText(context, "yo", Toast.LENGTH_SHORT).show()
-//                }
-//            }
-//        }
     }
 
     // TODO TEMPORARY
