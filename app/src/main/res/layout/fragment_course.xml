@@ -32,7 +32,7 @@
                     android:layout_height="wrap_content">
 
                 <TextView
-                        android:textColor="@color/text_course_section"
+                        android:textColor="?attr/text_course_section_color"
                         android:id="@+id/text_course_section_drug"
                         android:text="@string/drug"
                         android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
                     <TextView
                             tools:textStyle="italic"
                             style="@style/TextAppearance.RTP.Caption2"
-                            android:textColor="@color/text_course_drug_type"
+                            android:textColor="?attr/text_course_drug_type_text_color"
                             tools:text="Тип"
                             android:id="@+id/text_course_drug_type"
                             android:layout_width="wrap_content"
@@ -76,7 +76,7 @@
 
                 <TextView
                         android:text="@string/dosage"
-                        android:textColor="@color/text_course_section"
+                        android:textColor="?attr/text_course_section_color"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/text_course_section_dosage"
@@ -141,7 +141,7 @@
 
                 <TextView
                         android:text="@string/medication_period"
-                        android:textColor="@color/text_course_section"
+                        android:textColor="?attr/text_course_section_color"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/text_course_section_period"
@@ -209,7 +209,7 @@
 
                 <TextView
                         android:text="@string/time_medication"
-                        android:textColor="@color/text_course_section"
+                        android:textColor="?attr/text_course_section_color"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/text_course_section_time_medication"
@@ -226,7 +226,7 @@
                         app:layout_constraintStart_toStartOf="parent" />
 
                 <com.google.android.material.button.MaterialButton
-                        android:textColor="@color/button_course_add_time_medication"
+                        android:textColor="?attr/button_course_add_time_medication_color"
                         app:iconPadding="8dp"
                         android:text="@string/add_time_medication"
                         android:textAppearance="@style/TextAppearance.RTP.Caption1"

@@ -1,4 +1,4 @@
-package company.vk.education.androidcourse.rememberthepills.fragments.profile
+package company.vk.education.androidcourse.rememberthepills.drug.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -6,12 +6,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import company.vk.education.androidcourse.rememberthepills.R
+import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModel
 
 class FragmentDrug : Fragment() {
 
     val args: FragmentDrugArgs by navArgs()
+    val drugViewModel: DrugViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
