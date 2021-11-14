@@ -1,4 +1,4 @@
-package company.vk.education.androidcourse.rememberthepills.fragments.profile
+package company.vk.education.androidcourse.rememberthepills.courseHistory.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

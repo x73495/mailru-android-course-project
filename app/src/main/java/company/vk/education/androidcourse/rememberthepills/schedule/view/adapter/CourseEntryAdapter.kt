@@ -1,4 +1,4 @@
-package company.vk.education.androidcourse.rememberthepills.adapters
+package company.vk.education.androidcourse.rememberthepills.schedule.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,8 +10,8 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import company.vk.education.androidcourse.rememberthepills.R
-import company.vk.education.androidcourse.rememberthepills.fragments.schedule.FragmentScheduleDirections
-import company.vk.education.androidcourse.rememberthepills.models.CourseEntry
+import company.vk.education.androidcourse.rememberthepills.schedule.model.CourseEntry
+import company.vk.education.androidcourse.rememberthepills.schedule.view.FragmentScheduleDirections
 
 class CourseEntryAdapter(private val courseEntries: List<CourseEntry>) :
     RecyclerView.Adapter<CourseEntryAdapter.CourseEntryViewHolder>() {
@@ -47,8 +47,7 @@ class CourseEntryAdapter(private val courseEntries: List<CourseEntry>) :
 
         fun bind(courseEntry: CourseEntry) {
             itemView.findViewById<Button>(R.id.button_course_entry_edit).setOnClickListener {
-                val action =
-                    FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse("edit", -1, courseEntry.idOfCourse)
+                val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse("edit", -1, courseEntry.idOfCourse)
                 it.findNavController().navigate(action)
             }
 
