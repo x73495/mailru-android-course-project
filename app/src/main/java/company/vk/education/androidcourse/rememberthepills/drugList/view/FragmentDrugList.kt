@@ -1,23 +1,25 @@
-package company.vk.education.androidcourse.rememberthepills.fragments.profile
+package company.vk.education.androidcourse.rememberthepills.drugList.view
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import company.vk.education.androidcourse.rememberthepills.R
-import company.vk.education.androidcourse.rememberthepills.adapters.DrugEntryAdapter
-import company.vk.education.androidcourse.rememberthepills.models.DrugEntry
+import company.vk.education.androidcourse.rememberthepills.drugList.view.adapter.DrugListAdapter
+import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugEntry
+import company.vk.education.androidcourse.rememberthepills.drugList.viewModel.DrugListViewModel
 
 class FragmentDrugList : Fragment() {
 
     private val args: FragmentDrugListArgs by navArgs()
+    private val drugListViewModel: DrugListViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -29,15 +31,17 @@ class FragmentDrugList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         view.findViewById<FloatingActionButton>(R.id.button_to_drug_add).setOnClickListener {
-            val action =
-                FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug("add", -1)
+            val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug(
+                    "add",
+                    -1
+                )
             it.findNavController().navigate(action)
         }
 
         val drugEntries = generateDrugEntries().toMutableList()
 
         val recycler: RecyclerView = view.findViewById(R.id.recycler_drug_list)
-        val adapter = DrugEntryAdapter(drugEntries, args.intent)
+        val adapter = DrugListAdapter(drugEntries, args.intent)
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(requireContext())
     }

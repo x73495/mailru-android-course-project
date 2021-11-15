@@ -1,20 +1,23 @@
-package company.vk.education.androidcourse.rememberthepills.fragments.schedule
+package company.vk.education.androidcourse.rememberthepills.schedule.view
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import company.vk.education.androidcourse.rememberthepills.R
-import company.vk.education.androidcourse.rememberthepills.adapters.CourseEntryAdapter
-import company.vk.education.androidcourse.rememberthepills.models.CourseEntry
+import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.CourseListAdapter
+import company.vk.education.androidcourse.rememberthepills.schedule.model.CourseEntry
+import company.vk.education.androidcourse.rememberthepills.schedule.viewModel.ScheduleViewModel
 
 class FragmentSchedule : Fragment() {
+
+    private val scheduleViewModel: ScheduleViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -26,7 +29,9 @@ class FragmentSchedule : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         view.findViewById<FloatingActionButton>(R.id.button_to_course_add).setOnClickListener {
-            val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentDrugList("choose")
+            val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentDrugList(
+                "choose"
+            )
             it.findNavController().navigate(action)
         }
 
@@ -34,7 +39,7 @@ class FragmentSchedule : Fragment() {
         val courseEntries = generateCourseEntries().toMutableList()
 
         val recycler: RecyclerView = view.findViewById(R.id.recycler_course_entries_by_date)
-        val adapter = CourseEntryAdapter(courseEntries)
+        val adapter = CourseListAdapter(courseEntries)
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(requireContext())
     }
