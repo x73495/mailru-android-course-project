@@ -15,8 +15,6 @@ import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.CourseListAdapter
 import company.vk.education.androidcourse.rememberthepills.schedule.model.CourseEntry
 import company.vk.education.androidcourse.rememberthepills.schedule.viewModel.ScheduleViewModel
-import company.vk.education.androidcourse.rememberthepills.adapters.CourseEntryAdapter
-import company.vk.education.androidcourse.rememberthepills.models.CourseEntry
 import java.util.*
 
 class FragmentSchedule : Fragment() {
