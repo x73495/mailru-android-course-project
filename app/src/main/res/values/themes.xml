@@ -12,8 +12,21 @@
 
         <item name="bottom_navigation_background_color">@color/white</item>
         <item name="bottom_navigation_item_color">@color/bottom_navigation_item_light_color</item>
-        
-        <item name="buttonTint">@color/button_tint</item>
+
+        <item name="colorAccent">@color/indigo_A700</item>
+
+        <item name="course_entry_name_of_drug_color">@color/gray_900</item>
+        <item name="course_entry_amount_of_drug_text_color">@color/gray_800</item>
+        <item name="border_course_entry_color">@color/gray_400</item>
+        <item name="button_course_entry_info_color">@color/black</item>
+        <item name="drug_title_text_color">@color/black</item>
+        <item name="drug_subtitle_text_color">@color/gray_800</item>
+        <item name="edit_button_color">@color/white</item>
+        <item name="text_course_drug_name_text_color">@color/white</item>
+        <item name="text_course_drug_type_text_color">@color/gray_800</item>
+        <item name="text_course_section_color">@color/gray_500</item>
+        <item name="button_course_add_time_medication_color">@color/indigo_A700</item>
+
     </style>
 
     <style name="Theme.RTP.Placeholder" parent="Theme.MaterialComponents.DayNight">

@@ -1,4 +1,4 @@
-package company.vk.education.androidcourse.rememberthepills.adapters
+package company.vk.education.androidcourse.rememberthepills.schedule.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +10,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import company.vk.education.androidcourse.rememberthepills.R
-import company.vk.education.androidcourse.rememberthepills.fragments.schedule.FragmentScheduleDirections
-import company.vk.education.androidcourse.rememberthepills.models.CourseEntry
+import company.vk.education.androidcourse.rememberthepills.schedule.model.CourseEntry
+import company.vk.education.androidcourse.rememberthepills.schedule.view.FragmentScheduleDirections
 
-class CourseEntryAdapter(private val courseEntries: List<CourseEntry>) :
-    RecyclerView.Adapter<CourseEntryAdapter.CourseEntryViewHolder>() {
+class CourseListAdapter(private val courseEntries: List<CourseEntry>) :
+    RecyclerView.Adapter<CourseListAdapter.CourseEntryViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseEntryViewHolder {
         val view =
@@ -46,9 +46,8 @@ class CourseEntryAdapter(private val courseEntries: List<CourseEntry>) :
             itemView.findViewById(R.id.text_course_entry_measurement_of_drug)
 
         fun bind(courseEntry: CourseEntry) {
-            itemView.findViewById<Button>(R.id.button_course_entry_info).setOnClickListener {
-                val action =
-                    FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse(courseEntry.idOfCourse)
+            itemView.findViewById<Button>(R.id.button_course_entry_edit).setOnClickListener {
+                val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse("edit", -1, courseEntry.idOfCourse)
                 it.findNavController().navigate(action)
             }
 
