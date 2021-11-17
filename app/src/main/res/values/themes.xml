@@ -1,15 +1,38 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Theme.RememberThePills" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
-        <!-- Primary brand color. -->
+
+    <style name="Theme.RTP" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <item name="colorPrimary">@color/indigo_A700</item>
         <item name="colorPrimaryVariant">@color/indigo_A700</item>
         <item name="colorOnPrimary">@color/black</item>
 
-        <!-- Status bar color. -->
+        <item name="colorSecondary">@color/indigo_A700</item>
+        <item name="colorOnSecondary">@color/white</item>
+
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+
         <item name="bottom_navigation_background_color">@color/white</item>
         <item name="bottom_navigation_item_color">@color/bottom_navigation_item_light_color</item>
+
+        <item name="colorAccent">@color/indigo_A700</item>
+
+        <item name="course_entry_name_of_drug_color">@color/gray_900</item>
+        <item name="course_entry_amount_of_drug_text_color">@color/gray_800</item>
+        <item name="border_course_entry_color">@color/gray_400</item>
+        <item name="button_course_entry_info_color">@color/black</item>
+        <item name="drug_title_text_color">@color/black</item>
+        <item name="drug_subtitle_text_color">@color/gray_800</item>
+        <item name="edit_button_color">@color/white</item>
+        <item name="text_course_drug_name_text_color">@color/white</item>
+        <item name="text_course_drug_type_text_color">@color/gray_800</item>
+        <item name="text_course_section_color">@color/gray_500</item>
+        <item name="button_course_add_time_medication_color">@color/indigo_A700</item>
+
+    </style>
+
+    <style name="Theme.RTP.Placeholder" parent="Theme.MaterialComponents.DayNight">
+        <item name="android:background">#FF00DC</item>
+        <item name="android:textColor">#000000</item>
+        <item name="android:textStyle">bold|italic</item>
+        <item name="fontFamily">monospace</item>
     </style>
 </resources>
