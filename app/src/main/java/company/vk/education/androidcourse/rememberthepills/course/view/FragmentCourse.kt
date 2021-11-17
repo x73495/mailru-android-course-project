@@ -108,10 +108,10 @@ class FragmentCourse : Fragment() {
             MaterialAlertDialogBuilder(requireContext())
                 .setTitle(getString(R.string.course_removal_confirmation_title))
                 .setMessage(getString(R.string.course_removal_confirmation_message))
-                .setNegativeButton(getString(R.string.course_removal_confirmation_answer_no)) { dialog, which ->
+                .setNegativeButton(getString(R.string.removal_confirmation_answer_no)) { dialog, which ->
                     dialog.cancel()
                 }
-                .setPositiveButton(getString(R.string.course_removal_confirmation_answer_yes)) { dialog, which ->
+                .setPositiveButton(getString(R.string.removal_confirmation_answer_yes)) { dialog, which ->
                     // TODO: actual deletion
                     val action = FragmentCourseDirections.actionFragmentCourseToFragmentSchedule()
                     it.findNavController().navigate(action)
