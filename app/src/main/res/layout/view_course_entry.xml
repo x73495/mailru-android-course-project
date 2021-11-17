@@ -30,7 +30,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/layout_drug_info" />
 
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/text_course_entry_missed"
                 android:text="@string/missed_medication"
@@ -41,16 +41,18 @@
                 app:layout_constraintTop_toBottomOf="@+id/layout_drug_info"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/layout_drug_info"
-                android:layout_marginTop="4dp" />
+                android:layout_marginTop="4dp"
+                app:layout_constraintEnd_toEndOf="parent" />
 
         <LinearLayout
                 android:orientation="vertical"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/checkbox_course_entry_is_done"
                 app:layout_constraintTop_toTopOf="parent"
                 android:layout_marginStart="16dp"
-                android:id="@+id/layout_drug_info">
+                android:id="@+id/layout_drug_info"
+                app:layout_constraintEnd_toEndOf="parent">
 
             <TextView
                     android:layout_width="wrap_content"

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CalendarView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
@@ -14,6 +15,7 @@ import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.CourseListAdapter
 import company.vk.education.androidcourse.rememberthepills.schedule.model.CourseEntry
 import company.vk.education.androidcourse.rememberthepills.schedule.viewModel.ScheduleViewModel
+import java.util.*
 
 class FragmentSchedule : Fragment() {
 
@@ -42,13 +44,18 @@ class FragmentSchedule : Fragment() {
         val adapter = CourseListAdapter(courseEntries)
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(requireContext())
+
+        // TODO TEMPORARY
+        val tempCalendar = Calendar.getInstance()
+        tempCalendar.set(2021, 10, 3)
+        view.findViewById<CalendarView>(R.id.calendar_schedule).date = tempCalendar.timeInMillis
     }
 
     // TODO TEMPORARY
     private fun generateCourseEntries(): List<CourseEntry> {
         return listOf(
             CourseEntry(
-                "Фуфломицин",
+                "\$названиеПрепарата0",
                 12,
                 isDone = false,
                 isMissed = true,
@@ -56,64 +63,64 @@ class FragmentSchedule : Fragment() {
                 "шт"
             ),
             CourseEntry(
-                "Фуфломицин",
-                12,
+                "\$названиеПрепарата1",
+                11,
                 isDone = true,
                 isMissed = false,
                 2,
                 "шт"
             ),
             CourseEntry(
-                "Фуфломицин",
-                12,
+                "\$названиеПрепарата2",
+                10,
                 isDone = false,
                 isMissed = false,
                 3,
                 "шт"
             ),
             CourseEntry(
-                "препаратНейм",
+                "\$названиеПрепарата3",
                 1337,
                 isDone = true,
-                isMissed = true,
+                isMissed = false,
                 4,
                 "мг"
             ),
             CourseEntry(
-                "lol",
-                -1,
-                isDone = true,
+                "\$названиеПрепарата4",
+                9,
+                isDone = false,
                 isMissed = true,
                 5,
                 "ед"
             ),
             CourseEntry(
-                "idk",
-                0,
+                "\$названиеПрепарата5",
+                888,
                 isDone = false,
                 isMissed = false,
                 5,
                 "ед"
             ),
             CourseEntry(
-                "aaaaaaaaa",
-                4444,
+                "\$названиеПрепарата5",
+                777777777,
                 isDone = true,
                 isMissed = false,
                 6,
                 "ед"
             ),
             CourseEntry(
-                "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
-                999999999,
-                isDone = true,
+                "\$названиеПрепарата6",
+                654,
+                isDone = false,
                 isMissed = true,
                 6,
-                "ед"
+                "мл"
             ),
             CourseEntry(
-                "c",
-                1,
+                "\$названиеПрепарата7",
+                321,
                 isDone = false,
                 isMissed = false,
                 7,
