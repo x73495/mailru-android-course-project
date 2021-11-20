@@ -55,7 +55,7 @@ class FragmentDrug : Fragment() {
             getString(R.string.drug_type_potion)
         )
         val adapterItemsMeasurement =
-            ArrayAdapter(requireContext(), R.layout.drop_down_text_view_list_item, itemsType)
+            ArrayAdapter(requireContext(), R.layout.item_text_view_drop_down_list, itemsType)
         (view.findViewById<AutoCompleteTextView>(R.id.input_text_drug_type)).setAdapter(
             adapterItemsMeasurement
         )

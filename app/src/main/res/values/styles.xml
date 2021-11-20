@@ -57,4 +57,9 @@
         <item name="android:letterSpacing">0.015</item>
         <item name="android:lineHeight">24sp</item>
     </style>
+
+    <style name="Widget.Theme.RTP.MyView" parent="">
+        <item name="android:background">@color/gray_400</item>
+        <item name="exampleColor">@color/light_blue_400</item>
+    </style>
 </resources>

@@ -17,8 +17,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.course.viewModel.CourseViewModel
-import company.vk.education.androidcourse.rememberthepills.adapters.IntakeTimeAdapter
-import company.vk.education.androidcourse.rememberthepills.models.IntakeTime
+import company.vk.education.androidcourse.rememberthepills.drug.view.adapter.IntakeTimeAdapter
+import company.vk.education.androidcourse.rememberthepills.drug.model.IntakeTime
 import java.text.SimpleDateFormat
 
 class FragmentCourse : Fragment() {
@@ -44,7 +44,7 @@ class FragmentCourse : Fragment() {
             getString(R.string.drug_type_unit_tablespoons)
         )
         val adapterItemsMeasurement =
-            ArrayAdapter(requireContext(), R.layout.drop_down_text_view_list_item, itemsMeasurement)
+            ArrayAdapter(requireContext(), R.layout.item_text_view_drop_down_list, itemsMeasurement)
         (view.findViewById<AutoCompleteTextView>(R.id.input_text_course_measurement)).setAdapter(
             adapterItemsMeasurement
         )
@@ -56,7 +56,7 @@ class FragmentCourse : Fragment() {
             getString(R.string.food_addiction_not_depend)
         )
         val adapterItemsFoodDependency =
-            ArrayAdapter(requireContext(), R.layout.drop_down_text_view_list_item, itemsFoodDependency)
+            ArrayAdapter(requireContext(), R.layout.item_text_view_drop_down_list, itemsFoodDependency)
         (view.findViewById<AutoCompleteTextView>(R.id.input_text_course_food_dependency)).setAdapter(
             adapterItemsFoodDependency
         )

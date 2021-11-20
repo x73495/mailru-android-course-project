@@ -10,7 +10,7 @@
     <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="16dp"
+            android:padding="@dimen/rtp_dp16"
             android:showDividers="middle"
             android:divider="@drawable/divider_32"
             android:orientation="vertical"
@@ -47,8 +47,8 @@
     </LinearLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-            android:paddingHorizontal="16dp"
-            android:paddingVertical="16dp"
+            android:paddingHorizontal="@dimen/rtp_dp16"
+            android:paddingVertical="@dimen/rtp_dp16"
             android:orientation="horizontal"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -73,7 +73,7 @@
                 android:textColor="@color/white"
                 tools:text="Действие"
                 android:textAppearance="@style/TextAppearance.RTP.Title3"
-                app:cornerRadius="16dp"
+                app:cornerRadius="@dimen/rtp_dp16"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/button_drug_save"

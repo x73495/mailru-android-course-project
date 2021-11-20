@@ -17,7 +17,7 @@ class DrugListAdapter(private val drugEntries: List<DrugEntry>, private val inte
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DrugEntryViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.view_drug_entry, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_drug_list, parent, false)
 
         return DrugEntryViewHolder(view)
     }

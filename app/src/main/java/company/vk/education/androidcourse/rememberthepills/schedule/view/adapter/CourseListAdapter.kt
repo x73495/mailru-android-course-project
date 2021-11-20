@@ -18,7 +18,7 @@ class CourseListAdapter(private val courseEntries: List<CourseEntry>) :
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CourseEntryViewHolder {
         val view =
-            LayoutInflater.from(parent.context).inflate(R.layout.view_course_entry, parent, false)
+            LayoutInflater.from(parent.context).inflate(R.layout.item_view_course_list, parent, false)
 
         val checkBoxEntryIsDone = view.findViewById<CheckBox>(R.id.checkbox_course_entry_is_done)
         view.findViewById<ConstraintLayout>(R.id.layout_course_entry).setOnClickListener {
