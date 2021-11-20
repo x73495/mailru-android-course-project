@@ -58,8 +58,12 @@
     <string name="pick_course_start">Выберите дату начала приёма</string>
     <string name="pick_course_end">Выберите дату окончания приёма</string>
 
+    <string name="drug_removal_confirmation_title">Удаление препарата</string>
+    <string name="drug_removal_confirmation_message">Вы действительно хотите удалить препарат?</string>
+
     <string name="course_removal_confirmation_title">Удаление курса</string>
     <string name="course_removal_confirmation_message">Вы действительно хотите удалить курс?</string>
-    <string name="course_removal_confirmation_answer_yes">Да</string>
-    <string name="course_removal_confirmation_answer_no">Отмена</string>
+
+    <string name="removal_confirmation_answer_yes">Да</string>
+    <string name="removal_confirmation_answer_no">Отмена</string>
 </resources>

@@ -4,23 +4,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="64dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+    <ScrollView
+            android:id="@+id/scroll_calendar_schedule"
             app:layout_constraintTop_toTopOf="parent"
-            android:theme="@style/Theme.RTP.Placeholder"
-            android:id="@+id/frameLayout">
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="match_parent"
+            android:layout_height="142dp">
 
-        <TextView
-                android:id="@+id/calendar"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="недельный календарь"
-                android:theme="@style/Theme.RTP.Placeholder"
-                android:layout_gravity="center" />
-    </FrameLayout>
+        <CalendarView
+                android:id="@+id/calendar_schedule"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+    </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/button_to_course_add"
@@ -39,7 +35,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/recycler_course_entries_by_date"
-            app:layout_constraintTop_toBottomOf="@+id/frameLayout"
+            app:layout_constraintTop_toBottomOf="@+id/scroll_calendar_schedule"
             android:background="?attr/common_background_color" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

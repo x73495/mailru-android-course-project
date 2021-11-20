@@ -11,19 +11,19 @@
             tools:layout="@layout/fragment_schedule"
             android:label="@string/schedule">
         <action
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
                 android:id="@+id/action_fragmentSchedule_to_fragmentCourse"
-                app:destination="@id/fragmentCourse"
-                app:enterAnim="@anim/slide_in_right"
-                app:exitAnim="@anim/slide_out_left"
-                app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right" />
+                app:destination="@id/fragmentCourse" />
         <action
-                android:id="@+id/action_fragmentSchedule_to_fragmentDrugList"
-                app:destination="@id/fragmentDrugList"
                 app:enterAnim="@anim/slide_in_right"
                 app:exitAnim="@anim/slide_out_left"
                 app:popEnterAnim="@anim/slide_in_left"
-                app:popExitAnim="@anim/slide_out_right" />
+                app:popExitAnim="@anim/slide_out_right"
+                android:id="@+id/action_fragmentSchedule_to_fragmentDrugList"
+                app:destination="@id/fragmentDrugList" />
     </fragment>
     <fragment
             android:id="@+id/fragmentProfile"
@@ -31,9 +31,17 @@
             tools:layout="@layout/fragment_profile"
             android:label="@string/profile">
         <action
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
                 android:id="@+id/action_fragmentProfile_to_fragmentDrugList"
                 app:destination="@id/fragmentDrugList" />
         <action
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
                 android:id="@+id/action_fragmentProfile_to_fragmentCourseHistory"
                 app:destination="@id/fragmentCourseHistory" />
     </fragment>
@@ -43,9 +51,17 @@
             android:label="@string/drugs"
             tools:layout="@layout/fragment_drug_list">
         <action
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
                 android:id="@+id/action_fragmentDrugList_to_fragmentDrug"
                 app:destination="@id/fragmentDrug" />
         <action
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
                 android:id="@+id/action_fragmentDrugList_to_fragmentCourse"
                 app:destination="@id/fragmentCourse" />
         <argument
@@ -61,6 +77,10 @@
                 android:name="action"
                 app:argType="string" />
         <action
+                app:enterAnim="@anim/slide_in_right"
+                app:exitAnim="@anim/slide_out_left"
+                app:popEnterAnim="@anim/slide_in_left"
+                app:popExitAnim="@anim/slide_out_right"
                 android:id="@+id/action_fragmentCourse_to_fragmentSchedule"
                 app:destination="@id/fragmentSchedule" />
         <argument
