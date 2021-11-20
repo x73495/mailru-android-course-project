@@ -3,9 +3,9 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:background="@drawable/border_course_entry"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginVertical="8dp"
-        android:padding="16dp"
+        android:layout_marginHorizontal="@dimen/rtp_dp16"
+        android:layout_marginVertical="@dimen/rtp_dp8"
+        android:padding="@dimen/rtp_dp16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -41,7 +41,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/layout_drug_info"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/layout_drug_info"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="@dimen/rtp_dp4"
                 app:layout_constraintEnd_toEndOf="parent" />
 
         <LinearLayout
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintStart_toEndOf="@+id/checkbox_course_entry_is_done"
                 app:layout_constraintTop_toTopOf="parent"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="@dimen/rtp_dp16"
                 android:id="@+id/layout_drug_info"
                 app:layout_constraintEnd_toEndOf="parent">
 
@@ -80,7 +80,7 @@
                         android:layout_height="wrap_content"
                         android:id="@+id/text_course_entry_measurement_of_drug"
                         android:layout_weight="1"
-                        android:layout_marginStart="4dp"
+                        android:layout_marginStart="@dimen/rtp_dp4"
                         android:textColor="?attr/course_entry_amount_of_drug_text_color"
                         tools:text="msrmnt of drug" />
             </LinearLayout>

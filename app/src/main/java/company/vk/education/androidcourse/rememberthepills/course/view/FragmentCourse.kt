@@ -16,9 +16,11 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import company.vk.education.androidcourse.rememberthepills.R
+import company.vk.education.androidcourse.rememberthepills.components.models.FoodAddictionItem
+import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
 import company.vk.education.androidcourse.rememberthepills.course.viewModel.CourseViewModel
-import company.vk.education.androidcourse.rememberthepills.adapters.IntakeTimeAdapter
-import company.vk.education.androidcourse.rememberthepills.models.IntakeTime
+import company.vk.education.androidcourse.rememberthepills.drug.view.adapter.IntakeTimeAdapter
+import company.vk.education.androidcourse.rememberthepills.drug.model.IntakeTime
 import java.text.SimpleDateFormat
 
 class FragmentCourse : Fragment() {
@@ -34,29 +36,17 @@ class FragmentCourse : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        val itemsMeasurement = listOf(
-            getString(R.string.drug_type_unit_pieces),
-            getString(R.string.drug_type_unit_milligrams),
-            getString(R.string.drug_type_unit_milliliters),
-            getString(R.string.drug_type_unit_units),
-            getString(R.string.drug_type_unit_doses),
-            getString(R.string.drug_type_unit_teaspoons),
-            getString(R.string.drug_type_unit_tablespoons)
-        )
+        val itemsMeasurements = MeasurementItem.values().map { getString(it.textId) }
         val adapterItemsMeasurement =
-            ArrayAdapter(requireContext(), R.layout.list_item, itemsMeasurement)
+            ArrayAdapter(requireContext(), R.layout.item_text_view_drop_down_list, itemsMeasurements)
         (view.findViewById<AutoCompleteTextView>(R.id.input_text_course_measurement)).setAdapter(
             adapterItemsMeasurement
         )
 
-        val itemsFoodDependency = listOf(
-            getString(R.string.food_addiction_before_meals),
-            getString(R.string.food_addiction_after_meal),
-            getString(R.string.food_addiction_while_eating),
-            getString(R.string.food_addiction_not_depend)
-        )
+        val itemsFoodDependency = FoodAddictionItem.values().map { getString(it.textId) }
+
         val adapterItemsFoodDependency =
-            ArrayAdapter(requireContext(), R.layout.list_item, itemsFoodDependency)
+            ArrayAdapter(requireContext(), R.layout.item_text_view_drop_down_list, itemsFoodDependency)
         (view.findViewById<AutoCompleteTextView>(R.id.input_text_course_food_dependency)).setAdapter(
             adapterItemsFoodDependency
         )
