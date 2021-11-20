@@ -13,6 +13,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import company.vk.education.androidcourse.rememberthepills.R
+import company.vk.education.androidcourse.rememberthepills.components.models.DrugTypeItem
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModel
 
 class FragmentDrug : Fragment() {
@@ -43,17 +44,7 @@ class FragmentDrug : Fragment() {
             }
         }
 
-        val itemsType = listOf(
-            getString(R.string.drug_type_tablet),
-            getString(R.string.drug_type_inhaler),
-            getString(R.string.drug_type_spray),
-            getString(R.string.drug_type_injection),
-            getString(R.string.drug_type_drops),
-            getString(R.string.drug_type_ointment),
-            getString(R.string.drug_type_powder),
-            getString(R.string.drug_type_suppository),
-            getString(R.string.drug_type_potion)
-        )
+        val itemsType = DrugTypeItem.values().map { getString(it.textId) }
         val adapterItemsMeasurement =
             ArrayAdapter(requireContext(), R.layout.item_text_view_drop_down_list, itemsType)
         (view.findViewById<AutoCompleteTextView>(R.id.input_text_drug_type)).setAdapter(
