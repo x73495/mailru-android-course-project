@@ -13,7 +13,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import company.vk.education.androidcourse.rememberthepills.R
-import company.vk.education.androidcourse.rememberthepills.components.models.DrugTypeItem
+import company.vk.education.androidcourse.rememberthepills.components.storage.models.DrugTypeItem
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModel
 
 class FragmentDrug : Fragment() {
