@@ -1,13 +1,9 @@
 package company.vk.education.androidcourse.rememberthepills.components.base.utils
 
 import android.content.Context
-import android.content.res.AssetFileDescriptor
-import android.content.res.Resources
 import android.graphics.drawable.Drawable
-import android.os.Build
 import androidx.annotation.*
 import androidx.core.content.ContextCompat
-import java.util.*
 
 class ResourceProvider(private val context: Context) {
 
