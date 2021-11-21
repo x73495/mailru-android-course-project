@@ -9,7 +9,7 @@ import company.vk.education.androidcourse.rememberthepills.databinding.ItemNumbe
 
 class NumberedTextFieldViewHolder private constructor(private val binding: ItemNumberedTextInputBinding) : BaseViewHolder(binding.root) {
     override fun bind(item: BaseDataItem) {
-
+        // TODO: must be implemented
     }
 
     companion object {

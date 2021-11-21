@@ -5,6 +5,7 @@
         android:id="@+id/input_autocomplited_text_input_layout"
         app:boxStrokeColor="?attr/text_field_stroke_color"
         app:hintTextColor="?attr/text_field_collapsed_hint_text_color"
+        app:endIconTint="?attr/text_field_drop_down_icon_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

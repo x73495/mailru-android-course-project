@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import company.vk.education.androidcourse.rememberthepills.components.adapter.form.BaseRecyclerViewAdapter
+import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.form.viewHolder.FormViewHolderFactory
 import company.vk.education.androidcourse.rememberthepills.databinding.FragmentDrugBinding
@@ -35,8 +36,15 @@ class FragmentDrug : Fragment() {
 
         val viewHolderFactory = FormViewHolderFactory()
         val adapter = BaseRecyclerViewAdapter(viewHolderFactory)
+        val dividerItemDecoratorFactory = DividerItemDecorationFactory()
         binding.drugFormRecyclerView.adapter = adapter
         binding.drugFormRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.drugFormRecyclerView.addItemDecoration(
+            dividerItemDecoratorFactory.create(
+                requireContext(),
+                LinearLayoutManager.VERTICAL
+            )
+        )
         return binding.root
     }
 

@@ -10,7 +10,7 @@ import company.vk.education.androidcourse.rememberthepills.databinding.ItemDated
 
 class DatedTextFieldViewHolder private constructor(private val binding: ItemDatedTextInputBinding) : BaseViewHolder(binding.root) {
     override fun bind(item: BaseDataItem) {
-
+        // TODO: must be implemented
     }
 
     companion object {
