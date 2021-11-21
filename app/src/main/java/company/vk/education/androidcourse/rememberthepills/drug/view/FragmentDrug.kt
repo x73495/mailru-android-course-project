@@ -21,8 +21,8 @@ class FragmentDrug : Fragment() {
     private var _binding: FragmentDrugBinding? = null
     private val binding: FragmentDrugBinding get() = _binding!!
 
-    val args: FragmentDrugArgs by navArgs()
-    val drugViewModel: DrugViewModel by viewModels() {
+    private val args: FragmentDrugArgs by navArgs()
+    private val drugViewModel: DrugViewModel by viewModels() {
         DrugViewModelFactory(args.mode, args.drugId, ResourceProvider(requireContext()))
     }
 
