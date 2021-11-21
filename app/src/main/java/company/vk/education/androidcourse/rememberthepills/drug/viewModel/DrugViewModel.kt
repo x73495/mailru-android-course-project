@@ -12,7 +12,7 @@ class DrugViewModel(
 class DrugViewModelFactory(
     private val mode: FormScreenMode,
     private val id: Int?
-) : ViewModelProvider.Factory {
+): ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
         return DrugViewModel(mode, id) as T
     }
