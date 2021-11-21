@@ -96,11 +96,12 @@
             android:label="@string/drug"
             tools:layout="@layout/fragment_drug">
         <argument
-                android:name="action"
-                app:argType="string" />
+                android:name="mode"
+                app:argType="company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode"/>
         <argument
-                android:name="idOfDrug"
-                app:argType="integer" />
+                android:name="drugId"
+                app:argType="integer"
+                android:defaultValue="-1" />
     </fragment>
     <fragment
             android:id="@+id/fragmentCourseHistory"
