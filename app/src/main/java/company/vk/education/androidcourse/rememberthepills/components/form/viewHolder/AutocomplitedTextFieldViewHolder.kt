@@ -7,7 +7,6 @@ import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.viewHolder.BaseViewHolder
 import company.vk.education.androidcourse.rememberthepills.components.form.model.AutocomplitedTextFieldDataItem
-import company.vk.education.androidcourse.rememberthepills.components.form.model.TextedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.components.models.DrugTypeItem
 import company.vk.education.androidcourse.rememberthepills.databinding.ItemAutocomplitedTextInputBinding
 

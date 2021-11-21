@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import company.vk.education.androidcourse.rememberthepills.components.adapter.form.BaseRecyclerViewAdapter
+import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.form.viewHolder.FormViewHolderFactory

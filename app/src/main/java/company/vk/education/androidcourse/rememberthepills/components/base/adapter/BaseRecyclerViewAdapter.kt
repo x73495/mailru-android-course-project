@@ -1,4 +1,4 @@
-package company.vk.education.androidcourse.rememberthepills.components.adapter.form
+package company.vk.education.androidcourse.rememberthepills.components.base.adapter
 
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
@@ -7,7 +7,9 @@ import company.vk.education.androidcourse.rememberthepills.components.base.model
 import company.vk.education.androidcourse.rememberthepills.components.base.viewHolder.BaseViewHolder
 import company.vk.education.androidcourse.rememberthepills.components.base.viewHolder.BaseViewHolderAbstractFactory
 
-class BaseRecyclerViewAdapter(private val factory: BaseViewHolderAbstractFactory) : ListAdapter<BaseDataItem, BaseViewHolder>(BaseDiffCallback()) {
+class BaseRecyclerViewAdapter(private val factory: BaseViewHolderAbstractFactory) : ListAdapter<BaseDataItem, BaseViewHolder>(
+    BaseDiffCallback()
+) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseViewHolder {
         return factory.makeViewHolder(viewType, parent)
     }

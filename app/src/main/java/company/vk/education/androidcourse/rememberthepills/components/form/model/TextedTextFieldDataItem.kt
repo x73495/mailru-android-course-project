@@ -1,7 +1,6 @@
 package company.vk.education.androidcourse.rememberthepills.components.form.model
 
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
-import company.vk.education.androidcourse.rememberthepills.components.models.DrugTypeItem
 
 class TextedTextFieldDataItem(
     val id: Int,
