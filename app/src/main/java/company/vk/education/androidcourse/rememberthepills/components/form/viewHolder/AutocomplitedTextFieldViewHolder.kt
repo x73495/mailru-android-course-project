@@ -20,7 +20,6 @@ class AutocomplitedTextFieldViewHolder private constructor(private val binding: 
             val adapter = ArrayAdapter(context, R.layout.item_text_view_drop_down_list, itemsTypes)
             binding.inputAutocomplitedTextView.setText(context.getString(item.selectedItem.textId))
             binding.inputAutocomplitedTextView.setAdapter(adapter)
-            //
         }
     }
 
