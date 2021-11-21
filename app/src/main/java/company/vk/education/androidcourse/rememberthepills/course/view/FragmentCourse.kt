@@ -16,8 +16,8 @@ import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputEditText
 import company.vk.education.androidcourse.rememberthepills.R
-import company.vk.education.androidcourse.rememberthepills.components.storage.models.FoodAddictionItem
-import company.vk.education.androidcourse.rememberthepills.components.storage.models.MeasurementItem
+import company.vk.education.androidcourse.rememberthepills.components.models.FoodAddictionItem
+import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
 import company.vk.education.androidcourse.rememberthepills.course.viewModel.CourseViewModel
 import company.vk.education.androidcourse.rememberthepills.drug.view.adapter.IntakeTimeAdapter
 import company.vk.education.androidcourse.rememberthepills.drug.model.IntakeTime

@@ -1,4 +1,4 @@
-package company.vk.education.androidcourse.rememberthepills.components.storage.models
+package company.vk.education.androidcourse.rememberthepills.components.models
 
 import company.vk.education.androidcourse.rememberthepills.R
 

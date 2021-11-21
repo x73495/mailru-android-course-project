@@ -7,7 +7,9 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import company.vk.education.androidcourse.rememberthepills.components.adapter.form.BaseRecyclerViewAdapter
+import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.form.viewHolder.FormViewHolderFactory
 import company.vk.education.androidcourse.rememberthepills.databinding.FragmentDrugBinding
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModel
@@ -20,7 +22,7 @@ class FragmentDrug : Fragment() {
 
     val args: FragmentDrugArgs by navArgs()
     val drugViewModel: DrugViewModel by viewModels() {
-        DrugViewModelFactory(args.mode, args.drugId)
+        DrugViewModelFactory(args.mode, args.drugId, ResourceProvider(requireContext()))
     }
 
     override fun onCreateView(
@@ -32,8 +34,9 @@ class FragmentDrug : Fragment() {
         _binding = binding
 
         val viewHolderFactory = FormViewHolderFactory()
-        binding.drugFormRecyclerView.adapter = BaseRecyclerViewAdapter(viewHolderFactory)
-
+        val adapter = BaseRecyclerViewAdapter(viewHolderFactory)
+        binding.drugFormRecyclerView.adapter = adapter
+        binding.drugFormRecyclerView.layoutManager = LinearLayoutManager(requireContext())
         return binding.root
     }
 
@@ -43,32 +46,10 @@ class FragmentDrug : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        when (args.mode) {
-//            "add" -> {
-//                view.findViewById<Button>(R.id.button_drug_remove).visibility = View.GONE
-//                view.findViewById<Button>(R.id.button_drug_save).setText(R.string.add)
-//            }
-//            "edit" -> {
-//                view.findViewById<AutoCompleteTextView>(R.id.input_text_drug_name)
-//                    .setText("Препарат с ID ${args.idOfDrug}")
-//                view.findViewById<AutoCompleteTextView>(R.id.input_text_drug_type)
-//                    .setText("Тип препарата с ID ${args.idOfDrug}")
-//
-//                view.findViewById<Button>(R.id.button_drug_save).setText(R.string.save)
-//            }
-        }
+        val adapter = binding.drugFormRecyclerView.adapter as BaseRecyclerViewAdapter
+        adapter.submitList(drugViewModel.dataItems())
+    }
 
-//        val itemsType = DrugTypeItem.values().map { getString(it.textId) }
-//        val adapterItemsMeasurement =
-//            ArrayAdapter(requireContext(), R.layout.item_text_view_drop_down_list, itemsType)
-//        (view.findViewById<AutoCompleteTextView>(R.id.input_text_drug_type)).setAdapter(
-//            adapterItemsMeasurement
-//        )
-
-//        view.findViewById<Button>(R.id.button_drug_save).setOnClickListener {
-//            it.findNavController().popBackStack()
-//            // TODO: actual save
-//        }
 //
 //        view.findViewById<Button>(R.id.button_drug_remove).setOnClickListener {
 //            MaterialAlertDialogBuilder(requireContext())
@@ -83,5 +64,4 @@ class FragmentDrug : Fragment() {
 //                }
 //                .show()
 //        }
-    }
 }

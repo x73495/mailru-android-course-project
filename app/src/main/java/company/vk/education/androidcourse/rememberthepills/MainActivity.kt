@@ -5,7 +5,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
-import company.vk.education.androidcourse.rememberthepills.R
 
 class MainActivity : AppCompatActivity() {
 

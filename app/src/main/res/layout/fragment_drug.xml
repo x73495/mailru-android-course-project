@@ -12,9 +12,9 @@
             android:layout_width="0dp"
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/button_drug_remove"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_drug_remove"
+            app:layout_constraintTop_toTopOf="parent"
             android:background="?attr/common_background_color" />
 
     <com.google.android.material.button.MaterialButton

@@ -4,11 +4,15 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.viewHolder.BaseViewHolder
+import company.vk.education.androidcourse.rememberthepills.components.form.model.TextedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.databinding.ItemTextedTextInputBinding
 
 class TextedTextFieldViewHolder private constructor(private val binding: ItemTextedTextInputBinding) : BaseViewHolder(binding.root) {
     override fun bind(item: BaseDataItem) {
-
+        if (item is TextedTextFieldDataItem) {
+            binding.itemNumberedTextInputLayout.hint = item.hint
+            binding.itemNumberedTextInputEditText.setText(item.text)
+        }
     }
 
     companion object {

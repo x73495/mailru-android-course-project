@@ -3,14 +3,13 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:id="@+id/input_autocomplited_text_input_layout"
-        app:boxBackgroundColor="?attr/common_background_color"
         app:boxStrokeColor="?attr/text_field_stroke_color"
         app:hintTextColor="?attr/text_field_collapsed_hint_text_color"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     <AutoCompleteTextView
-            android:id="@+id/input_autocomplited_text_input_autocomplete_text_view"
+            android:id="@+id/input_autocomplited_text_view"
             android:textColorHint="?attr/text_field_hint_text_color"
             android:hint="@string/measurement"
             android:layout_width="match_parent"
