@@ -1,7 +1,10 @@
 package company.vk.education.androidcourse.rememberthepills.components.form.viewHolder
 
+import android.util.Log
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
+import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
@@ -16,10 +19,15 @@ class AutocomplitedTextFieldViewHolder private constructor(private val binding: 
             binding.inputAutocomplitedTextInputLayout.hint = item.hint
 
             val context = binding.inputAutocomplitedTextView.context
-            val itemsTypes = DrugTypeItem.values().map { context.getString(it.textId) }
-            val adapter = ArrayAdapter(context, R.layout.item_text_view_drop_down_list, itemsTypes)
-            binding.inputAutocomplitedTextView.setText(context.getString(item.selectedItem.textId))
+            val textedItemStrings = item.textedItems.map { context.getString(it.textId) }
+            val adapter = ArrayAdapter(context, R.layout.item_text_view_drop_down_list, textedItemStrings)
+            binding.inputAutocomplitedTextView.setText(context.getString(item.selectedTextedItem.textId))
             binding.inputAutocomplitedTextView.setAdapter(adapter)
+
+            binding.inputAutocomplitedTextView.onItemClickListener =
+                (AdapterView.OnItemClickListener { _, _, position, _ ->
+                    item.itemSelectedHandler(item.textedItems[position])
+                })
         }
     }
 

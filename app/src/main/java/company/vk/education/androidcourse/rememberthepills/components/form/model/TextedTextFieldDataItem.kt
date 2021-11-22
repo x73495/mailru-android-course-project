@@ -4,7 +4,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.model
 
 class TextedTextFieldDataItem(
     val id: Int,
-    val text: String,
+    val text: String?,
     val hint: String
 ) : BaseDataItem {
     override var viewType: Int = FormViewType.TEXTED_TEXT_FIELD.ordinal

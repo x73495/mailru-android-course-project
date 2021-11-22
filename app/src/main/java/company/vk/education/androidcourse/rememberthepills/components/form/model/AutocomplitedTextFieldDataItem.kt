@@ -2,17 +2,20 @@ package company.vk.education.androidcourse.rememberthepills.components.form.mode
 
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.models.DrugTypeItem
+import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
 class AutocomplitedTextFieldDataItem(
     val id: Int,
-    val selectedItem: DrugTypeItem,
-    val hint: String
+    var textedItems: Array<out TextedItem>,
+    val selectedTextedItem: TextedItem,
+    val hint: String,
+    val itemSelectedHandler: (TextedItem) -> Unit
 ) : BaseDataItem {
     override var viewType: Int = FormViewType.AUTOCOMPLITED_TEXT_FIELD.ordinal
 
     override fun contentsTheSame(item: BaseDataItem): Boolean {
         return if (item is AutocomplitedTextFieldDataItem) {
-            selectedItem == item.selectedItem && hint == item.hint
+            selectedTextedItem == item.selectedTextedItem && hint == item.hint
         } else {
             false
         }
