@@ -5,8 +5,17 @@ import company.vk.education.androidcourse.rememberthepills.components.base.model
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.form.model.AutocomplitedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.components.form.model.TextedTextFieldDataItem
+import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
-class DrugViewModelMapper(private val resourceProvider: ResourceProvider) {
+class DrugViewModelMapper(
+    private val resourceProvider: ResourceProvider,
+    private val delegate: DrugViewModelMapper.Delegate
+) {
+    interface Delegate {
+        fun onDrugTypeSelectListener(item: TextedItem)
+        fun onDrugNameChangeListener(text: String?)
+    }
+
     enum class ViewId {
         DRUG_NAME,
         DRUG_TYPE
@@ -16,16 +25,19 @@ class DrugViewModelMapper(private val resourceProvider: ResourceProvider) {
         val drugNameItem = TextedTextFieldDataItem(
             id = ViewId.DRUG_NAME.ordinal,
             text = viewState.drugNameText,
-            hint = resourceProvider.getString(R.string.drug_name)
+            hint = resourceProvider.getString(R.string.drug_name),
+            editingTextHandler = {
+                delegate.onDrugNameChangeListener(it)
+            }
         )
 
         val drugTypesItem = AutocomplitedTextFieldDataItem(
             id = ViewId.DRUG_TYPE.ordinal,
             textedItems = viewState.drugItems,
-            selectedTextedItem = viewState.selectedTypeDrugItem,
+            selectedTextedItem = viewState.selectedDrugTypeItem,
             hint = resourceProvider.getString(R.string.drug_type),
-            itemSelectedHandler = { newDrugTypeItem ->
-
+            selectedItemHandler = { newDrugTypeItem ->
+                delegate.onDrugTypeSelectListener(newDrugTypeItem)
             }
         )
 

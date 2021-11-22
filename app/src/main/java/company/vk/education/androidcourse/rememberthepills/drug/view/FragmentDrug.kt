@@ -45,6 +45,7 @@ class FragmentDrug : Fragment() {
                 LinearLayoutManager.VERTICAL
             )
         )
+        subscribeViewModel()
         return binding.root
     }
 
@@ -53,9 +54,11 @@ class FragmentDrug : Fragment() {
         _binding = null
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    private fun subscribeViewModel() {
         val adapter = binding.drugFormRecyclerView.adapter as BaseRecyclerViewAdapter
-        adapter.submitList(drugViewModel.dataItems())
+        drugViewModel.listItems.observe(viewLifecycleOwner, {
+            adapter.submitList(drugViewModel.dataItems())
+        })
     }
 
 //

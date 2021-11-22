@@ -2,6 +2,8 @@ package company.vk.education.androidcourse.rememberthepills.components.form.view
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.widget.addTextChangedListener
+import androidx.core.widget.doOnTextChanged
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.viewHolder.BaseViewHolder
 import company.vk.education.androidcourse.rememberthepills.components.form.model.TextedTextFieldDataItem
@@ -12,6 +14,9 @@ class TextedTextFieldViewHolder private constructor(private val binding: ItemTex
         if (item is TextedTextFieldDataItem) {
             binding.itemNumberedTextInputLayout.hint = item.hint
             binding.itemNumberedTextInputEditText.setText(item.text)
+            binding.itemNumberedTextInputEditText.doOnTextChanged { text, _, _, _ ->
+                item.editingTextHandler(text.toString())
+            }
         }
     }
 

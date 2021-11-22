@@ -9,7 +9,7 @@ class AutocomplitedTextFieldDataItem(
     var textedItems: Array<out TextedItem>,
     val selectedTextedItem: TextedItem,
     val hint: String,
-    val itemSelectedHandler: (TextedItem) -> Unit
+    val selectedItemHandler: (TextedItem) -> Unit
 ) : BaseDataItem {
     override var viewType: Int = FormViewType.AUTOCOMPLITED_TEXT_FIELD.ordinal
 
