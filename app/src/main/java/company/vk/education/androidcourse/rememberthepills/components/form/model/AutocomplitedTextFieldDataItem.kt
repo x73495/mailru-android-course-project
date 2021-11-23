@@ -1,6 +1,7 @@
 package company.vk.education.androidcourse.rememberthepills.components.form.model
 
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BasePayload
 import company.vk.education.androidcourse.rememberthepills.components.models.DrugTypeItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
@@ -10,7 +11,7 @@ class AutocomplitedTextFieldDataItem(
     val selectedTextedItem: TextedItem,
     val hint: String,
     val selectedItemHandler: (TextedItem) -> Unit
-) : BaseDataItem {
+) : BaseDataItem, BasePayload {
     override var viewType: Int = FormViewType.AUTOCOMPLITED_TEXT_FIELD.ordinal
 
     override fun contentsTheSame(item: BaseDataItem): Boolean {

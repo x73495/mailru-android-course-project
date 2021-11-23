@@ -3,7 +3,8 @@ package company.vk.education.androidcourse.rememberthepills.components.base.view
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BasePayload
 
 open class BaseViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-    open fun bind(item: BaseDataItem) {}
+    open fun bind(item: BaseDataItem, payload: BasePayload?) {}
 }

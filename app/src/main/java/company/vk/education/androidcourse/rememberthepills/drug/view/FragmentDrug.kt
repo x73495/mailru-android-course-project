@@ -8,11 +8,13 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseDiffCallback
 import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.form.viewHolder.FormViewHolderFactory
 import company.vk.education.androidcourse.rememberthepills.databinding.FragmentDrugBinding
+import company.vk.education.androidcourse.rememberthepills.drug.view.adapter.DrugDiffUtilCallback
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModel
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModelFactory
 
@@ -35,7 +37,8 @@ class FragmentDrug : Fragment() {
         _binding = binding
 
         val viewHolderFactory = FormViewHolderFactory()
-        val adapter = BaseRecyclerViewAdapter(viewHolderFactory)
+        val diffUtilCallback = DrugDiffUtilCallback()
+        val adapter = BaseRecyclerViewAdapter(viewHolderFactory, diffUtilCallback)
         val dividerItemDecoratorFactory = DividerItemDecorationFactory()
         binding.drugFormRecyclerView.adapter = adapter
         binding.drugFormRecyclerView.layoutManager = LinearLayoutManager(requireContext())
@@ -57,7 +60,7 @@ class FragmentDrug : Fragment() {
     private fun subscribeViewModel() {
         val adapter = binding.drugFormRecyclerView.adapter as BaseRecyclerViewAdapter
         drugViewModel.listItems.observe(viewLifecycleOwner, {
-            adapter.submitList(drugViewModel.dataItems())
+            adapter.submitList(it)
         })
     }
 

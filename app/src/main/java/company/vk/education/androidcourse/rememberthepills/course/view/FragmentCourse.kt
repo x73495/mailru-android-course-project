@@ -19,8 +19,8 @@ import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.components.models.FoodAddictionItem
 import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
 import company.vk.education.androidcourse.rememberthepills.course.viewModel.CourseViewModel
-import company.vk.education.androidcourse.rememberthepills.drug.view.adapter.IntakeTimeAdapter
-import company.vk.education.androidcourse.rememberthepills.drug.model.IntakeTime
+import company.vk.education.androidcourse.rememberthepills.course.view.adapter.IntakeTimeAdapter
+import company.vk.education.androidcourse.rememberthepills.course.model.IntakeTime
 import java.text.SimpleDateFormat
 
 class FragmentCourse : Fragment() {

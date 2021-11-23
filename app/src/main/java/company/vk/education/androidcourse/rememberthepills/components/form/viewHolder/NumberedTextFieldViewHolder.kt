@@ -3,12 +3,13 @@ package company.vk.education.androidcourse.rememberthepills.components.form.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BasePayload
 import company.vk.education.androidcourse.rememberthepills.components.base.viewHolder.BaseViewHolder
 import company.vk.education.androidcourse.rememberthepills.databinding.ItemDatedTextInputBinding
 import company.vk.education.androidcourse.rememberthepills.databinding.ItemNumberedTextInputBinding
 
 class NumberedTextFieldViewHolder private constructor(private val binding: ItemNumberedTextInputBinding) : BaseViewHolder(binding.root) {
-    override fun bind(item: BaseDataItem) {
+    override fun bind(item: BaseDataItem, payload: BasePayload?) {
         // TODO: must be implemented
     }
 

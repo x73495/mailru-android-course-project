@@ -1,6 +1,7 @@
 package company.vk.education.androidcourse.rememberthepills.components.form.model
 
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BasePayload
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
 class TextedTextFieldDataItem(
@@ -8,7 +9,7 @@ class TextedTextFieldDataItem(
     val text: String?,
     val hint: String,
     val editingTextHandler: (String?) -> Unit
-) : BaseDataItem {
+) : BaseDataItem, BasePayload {
     override var viewType: Int = FormViewType.TEXTED_TEXT_FIELD.ordinal
 
     override fun contentsTheSame(item: BaseDataItem): Boolean {
