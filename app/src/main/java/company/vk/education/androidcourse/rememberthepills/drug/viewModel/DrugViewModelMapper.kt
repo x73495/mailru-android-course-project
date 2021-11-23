@@ -5,6 +5,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.model
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.form.model.AutocomplitedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.components.form.model.TextedTextFieldDataItem
+import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
 class DrugViewModelMapper(
@@ -21,7 +22,15 @@ class DrugViewModelMapper(
         DRUG_TYPE
     }
 
-    fun createDataItems(viewState: DrugViewState): List<BaseDataItem> {
+    fun createPresentationModel(viewState: DrugViewState): DrugPresentationModel {
+        return DrugPresentationModel(
+            listItems = createDataItems(viewState),
+            applyButtonTitle = getApplyButtonTitle(viewState),
+            isRemoveButtonHidden = getRemoveButtonHidden(viewState)
+        )
+    }
+
+    private fun createDataItems(viewState: DrugViewState): List<BaseDataItem> {
         val drugNameItem = TextedTextFieldDataItem(
             id = ViewId.DRUG_NAME.ordinal,
             text = viewState.drugNameText,
@@ -42,5 +51,19 @@ class DrugViewModelMapper(
         )
 
         return listOf(drugNameItem, drugTypesItem)
+    }
+
+    private fun getApplyButtonTitle(viewState: DrugViewState): String {
+        return when(viewState.screenMode) {
+            FormScreenMode.EDITING -> resourceProvider.getString(R.string.save)
+            FormScreenMode.CREATING -> resourceProvider.getString(R.string.add)
+        }
+    }
+
+    private fun getRemoveButtonHidden(viewState: DrugViewState): Boolean {
+        return when(viewState.screenMode) {
+            FormScreenMode.EDITING -> false
+            FormScreenMode.CREATING -> true
+        }
     }
 }

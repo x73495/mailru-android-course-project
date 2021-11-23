@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseDiffCallback
 import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
@@ -59,8 +58,10 @@ class FragmentDrug : Fragment() {
 
     private fun subscribeViewModel() {
         val adapter = binding.drugFormRecyclerView.adapter as BaseRecyclerViewAdapter
-        drugViewModel.listItems.observe(viewLifecycleOwner, {
-            adapter.submitList(it)
+        drugViewModel.presentationModel.observe(viewLifecycleOwner, {
+            adapter.submitList(it.listItems)
+            binding.buttonDrugSave.text = it.applyButtonTitle
+            binding.buttonDrugRemove.visibility = if (it.isRemoveButtonHidden) View.INVISIBLE else View.VISIBLE
         })
     }
 

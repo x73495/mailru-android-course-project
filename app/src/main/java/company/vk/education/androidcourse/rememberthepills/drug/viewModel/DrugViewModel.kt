@@ -20,12 +20,13 @@ class DrugViewModel(
     private var viewState: DrugViewState = DrugViewState(
         drugId = id,
         drugItems = DrugTypeItem.values(),
+        screenMode = mode,
         selectedDrugTypeItem = DrugTypeItem.values().first(),
         drugNameText = null
     )
 
-    val listItems: MutableLiveData<List<BaseDataItem>> by lazy {
-        MutableLiveData<List<BaseDataItem>>()
+    val presentationModel: MutableLiveData<DrugPresentationModel> by lazy {
+        MutableLiveData<DrugPresentationModel>()
     }
 
     init {
@@ -43,8 +44,8 @@ class DrugViewModel(
     }
 
     private fun updateUI() {
-        val listItems = mapper.createDataItems(viewState.copy())
-        this.listItems.value = listItems
+        val presentationModel = mapper.createPresentationModel(viewState)
+        this.presentationModel.value = presentationModel
     }
 }
 
