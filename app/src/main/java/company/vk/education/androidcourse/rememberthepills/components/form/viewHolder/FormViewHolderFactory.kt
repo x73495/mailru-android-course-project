@@ -12,6 +12,7 @@ class FormViewHolderFactory : BaseViewHolderAbstractFactory() {
             FormViewType.DATED_TEXT_FIELD.ordinal -> DatedTextFieldViewHolder.from(parent)
             FormViewType.NUMBERED_TEXT_FIELD.ordinal -> NumberedTextFieldViewHolder.from(parent)
             FormViewType.TEXTED_TEXT_FIELD.ordinal -> TextedTextFieldViewHolder.from(parent)
+            FormViewType.SECTION_HEADER.ordinal -> SectionHeaderViewHolder.from(parent)
             else -> throw ClassCastException("Unknown viewType ${viewType}")
         }
     }

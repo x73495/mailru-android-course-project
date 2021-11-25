@@ -73,9 +73,6 @@
             android:name="company.vk.education.androidcourse.rememberthepills.course.view.FragmentCourse"
             android:label="@string/course"
             tools:layout="@layout/fragment_course">
-        <argument
-                android:name="action"
-                app:argType="string" />
         <action
                 app:enterAnim="@anim/slide_in_right"
                 app:exitAnim="@anim/slide_out_left"
@@ -84,11 +81,16 @@
                 android:id="@+id/action_fragmentCourse_to_fragmentSchedule"
                 app:destination="@id/fragmentSchedule" />
         <argument
-                android:name="idOfDrug"
-                app:argType="integer" />
+                android:name="mode"
+                app:argType="company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode"/>
         <argument
-                android:name="idOfCourse"
-                app:argType="integer" />
+                android:name="courseId"
+                app:argType="integer"
+                android:defaultValue="-1"/>
+        <argument
+                android:name="drugId"
+                app:argType="integer"
+                android:defaultValue="-1"/>
     </fragment>
     <fragment
             android:id="@+id/fragmentDrug"

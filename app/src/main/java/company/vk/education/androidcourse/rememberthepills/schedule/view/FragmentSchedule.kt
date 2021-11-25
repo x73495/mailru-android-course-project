@@ -55,75 +55,84 @@ class FragmentSchedule : Fragment() {
     private fun generateCourseEntries(): List<CourseEntry> {
         return listOf(
             CourseEntry(
+                0,
+                0,
                 "\$названиеПрепарата0",
                 12,
                 isDone = false,
                 isMissed = true,
-                1,
                 "шт"
             ),
             CourseEntry(
+                0,
+                0,
                 "\$названиеПрепарата1",
                 11,
                 isDone = true,
                 isMissed = false,
-                2,
                 "шт"
             ),
             CourseEntry(
+                0,
+                0,
                 "\$названиеПрепарата2",
                 10,
                 isDone = false,
                 isMissed = false,
-                3,
                 "шт"
             ),
             CourseEntry(
+                0,
+                0,
                 "\$названиеПрепарата3",
                 1337,
                 isDone = true,
                 isMissed = false,
-                4,
                 "мг"
             ),
             CourseEntry(
+                0,
+                0,
                 "\$названиеПрепарата4",
                 9,
                 isDone = false,
                 isMissed = true,
-                5,
                 "ед"
             ),
             CourseEntry(
+                0,
+                0,
                 "\$названиеПрепарата5",
                 888,
                 isDone = false,
                 isMissed = false,
-                5,
                 "ед"
             ),
             CourseEntry(
+                0,
+                0,
                 "\$названиеПрепарата5",
                 777777777,
                 isDone = true,
                 isMissed = false,
-                6,
                 "ед"
             ),
             CourseEntry(
+                0,
+                0,
                 "\$названиеПрепарата6",
                 654,
                 isDone = false,
                 isMissed = true,
-                6,
                 "мл"
             ),
             CourseEntry(
+                0,
+                0,
                 "\$названиеПрепарата7",
                 321,
                 isDone = false,
                 isMissed = false,
-                7,
                 "ед"
             )
         )

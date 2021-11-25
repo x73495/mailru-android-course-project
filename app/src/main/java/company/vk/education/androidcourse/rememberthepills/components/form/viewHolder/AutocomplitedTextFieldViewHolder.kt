@@ -13,6 +13,7 @@ import company.vk.education.androidcourse.rememberthepills.databinding.ItemAutoc
 
 class AutocomplitedTextFieldViewHolder private constructor(private val binding: ItemAutocomplitedTextInputBinding) : BaseViewHolder(binding.root) {
     override fun bind(item: BaseDataItem, payload: BasePayload?) {
+        // TODO: нужен ли весь payload ?
         val item = payload ?: item
         if (item is AutocomplitedTextFieldDataItem) {
             binding.inputAutocomplitedTextInputLayout.hint = item.hint

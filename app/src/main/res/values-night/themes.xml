@@ -37,5 +37,7 @@
         <item name="text_field_stroke_color">@color/text_field_stroke_dark_color</item>
         <item name="text_field_drop_down_icon_color">@color/white</item>
 
+        <!-- Section header -->
+        <item name="section_header_text_color">@color/white</item>
     </style>
 </resources>

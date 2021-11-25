@@ -10,6 +10,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import company.vk.education.androidcourse.rememberthepills.R
+import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.schedule.model.CourseEntry
 import company.vk.education.androidcourse.rememberthepills.schedule.view.FragmentScheduleDirections
 
@@ -47,7 +48,9 @@ class CourseListAdapter(private val courseEntries: List<CourseEntry>) :
 
         fun bind(courseEntry: CourseEntry) {
             itemView.findViewById<Button>(R.id.button_course_entry_edit).setOnClickListener {
-                val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse("edit", -1, courseEntry.idOfCourse)
+                val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse(FormScreenMode.EDITING)
+                    .setCourseId(courseEntry.courseId)
+                    .setDrugId(courseEntry.drugId)
                 it.findNavController().navigate(action)
             }
 

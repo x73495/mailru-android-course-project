@@ -20,4 +20,7 @@
     <attr name="text_field_collapsed_hint_text_color" format="color"/>
     <attr name="text_field_drop_down_icon_color" format="color"/>
     <attr name="text_field_stroke_color" format="color"/>
+
+    <!-- Section header -->
+    <attr name="section_header_text_color" format="color"/>
 </resources>

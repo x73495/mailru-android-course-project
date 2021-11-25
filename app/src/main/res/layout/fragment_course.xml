@@ -8,281 +8,293 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ScrollView
-            android:id="@+id/scroll_course"
-            android:layout_width="match_parent"
+    <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/course_form_recycler_view"
+            android:layout_width="0dp"
             android:layout_height="0dp"
-            app:layout_constraintTop_toTopOf="parent"
+            android:padding="@dimen/rtp_dp16"
+            android:clipToPadding="false"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/layout_course_bottom_buttons">
-
-        <LinearLayout
-                android:showDividers="middle"
-                android:divider="@drawable/divider_32"
-                android:padding="@dimen/rtp_dp16"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintBottom_toTopOf="@+id/layout_course_bottom_buttons">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                <TextView
-                        android:textColor="?attr/text_course_section_color"
-                        android:id="@+id/text_course_section_drug"
-                        android:text="@string/drug"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toTopOf="parent"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                <LinearLayout
-                        android:layout_marginTop="@dimen/rtp_dp16"
-                        android:layout_marginStart="@dimen/rtp_dp16"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        app:layout_constraintTop_toBottomOf="@id/text_course_section_drug"
-                        app:layout_constraintStart_toStartOf="parent">
-
-                    <TextView
-                            tools:textStyle="italic"
-                            android:textColor="@color/black"
-                            style="@style/TextAppearance.RTP.Title1"
-                            tools:text="Название"
-                            android:id="@+id/text_course_drug_name"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-
-                    <TextView
-                            tools:textStyle="italic"
-                            style="@style/TextAppearance.RTP.Caption2"
-                            android:textColor="?attr/text_course_drug_type_text_color"
-                            tools:text="Тип"
-                            android:id="@+id/text_course_drug_type"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content" />
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                <TextView
-                        android:text="@string/dosage"
-                        android:textColor="?attr/text_course_section_color"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/text_course_section_dosage"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                <LinearLayout
-                        android:showDividers="middle"
-                        android:divider="@drawable/divider_16"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/text_course_section_dosage"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginTop="@dimen/rtp_dp16">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                        <AutoCompleteTextView
-                                android:id="@+id/input_text_course_measurement"
-                                android:hint="@string/measurement"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="none" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/input_course_quantity"
-                            android:hint="@string/quantity"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            app:boxBackgroundColor="?attr/common_background_color"
-                            app:boxStrokeColor="?attr/text_field_stroke_color"
-                            android:textColorHint="?attr/text_field_hint_text_color"
-                            app:hintTextColor="?attr/text_field_collapsed_hint_text_color"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                                android:inputType="numberDecimal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                        <AutoCompleteTextView
-                                android:id="@+id/input_text_course_food_dependency"
-                                android:hint="@string/food_addiction"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:inputType="none" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                <TextView
-                        android:text="@string/medication_period"
-                        android:textColor="?attr/text_course_section_color"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/text_course_section_period"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                <LinearLayout
-                        android:showDividers="middle"
-                        android:divider="@drawable/divider_16"
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@id/text_course_section_period"
-                        app:layout_constraintStart_toStartOf="parent"
-                        android:layout_marginTop="@dimen/rtp_dp16">
-
-                    <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/input_layout_course_start"
-                            android:hint="@string/starting_medication"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/input_edit_text_course_start"
-                                android:focusable="false"
-                                android:inputType="date"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/input_layout_course_end"
-                            android:hint="@string/end_of_medication"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                                android:id="@+id/input_edit_text_course_end"
-                                android:focusable="false"
-                                android:inputType="date"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-                    </com.google.android.material.textfield.TextInputLayout>
-
-                    <com.google.android.material.textfield.TextInputLayout
-                            android:id="@+id/input_course_frequency"
-                            android:hint="@string/frequency_in_days_medication"
-                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content">
-
-                        <com.google.android.material.textfield.TextInputEditText
-                                android:inputType="numberDecimal"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
-                    </com.google.android.material.textfield.TextInputLayout>
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                    android:focusable="true"
-                    android:focusableInTouchMode="true"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                <TextView
-                        android:text="@string/time_medication"
-                        android:textColor="?attr/text_course_section_color"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/text_course_section_time_medication"
-                        app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                        android:nestedScrollingEnabled="false"
-                        android:layout_marginStart="@dimen/rtp_dp16"
-                        android:id="@+id/recycler_time_medication"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/text_course_section_time_medication"
-                        app:layout_constraintStart_toStartOf="parent" />
-
-                <com.google.android.material.button.MaterialButton
-                        android:textColor="?attr/button_course_add_time_medication_color"
-                        app:iconPadding="@dimen/rtp_dp8"
-                        android:text="@string/add_time_medication"
-                        android:textAppearance="@style/TextAppearance.RTP.Caption1"
-                        app:icon="@drawable/ic_add"
-                        app:iconSize="@dimen/rtp_dp16"
-                        style="@style/Widget.RTP.Button.IconOnly"
-                        android:id="@+id/button_course_add_time_medication"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        app:layout_constraintTop_toBottomOf="@+id/recycler_time_medication"
-                        app:layout_constraintStart_toStartOf="@+id/recycler_time_medication"
-                        android:layout_marginTop="@dimen/rtp_dp4" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </LinearLayout>
-    </ScrollView>
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-            android:paddingHorizontal="@dimen/rtp_dp16"
-            android:paddingVertical="@dimen/rtp_dp16"
-            android:orientation="horizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:id="@+id/layout_course_bottom_buttons">
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:background="?attr/common_background_color" />
 
-        <com.google.android.material.button.MaterialButton
-                android:textAppearance="@style/TextAppearance.RTP.Caption1"
-                android:textColor="@color/red_500"
-                android:text="@string/delete"
-                style="@style/Widget.MaterialComponents.Button.TextButton"
-                android:id="@+id/button_course_remove"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
+<!--    <ScrollView-->
+<!--            android:id="@+id/scroll_course"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="0dp"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/layout_course_bottom_buttons">-->
 
-        <com.google.android.material.button.MaterialButton
-                tools:textStyle="italic"
-                android:textColor="@color/white"
-                tools:text="Действие"
-                android:textAppearance="@style/TextAppearance.RTP.Title3"
-                app:cornerRadius="@dimen/rtp_dp16"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/button_course_save"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+<!--        <LinearLayout-->
+<!--                android:showDividers="middle"-->
+<!--                android:divider="@drawable/divider_32"-->
+<!--                android:padding="@dimen/rtp_dp16"-->
+<!--                android:orientation="vertical"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="0dp"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintBottom_toTopOf="@+id/layout_course_bottom_buttons">-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+
+<!--                <TextView-->
+<!--                        android:textColor="?attr/text_course_section_color"-->
+<!--                        android:id="@+id/text_course_section_drug"-->
+<!--                        android:text="@string/drug"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintTop_toTopOf="parent"-->
+<!--                        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--                <LinearLayout-->
+<!--                        android:layout_marginTop="@dimen/rtp_dp16"-->
+<!--                        android:layout_marginStart="@dimen/rtp_dp16"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="match_parent"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/text_course_section_drug"-->
+<!--                        app:layout_constraintStart_toStartOf="parent">-->
+
+<!--                    <TextView-->
+<!--                            tools:textStyle="italic"-->
+<!--                            android:textColor="@color/black"-->
+<!--                            style="@style/TextAppearance.RTP.Title1"-->
+<!--                            tools:text="Название"-->
+<!--                            android:id="@+id/text_course_drug_name"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content" />-->
+
+<!--                    <TextView-->
+<!--                            tools:textStyle="italic"-->
+<!--                            style="@style/TextAppearance.RTP.Caption2"-->
+<!--                            android:textColor="?attr/text_course_drug_type_text_color"-->
+<!--                            tools:text="Тип"-->
+<!--                            android:id="@+id/text_course_drug_type"-->
+<!--                            android:layout_width="wrap_content"-->
+<!--                            android:layout_height="wrap_content" />-->
+<!--                </LinearLayout>-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+
+<!--                <TextView-->
+<!--                        android:text="@string/dosage"-->
+<!--                        android:textColor="?attr/text_course_section_color"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:id="@+id/text_course_section_dosage"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <LinearLayout-->
+<!--                        android:showDividers="middle"-->
+<!--                        android:divider="@drawable/divider_16"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/text_course_section_dosage"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        android:layout_marginTop="@dimen/rtp_dp16">-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content">-->
+
+<!--                        <AutoCompleteTextView-->
+<!--                                android:id="@+id/input_text_course_measurement"-->
+<!--                                android:hint="@string/measurement"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:inputType="none" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:id="@+id/input_course_quantity"-->
+<!--                            android:hint="@string/quantity"-->
+<!--                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                            app:boxBackgroundColor="?attr/common_background_color"-->
+<!--                            app:boxStrokeColor="?attr/text_field_stroke_color"-->
+<!--                            android:textColorHint="?attr/text_field_hint_text_color"-->
+<!--                            app:hintTextColor="?attr/text_field_collapsed_hint_text_color"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                                android:inputType="numberDecimal"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content">-->
+
+<!--                        <AutoCompleteTextView-->
+<!--                                android:id="@+id/input_text_course_food_dependency"-->
+<!--                                android:hint="@string/food_addiction"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content"-->
+<!--                                android:inputType="none" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+<!--                </LinearLayout>-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+
+<!--                <TextView-->
+<!--                        android:text="@string/medication_period"-->
+<!--                        android:textColor="?attr/text_course_section_color"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:id="@+id/text_course_section_period"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <LinearLayout-->
+<!--                        android:showDividers="middle"-->
+<!--                        android:divider="@drawable/divider_16"-->
+<!--                        android:orientation="vertical"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintTop_toBottomOf="@id/text_course_section_period"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        android:layout_marginTop="@dimen/rtp_dp16">-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:id="@+id/input_layout_course_start"-->
+<!--                            android:hint="@string/starting_medication"-->
+<!--                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                                android:id="@+id/input_edit_text_course_start"-->
+<!--                                android:focusable="false"-->
+<!--                                android:inputType="date"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:id="@+id/input_layout_course_end"-->
+<!--                            android:hint="@string/end_of_medication"-->
+<!--                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                                android:id="@+id/input_edit_text_course_end"-->
+<!--                                android:focusable="false"-->
+<!--                                android:inputType="date"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--                    <com.google.android.material.textfield.TextInputLayout-->
+<!--                            android:id="@+id/input_course_frequency"-->
+<!--                            android:hint="@string/frequency_in_days_medication"-->
+<!--                            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"-->
+<!--                            android:layout_width="match_parent"-->
+<!--                            android:layout_height="wrap_content">-->
+
+<!--                        <com.google.android.material.textfield.TextInputEditText-->
+<!--                                android:inputType="numberDecimal"-->
+<!--                                android:layout_width="match_parent"-->
+<!--                                android:layout_height="wrap_content" />-->
+<!--                    </com.google.android.material.textfield.TextInputLayout>-->
+<!--                </LinearLayout>-->
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+
+<!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--                    android:focusable="true"-->
+<!--                    android:focusableInTouchMode="true"-->
+<!--                    android:layout_width="match_parent"-->
+<!--                    android:layout_height="wrap_content">-->
+
+<!--                <TextView-->
+<!--                        android:text="@string/time_medication"-->
+<!--                        android:textColor="?attr/text_course_section_color"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        android:id="@+id/text_course_section_time_medication"-->
+<!--                        app:layout_constraintStart_toStartOf="parent"-->
+<!--                        app:layout_constraintTop_toTopOf="parent" />-->
+
+<!--                <androidx.recyclerview.widget.RecyclerView-->
+<!--                        android:nestedScrollingEnabled="false"-->
+<!--                        android:layout_marginStart="@dimen/rtp_dp16"-->
+<!--                        android:id="@+id/recycler_time_medication"-->
+<!--                        android:layout_width="match_parent"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/text_course_section_time_medication"-->
+<!--                        app:layout_constraintStart_toStartOf="parent" />-->
+
+<!--                <com.google.android.material.button.MaterialButton-->
+<!--                        android:textColor="?attr/button_course_add_time_medication_color"-->
+<!--                        app:iconPadding="@dimen/rtp_dp8"-->
+<!--                        android:text="@string/add_time_medication"-->
+<!--                        android:textAppearance="@style/TextAppearance.RTP.Caption1"-->
+<!--                        app:icon="@drawable/ic_add"-->
+<!--                        app:iconSize="@dimen/rtp_dp16"-->
+<!--                        style="@style/Widget.RTP.Button.IconOnly"-->
+<!--                        android:id="@+id/button_course_add_time_medication"-->
+<!--                        android:layout_width="wrap_content"-->
+<!--                        android:layout_height="wrap_content"-->
+<!--                        app:layout_constraintTop_toBottomOf="@+id/recycler_time_medication"-->
+<!--                        app:layout_constraintStart_toStartOf="@+id/recycler_time_medication"-->
+<!--                        android:layout_marginTop="@dimen/rtp_dp4" />-->
+
+<!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+<!--        </LinearLayout>-->
+<!--    </ScrollView>-->
+
+<!--    <androidx.constraintlayout.widget.ConstraintLayout-->
+<!--            android:paddingHorizontal="@dimen/rtp_dp16"-->
+<!--            android:paddingVertical="@dimen/rtp_dp16"-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            app:layout_constraintBottom_toBottomOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            android:id="@+id/layout_course_bottom_buttons">-->
+
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--                android:textAppearance="@style/TextAppearance.RTP.Caption1"-->
+<!--                android:textColor="@color/red_500"-->
+<!--                android:text="@string/delete"-->
+<!--                style="@style/Widget.MaterialComponents.Button.TextButton"-->
+<!--                android:id="@+id/button_course_remove"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                app:layout_constraintStart_toStartOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent" />-->
+
+<!--        <com.google.android.material.button.MaterialButton-->
+<!--                tools:textStyle="italic"-->
+<!--                android:textColor="@color/white"-->
+<!--                tools:text="Действие"-->
+<!--                android:textAppearance="@style/TextAppearance.RTP.Title3"-->
+<!--                app:cornerRadius="@dimen/rtp_dp16"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/button_course_save"-->
+<!--                app:layout_constraintEnd_toEndOf="parent"-->
+<!--                app:layout_constraintTop_toTopOf="parent"-->
+<!--                app:layout_constraintBottom_toBottomOf="parent" />-->
+<!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 </androidx.constraintlayout.widget.ConstraintLayout>

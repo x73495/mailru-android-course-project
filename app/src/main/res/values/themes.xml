@@ -34,6 +34,9 @@
         <item name="text_field_stroke_color">@color/text_field_stroke_light_color</item>
         <item name="text_field_drop_down_icon_color">@color/black</item>
 
+        <!-- Section header -->
+        <item name="section_header_text_color">@color/gray_500</item>
+
     </style>
 
     <style name="Theme.RTP.Placeholder" parent="Theme.MaterialComponents.DayNight">
