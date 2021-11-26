@@ -23,7 +23,9 @@ class CourseViewModelMapper(
         DOSAGE_SECTION_HEADER,
         MEASUREMENT_TYPE,
         AMOUNT_TYPE,
-        FOOD_ADDICTION_TYPE
+        FOOD_ADDICTION_TYPE,
+        MEDICATION_PERIOD_SECTION_HEADER,
+        TIME_MEDICATION_SECTION_HEADER
     }
 
     fun createPresentationModel(viewState: CourseViewState): CoursePresentationModel {
@@ -66,12 +68,22 @@ class CourseViewModelMapper(
                 delegate.onFoodAddictionTypeSelectListener(newFoodAddictionTypeItem)
             }
         )
+        val medicationPeriodSectionHeader = SectionHeaderDataItem(
+            id = ViewId.MEDICATION_PERIOD_SECTION_HEADER.ordinal,
+            text = resourceProvider.getString(R.string.medication_period)
+        )
+        val timeMedicationSectionHeader = SectionHeaderDataItem(
+            id = ViewId.TIME_MEDICATION_SECTION_HEADER.ordinal,
+            text = resourceProvider.getString(R.string.time_medication)
+        )
         return listOf(
             drugNameSectionHeader,
             dosageSectionHeader,
             measurementTypesItem,
             amountItem,
-            foodAddictionTypesItem
+            foodAddictionTypesItem,
+            medicationPeriodSectionHeader,
+            timeMedicationSectionHeader
         )
     }
 }
