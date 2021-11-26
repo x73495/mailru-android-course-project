@@ -18,4 +18,6 @@ class ResourceProvider(private val context: Context) {
     fun getDimension(@DimenRes id: Int): Float = context.resources.getDimension(id)
 
     fun getColor(@ColorRes id: Int): Int = ContextCompat.getColor(context, id)
+
+    fun getInteger(@IntegerRes id: Int): Int = context.resources.getInteger(id)
 }

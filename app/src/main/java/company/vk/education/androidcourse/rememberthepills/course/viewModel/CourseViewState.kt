@@ -7,6 +7,7 @@ data class CourseViewState(val drugId: Int?,
                            val courseId: Int?,
                            var measurementItems: Array<out TextedItem>,
                            var selectedMeasurementItem: TextedItem,
+                           var quantity: Int?,
                            var foodAddictionItems: Array<out TextedItem>,
                            var selectedFoodAddictionItem: TextedItem,
                            val screenMode: FormScreenMode)

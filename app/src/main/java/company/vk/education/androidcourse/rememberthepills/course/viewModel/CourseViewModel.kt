@@ -21,6 +21,7 @@ class CourseViewModel(
         drugId = drugId,
         measurementItems = MeasurementItem.values(),
         selectedMeasurementItem = MeasurementItem.values().first(),
+        quantity = null,
         foodAddictionItems = FoodAddictionItem.values(),
         selectedFoodAddictionItem = FoodAddictionItem.values().first(),
         screenMode = mode
@@ -48,6 +49,11 @@ class CourseViewModel(
 
     override fun onFoodAddictionTypeSelectListener(item: TextedItem) {
         viewState.selectedFoodAddictionItem = item
+        updateUI()
+    }
+
+    override fun onQuantityChangeListener(quantity: Int?) {
+        viewState.quantity = quantity
         updateUI()
     }
 }

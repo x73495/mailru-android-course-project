@@ -4,6 +4,7 @@ import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.form.model.AutocomplitedTextFieldDataItem
+import company.vk.education.androidcourse.rememberthepills.components.form.model.NumberedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.components.form.model.SectionHeaderDataItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
@@ -14,12 +15,14 @@ class CourseViewModelMapper(
     interface Delegate {
         fun onMeasurementTypeSelectListener(item: TextedItem)
         fun onFoodAddictionTypeSelectListener(item: TextedItem)
+        fun onQuantityChangeListener(quantity: Int?)
     }
 
     enum class ViewId {
         DRUG_NAME_SECTION_HEADER,
         DOSAGE_SECTION_HEADER,
         MEASUREMENT_TYPE,
+        AMOUNT_TYPE,
         FOOD_ADDICTION_TYPE
     }
 
@@ -45,6 +48,15 @@ class CourseViewModelMapper(
                 delegate.onMeasurementTypeSelectListener(newMeasurementTypeItem)
             }
         )
+        val amountItem = NumberedTextFieldDataItem(
+            id = ViewId.AMOUNT_TYPE.ordinal,
+            number = viewState.quantity,
+            hint = resourceProvider.getString(R.string.quantity),
+            maxLength = resourceProvider.getInteger(R.integer.numbered_text_input_max_length),
+            editingNumberHandler = {
+                delegate.onQuantityChangeListener(it)
+            }
+        )
         val foodAddictionTypesItem = AutocomplitedTextFieldDataItem(
             id = ViewId.FOOD_ADDICTION_TYPE.ordinal,
             textedItems = viewState.foodAddictionItems,
@@ -58,6 +70,7 @@ class CourseViewModelMapper(
             drugNameSectionHeader,
             dosageSectionHeader,
             measurementTypesItem,
+            amountItem,
             foodAddictionTypesItem
         )
     }
