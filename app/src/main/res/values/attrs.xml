@@ -18,6 +18,6 @@
     <!-- Text input -->
     <attr name="text_field_hint_text_color" format="color"/>
     <attr name="text_field_collapsed_hint_text_color" format="color"/>
-
+    <attr name="text_field_drop_down_icon_color" format="color"/>
     <attr name="text_field_stroke_color" format="color"/>
 </resources>

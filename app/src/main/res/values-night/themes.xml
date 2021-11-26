@@ -35,6 +35,7 @@
         <item name="text_field_hint_text_color">@color/gray_500</item>
         <item name="text_field_collapsed_hint_text_color">@color/white</item>
         <item name="text_field_stroke_color">@color/text_field_stroke_dark_color</item>
+        <item name="text_field_drop_down_icon_color">@color/white</item>
 
     </style>
 </resources>

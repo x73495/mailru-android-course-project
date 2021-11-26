@@ -9,6 +9,7 @@ import android.widget.TextView
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import company.vk.education.androidcourse.rememberthepills.R
+import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugEntry
 import company.vk.education.androidcourse.rememberthepills.drugList.view.FragmentDrugListDirections
 
@@ -44,7 +45,7 @@ class DrugListAdapter(private val drugEntries: List<DrugEntry>, private val inte
                 val buttonEntryEdit: Button = itemView.findViewById(R.id.button_drug_entry_edit)
                 buttonEntryEdit.visibility = View.VISIBLE
                 buttonEntryEdit.setOnClickListener {
-                    val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug("edit", drugEntry.idOfDrug)
+                    val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug(FormScreenMode.EDITING).setDrugId(drugEntry.idOfDrug)
                     it.findNavController().navigate(action)
                 }
             }

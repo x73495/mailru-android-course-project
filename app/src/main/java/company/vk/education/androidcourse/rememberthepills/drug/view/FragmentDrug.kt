@@ -5,69 +5,78 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.AutoCompleteTextView
-import android.widget.Button
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
-import com.google.android.material.dialog.MaterialAlertDialogBuilder
-import company.vk.education.androidcourse.rememberthepills.R
-import company.vk.education.androidcourse.rememberthepills.components.models.DrugTypeItem
+import androidx.recyclerview.widget.LinearLayoutManager
+import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
+import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
+import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
+import company.vk.education.androidcourse.rememberthepills.components.form.viewHolder.FormViewHolderFactory
+import company.vk.education.androidcourse.rememberthepills.databinding.FragmentDrugBinding
+import company.vk.education.androidcourse.rememberthepills.drug.view.adapter.DrugDiffUtilCallback
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModel
+import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModelFactory
 
 class FragmentDrug : Fragment() {
 
-    val args: FragmentDrugArgs by navArgs()
-    val drugViewModel: DrugViewModel by viewModels()
+    private var _binding: FragmentDrugBinding? = null
+    private val binding: FragmentDrugBinding get() = _binding!!
+
+    private val args: FragmentDrugArgs by navArgs()
+    private val drugViewModel: DrugViewModel by viewModels() {
+        DrugViewModelFactory(args.mode, args.drugId, ResourceProvider(requireContext()))
+    }
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
+        inflater: LayoutInflater,
+        container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_drug, container, false)
-    }
+        val binding = FragmentDrugBinding.inflate(inflater, container, false)
+        _binding = binding
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        when (args.action) {
-            "add" -> {
-                view.findViewById<Button>(R.id.button_drug_remove).visibility = View.GONE
-                view.findViewById<Button>(R.id.button_drug_save).setText(R.string.add)
-            }
-            "edit" -> {
-                view.findViewById<AutoCompleteTextView>(R.id.input_text_drug_name)
-                    .setText("Препарат с ID ${args.idOfDrug}")
-                view.findViewById<AutoCompleteTextView>(R.id.input_text_drug_type)
-                    .setText("Тип препарата с ID ${args.idOfDrug}")
-
-                view.findViewById<Button>(R.id.button_drug_save).setText(R.string.save)
-            }
-        }
-
-        val itemsType = DrugTypeItem.values().map { getString(it.textId) }
-        val adapterItemsMeasurement =
-            ArrayAdapter(requireContext(), R.layout.item_text_view_drop_down_list, itemsType)
-        (view.findViewById<AutoCompleteTextView>(R.id.input_text_drug_type)).setAdapter(
-            adapterItemsMeasurement
+        val viewHolderFactory = FormViewHolderFactory()
+        val diffUtilCallback = DrugDiffUtilCallback()
+        val adapter = BaseRecyclerViewAdapter(viewHolderFactory, diffUtilCallback)
+        val dividerItemDecoratorFactory = DividerItemDecorationFactory()
+        binding.drugFormRecyclerView.adapter = adapter
+        binding.drugFormRecyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.drugFormRecyclerView.addItemDecoration(
+            dividerItemDecoratorFactory.create(
+                requireContext(),
+                LinearLayoutManager.VERTICAL
+            )
         )
-
-        view.findViewById<Button>(R.id.button_drug_save).setOnClickListener {
-            it.findNavController().popBackStack()
-            // TODO: actual save
-        }
-
-        view.findViewById<Button>(R.id.button_drug_remove).setOnClickListener {
-            MaterialAlertDialogBuilder(requireContext())
-                .setTitle(getString(R.string.drug_removal_confirmation_title))
-                .setMessage(getString(R.string.drug_removal_confirmation_message))
-                .setNegativeButton(getString(R.string.removal_confirmation_answer_no)) { dialog, _ ->
-                    dialog.cancel()
-                }
-                .setPositiveButton(getString(R.string.removal_confirmation_answer_yes)) { _, _ ->
-                    // TODO: actual deletion
-                    it.findNavController().popBackStack()
-                }
-                .show()
-        }
+        subscribeViewModel()
+        return binding.root
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
+    }
+
+    private fun subscribeViewModel() {
+        val adapter = binding.drugFormRecyclerView.adapter as BaseRecyclerViewAdapter
+        drugViewModel.presentationModel.observe(viewLifecycleOwner, {
+            adapter.submitList(it.listItems)
+            binding.buttonDrugSave.text = it.applyButtonTitle
+            binding.buttonDrugRemove.visibility = if (it.isRemoveButtonHidden) View.INVISIBLE else View.VISIBLE
+        })
+    }
+
+//
+//        view.findViewById<Button>(R.id.button_drug_remove).setOnClickListener {
+//            MaterialAlertDialogBuilder(requireContext())
+//                .setTitle(getString(R.string.drug_removal_confirmation_title))
+//                .setMessage(getString(R.string.drug_removal_confirmation_message))
+//                .setNegativeButton(getString(R.string.removal_confirmation_answer_no)) { dialog, _ ->
+//                    dialog.cancel()
+//                }
+//                .setPositiveButton(getString(R.string.removal_confirmation_answer_yes)) { _, _ ->
+//                    // TODO: actual deletion
+//                    it.findNavController().popBackStack()
+//                }
+//                .show()
+//        }
 }

@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import company.vk.education.androidcourse.rememberthepills.R
+import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.drugList.view.adapter.DrugListAdapter
 import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugEntry
 import company.vk.education.androidcourse.rememberthepills.drugList.viewModel.DrugListViewModel
@@ -31,10 +32,7 @@ class FragmentDrugList : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         view.findViewById<FloatingActionButton>(R.id.button_to_drug_add).setOnClickListener {
-            val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug(
-                    "add",
-                    -1
-                )
+            val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug(FormScreenMode.CREATING)
             it.findNavController().navigate(action)
         }
 

@@ -1,4 +1,4 @@
-package company.vk.education.androidcourse.rememberthepills.drug.view.adapter
+package company.vk.education.androidcourse.rememberthepills.course.view.adapter
 
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +11,7 @@ import com.google.android.material.textview.MaterialTextView
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
 import company.vk.education.androidcourse.rememberthepills.R
-import company.vk.education.androidcourse.rememberthepills.drug.model.IntakeTime
+import company.vk.education.androidcourse.rememberthepills.course.model.IntakeTime
 
 class IntakeTimeAdapter(
     private val intakeTimes: MutableList<IntakeTime>,
