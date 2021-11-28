@@ -30,6 +30,7 @@ class FragmentCourse : Fragment() {
             args.mode,
             courseId = args.courseId,
             drugId = args.drugId,
+            CourseIntakeTimeFormatter(),
             ResourceProvider(requireContext())
         )
     }
@@ -108,7 +109,7 @@ class FragmentCourse : Fragment() {
 
     private fun showTimePicker(presentationModel: CourseTimeDialogPresentationModel) {
         val timePicker = MaterialTimePicker.Builder()
-            .setTimeFormat(TimeFormat.CLOCK_12H)
+            .setTimeFormat(TimeFormat.CLOCK_24H)
             .setHour(presentationModel.getHours())
             .setMinute(presentationModel.getMinutes())
             .setTitleText(presentationModel.title)

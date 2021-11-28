@@ -9,11 +9,13 @@
     <attr name="drug_title_text_color" format="color"/>
     <attr name="drug_subtitle_text_color" format="color"/>
     <attr name="edit_button_color" format="color"/>
-    <attr name="text_course_drug_name_text_color" format="color"/>
-    <attr name="text_course_drug_type_text_color" format="color"/>
-    <attr name="text_course_section_color" format="color"/>
-    <attr name="button_course_add_time_medication_color" format="color"/>
     <attr name="common_background_color" format="color"/>
+
+    <!-- Intake time -->
+    <attr name="intake_time_cancel_icon_tint_color" format="color"/>
+    <attr name="intake_time_underline_color" format="color"/>
+    <attr name="intake_time_text_color" format="color"/>
+    <attr name="button_course_add_time_medication_color" format="color"/>
 
     <!-- Text input -->
     <attr name="text_field_hint_text_color" format="color"/>

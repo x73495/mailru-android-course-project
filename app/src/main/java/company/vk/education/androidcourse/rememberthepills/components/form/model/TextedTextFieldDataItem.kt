@@ -5,7 +5,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.model
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
 class TextedTextFieldDataItem(
-    val id: Int,
+    val id: String,
     val text: String?,
     val hint: String,
     val editingTextHandler: (String?) -> Unit

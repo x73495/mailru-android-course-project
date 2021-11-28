@@ -1,6 +1,5 @@
 package company.vk.education.androidcourse.rememberthepills.course.viewModel
 
-import android.view.View
 import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
@@ -10,10 +9,12 @@ import company.vk.education.androidcourse.rememberthepills.components.form.model
 import company.vk.education.androidcourse.rememberthepills.components.form.model.SectionHeaderDataItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 import company.vk.education.androidcourse.rememberthepills.course.view.adapter.items.AddIntakeTimeDataItem
+import company.vk.education.androidcourse.rememberthepills.course.view.adapter.items.IntakeTimeDataItem
 import java.text.SimpleDateFormat
 
 class CourseViewModelMapper(
     private val resourceProvider: ResourceProvider,
+    private val courseIntakeTimeFormatter: CourseIntakeTimeFormatter,
     private val delegate: CourseViewModelMapper.Delegate
 ) {
     interface Delegate {
@@ -24,6 +25,7 @@ class CourseViewModelMapper(
         fun onStartedDateSelectListener()
         fun onEndedDateSelectListener()
         fun onIntakeTimeAddListener()
+        fun onIntakeTimeRemoveListener(position: Int)
     }
 
     enum class ViewId {
@@ -43,7 +45,8 @@ class CourseViewModelMapper(
 
     fun createTimeDialogPresentationModel(viewState: CourseViewState): CourseTimeDialogPresentationModel {
         return CourseTimeDialogPresentationModel(
-            selectedTimeInMinutes = null,
+            selectedHours = null,
+            selectedMinutes = null,
             title = resourceProvider.getString(R.string.pick_intake_time)
         )
     }
@@ -70,15 +73,15 @@ class CourseViewModelMapper(
 
     private fun createDataItems(viewState: CourseViewState): List<BaseDataItem> {
         val drugNameSectionHeader = SectionHeaderDataItem(
-            id = ViewId.DRUG_NAME_SECTION_HEADER.ordinal,
+            id = ViewId.DRUG_NAME_SECTION_HEADER.name,
             text = resourceProvider.getString(R.string.drug)
         )
         val dosageSectionHeader = SectionHeaderDataItem(
-            id = ViewId.DOSAGE_SECTION_HEADER.ordinal,
+            id = ViewId.DOSAGE_SECTION_HEADER.name,
             text = resourceProvider.getString(R.string.dosage)
         )
         val measurementTypesItem = AutocomplitedTextFieldDataItem(
-            id = ViewId.MEASUREMENT_TYPE.ordinal,
+            id = ViewId.MEASUREMENT_TYPE.name,
             textedItems = viewState.measurementItems,
             selectedTextedItem = viewState.selectedMeasurementItem,
             hint = resourceProvider.getString(R.string.measurement),
@@ -87,7 +90,7 @@ class CourseViewModelMapper(
             }
         )
         val amountItem = NumberedTextFieldDataItem(
-            id = ViewId.AMOUNT_TYPE.ordinal,
+            id = ViewId.AMOUNT_TYPE.name,
             number = viewState.quantity,
             hint = resourceProvider.getString(R.string.quantity),
             maxLength = resourceProvider.getInteger(R.integer.numbered_text_input_max_length),
@@ -96,7 +99,7 @@ class CourseViewModelMapper(
             }
         )
         val foodAddictionTypesItem = AutocomplitedTextFieldDataItem(
-            id = ViewId.FOOD_ADDICTION_TYPE.ordinal,
+            id = ViewId.FOOD_ADDICTION_TYPE.name,
             textedItems = viewState.foodAddictionItems,
             selectedTextedItem = viewState.selectedFoodAddictionItem,
             hint = resourceProvider.getString(R.string.food_addiction),
@@ -105,11 +108,11 @@ class CourseViewModelMapper(
             }
         )
         val medicationPeriodSectionHeader = SectionHeaderDataItem(
-            id = ViewId.MEDICATION_PERIOD_SECTION_HEADER.ordinal,
+            id = ViewId.MEDICATION_PERIOD_SECTION_HEADER.name,
             text = resourceProvider.getString(R.string.medication_period)
         )
         val startedDateItem = DatedTextFieldDataItem(
-            id = ViewId.STARTED_DATE_MEDICATION_TYPE.ordinal,
+            id = ViewId.STARTED_DATE_MEDICATION_TYPE.name,
             hint = resourceProvider.getString(R.string.starting_medication),
             dateInMilliseconds = viewState.startedDateInMilliseconds,
             dateFormat = SimpleDateFormat("dd/MM/yyyy"),
@@ -118,7 +121,7 @@ class CourseViewModelMapper(
             }
         )
         val endedDateItem = DatedTextFieldDataItem(
-            id = ViewId.ENDED_DATE_MEDICATION_TYPE.ordinal,
+            id = ViewId.ENDED_DATE_MEDICATION_TYPE.name,
             hint = resourceProvider.getString(R.string.end_of_medication),
             dateInMilliseconds = viewState.endedDateInMilliseconds,
             dateFormat = SimpleDateFormat("dd/MM/yyyy"),
@@ -127,7 +130,7 @@ class CourseViewModelMapper(
             }
         )
         val frequencyInDaysItem = NumberedTextFieldDataItem(
-            id = ViewId.FREQUENCY_IN_DAYS_MEDICATION_TYPE.ordinal,
+            id = ViewId.FREQUENCY_IN_DAYS_MEDICATION_TYPE.name,
             number = viewState.frequencyInDays,
             hint = resourceProvider.getString(R.string.frequency_in_days_medication),
             maxLength = resourceProvider.getInteger(R.integer.numbered_text_input_max_length),
@@ -136,16 +139,29 @@ class CourseViewModelMapper(
             }
         )
         val timeMedicationSectionHeader = SectionHeaderDataItem(
-            id = ViewId.TIME_MEDICATION_SECTION_HEADER.ordinal,
+            id = ViewId.TIME_MEDICATION_SECTION_HEADER.name,
             text = resourceProvider.getString(R.string.time_medication)
         )
+
+
+        val intakeTimeItems = viewState.intakeTimesInMinutes.mapIndexed { index, timeInMinutes ->
+            IntakeTimeDataItem(
+                id = ViewId.INTAKE_TIME_TYPE.name + "$index",
+                timeString = courseIntakeTimeFormatter.hoursAndMinutesString(timeInMinutes),
+                removeTimeHandler = {
+                    delegate.onIntakeTimeRemoveListener(index)
+                }
+            )
+        }
+
         val addIntakeTimeItem = AddIntakeTimeDataItem(
-            id = ViewId.ADD_INTAKE_TIME_TYPE.ordinal,
+            id = ViewId.ADD_INTAKE_TIME_TYPE.name,
             addIntakeTimeHandler = {
                 delegate.onIntakeTimeAddListener()
             }
         )
-        return listOf(
+
+        val resultList = mutableListOf(
             drugNameSectionHeader,
             dosageSectionHeader,
             measurementTypesItem,
@@ -155,8 +171,10 @@ class CourseViewModelMapper(
             startedDateItem,
             endedDateItem,
             frequencyInDaysItem,
-            timeMedicationSectionHeader,
-            addIntakeTimeItem
+            timeMedicationSectionHeader
         )
+        resultList.addAll(intakeTimeItems)
+        resultList.add(addIntakeTimeItem)
+        return resultList
     }
 }

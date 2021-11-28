@@ -32,7 +32,7 @@ class DrugViewModelMapper(
 
     private fun createDataItems(viewState: DrugViewState): List<BaseDataItem> {
         val drugNameItem = TextedTextFieldDataItem(
-            id = ViewId.DRUG_NAME.ordinal,
+            id = ViewId.DRUG_NAME.name,
             text = viewState.drugNameText,
             hint = resourceProvider.getString(R.string.drug_name),
             editingTextHandler = {
@@ -41,7 +41,7 @@ class DrugViewModelMapper(
         )
 
         val drugTypesItem = AutocomplitedTextFieldDataItem(
-            id = ViewId.DRUG_TYPE.ordinal,
+            id = ViewId.DRUG_TYPE.name,
             textedItems = viewState.drugItems,
             selectedTextedItem = viewState.selectedDrugTypeItem,
             hint = resourceProvider.getString(R.string.drug_type),

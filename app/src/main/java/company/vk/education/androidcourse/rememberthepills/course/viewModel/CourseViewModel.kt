@@ -13,10 +13,11 @@ class CourseViewModel(
     private val mode: FormScreenMode,
     private val courseId: Int?,
     private val drugId: Int?,
+    private val courseIntakeTimeFormatter: CourseIntakeTimeFormatter,
     private val resourceProvider: ResourceProvider
 ) : ViewModel(), CourseViewModelMapper.Delegate {
 
-    private val mapper = CourseViewModelMapper(resourceProvider, this)
+    private val mapper = CourseViewModelMapper(resourceProvider, courseIntakeTimeFormatter, this)
     private var viewState: CourseViewState = CourseViewState(courseId = courseId,
         drugId = drugId,
         measurementItems = MeasurementItem.values(),
@@ -27,7 +28,7 @@ class CourseViewModel(
         startedDateInMilliseconds = null,
         endedDateInMilliseconds = null,
         frequencyInDays = null,
-        intakeTimesInMinutes = listOf(),
+        intakeTimesInMinutes = mutableListOf(),
         screenMode = mode
     )
 
@@ -81,6 +82,11 @@ class CourseViewModel(
         presentationModel.value = timeDialogPresentationModel
     }
 
+    override fun onIntakeTimeRemoveListener(position: Int) {
+        viewState.intakeTimesInMinutes.removeAt(position)
+        updateDataUI()
+    }
+
     // Fragment handlers
 
     fun selectedStartedDate(date: Long?) {
@@ -98,6 +104,9 @@ class CourseViewModel(
     }
 
     fun selectedTime(hours: Int, minutes: Int) {
+        val newTime = courseIntakeTimeFormatter.timeInMinutes(hours, minutes)
+        viewState.intakeTimesInMinutes.add(newTime)
+        viewState.intakeTimesInMinutes.sort()
         updateDataUI()
     }
 
@@ -110,9 +119,10 @@ class CourseViewModelFactory(
     private val mode: FormScreenMode,
     private val courseId: Int?,
     private val drugId: Int?,
+    private val courseIntakeTimeFormatter: CourseIntakeTimeFormatter,
     private val resourceProvider: ResourceProvider
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return CourseViewModel(mode, courseId, drugId, resourceProvider) as T
+        return CourseViewModel(mode, courseId, drugId, courseIntakeTimeFormatter, resourceProvider) as T
     }
 }

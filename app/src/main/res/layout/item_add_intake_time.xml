@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.button.MaterialButton xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@android:color/transparent"
         android:textColor="?attr/button_course_add_time_medication_color"
-        app:iconPadding="@dimen/rtp_dp8"
         android:text="@string/add_time_medication"
         android:textAppearance="@style/TextAppearance.RTP.Caption1"
         app:icon="@drawable/ic_add"
         app:iconSize="@dimen/rtp_dp16"
         app:iconTint="?attr/button_course_add_time_medication_color"
-        style="@style/Widget.RTP.Button.IconOnly"
         android:id="@+id/add_intake_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />

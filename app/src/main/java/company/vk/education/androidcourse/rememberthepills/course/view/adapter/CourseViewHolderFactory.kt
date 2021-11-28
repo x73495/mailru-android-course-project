@@ -12,7 +12,7 @@ class CourseViewHolderFactory : BaseViewHolderAbstractFactory() {
     override fun makeViewHolder(viewType: Int, parent: ViewGroup): BaseViewHolder {
         return when(viewType) {
             CourseViewType.addIntakeTime.viewType -> CourseAddIntakeTimeViewHolder.from(parent)
-            CourseViewType.intakeTime.viewType -> throw ClassCastException("Unknown viewType ${viewType}")
+            CourseViewType.intakeTime.viewType -> CourseIntakeTimeViewHolder.from(parent)
             else -> formViewHolderFactory.makeViewHolder(viewType, parent)
         }
     }

@@ -5,7 +5,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.model
 import java.text.DateFormat
 
 class DatedTextFieldDataItem(
-    val id: Int,
+    val id: String,
     val hint: String,
     val dateInMilliseconds: Long?,
     val dateFormat: DateFormat,

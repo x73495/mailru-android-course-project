@@ -13,5 +13,5 @@ data class CourseViewState(val drugId: Int?,
                            var startedDateInMilliseconds: Long?,
                            var endedDateInMilliseconds: Long?,
                            var frequencyInDays: Int?,
-                           var intakeTimesInMinutes: List<Int>,
+                           var intakeTimesInMinutes: MutableList<Int>,
                            val screenMode: FormScreenMode)

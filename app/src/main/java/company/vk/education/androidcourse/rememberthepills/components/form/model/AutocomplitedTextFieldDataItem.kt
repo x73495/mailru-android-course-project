@@ -6,7 +6,7 @@ import company.vk.education.androidcourse.rememberthepills.components.models.Dru
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
 class AutocomplitedTextFieldDataItem(
-    val id: Int,
+    val id: String,
     var textedItems: Array<out TextedItem>,
     val selectedTextedItem: TextedItem,
     val hint: String,

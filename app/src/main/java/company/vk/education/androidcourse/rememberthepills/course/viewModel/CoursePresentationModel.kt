@@ -21,9 +21,10 @@ class CourseDateDialogPresentationModel(
 }
 
 class CourseTimeDialogPresentationModel(
-    val selectedTimeInMinutes: Int?,
+    private val selectedHours: Int?,
+    private val selectedMinutes: Int?,
     val title: String
 ) : CoursePresentationModel() {
-    fun getHours() = if (selectedTimeInMinutes != null) selectedTimeInMinutes / 60 else 0
-    fun getMinutes() = if (selectedTimeInMinutes != null) selectedTimeInMinutes % 60 else 0
+    fun getHours() = selectedHours ?: 0
+    fun getMinutes() = selectedMinutes ?: 0
 }

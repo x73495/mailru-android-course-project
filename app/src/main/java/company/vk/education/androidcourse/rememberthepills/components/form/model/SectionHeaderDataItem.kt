@@ -4,7 +4,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.model
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BasePayload
 
 class SectionHeaderDataItem (
-    val id: Int,
+    val id: String,
     val text: String?
 ) : BaseDataItem, BasePayload {
 
