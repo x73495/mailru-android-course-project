@@ -10,4 +10,8 @@ data class CourseViewState(val drugId: Int?,
                            var quantity: Int?,
                            var foodAddictionItems: Array<out TextedItem>,
                            var selectedFoodAddictionItem: TextedItem,
+                           var startedDateInMilliseconds: Long?,
+                           var endedDateInMilliseconds: Long?,
+                           var frequencyInDays: Int?,
+                           var intakeTimesInMinutes: List<Int>,
                            val screenMode: FormScreenMode)

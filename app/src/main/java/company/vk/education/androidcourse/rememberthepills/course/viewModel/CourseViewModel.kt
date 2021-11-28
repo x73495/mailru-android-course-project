@@ -24,6 +24,10 @@ class CourseViewModel(
         quantity = null,
         foodAddictionItems = FoodAddictionItem.values(),
         selectedFoodAddictionItem = FoodAddictionItem.values().first(),
+        startedDateInMilliseconds = null,
+        endedDateInMilliseconds = null,
+        frequencyInDays = null,
+        intakeTimesInMinutes = listOf(),
         screenMode = mode
     )
 
@@ -32,11 +36,11 @@ class CourseViewModel(
     }
 
     init {
-        updateUI()
+        updateDataUI()
     }
 
-    private fun updateUI() {
-        val presentationModel = mapper.createPresentationModel(viewState)
+    private fun updateDataUI() {
+        val presentationModel = mapper.createDataPresentationModel(viewState)
         this.presentationModel.value = presentationModel
     }
 
@@ -44,17 +48,61 @@ class CourseViewModel(
 
     override fun onMeasurementTypeSelectListener(item: TextedItem) {
         viewState.selectedMeasurementItem = item
-        updateUI()
+        updateDataUI()
     }
 
     override fun onFoodAddictionTypeSelectListener(item: TextedItem) {
         viewState.selectedFoodAddictionItem = item
-        updateUI()
+        updateDataUI()
+    }
+
+    override fun onFrequencyInDaysChangeListener(frequencyInDays: Int?) {
+        viewState.frequencyInDays = frequencyInDays
+        updateDataUI()
     }
 
     override fun onQuantityChangeListener(quantity: Int?) {
         viewState.quantity = quantity
-        updateUI()
+        updateDataUI()
+    }
+
+    override fun onStartedDateSelectListener() {
+        val startedDialogPresentationModel = mapper.createStartedDateDialogPresentationModel(viewState)
+        presentationModel.value = startedDialogPresentationModel
+    }
+
+    override fun onEndedDateSelectListener() {
+        val endedDialogPresentationModel = mapper.createEndedDateDialogPresentationModel(viewState)
+        presentationModel.value = endedDialogPresentationModel
+    }
+
+    override fun onIntakeTimeAddListener() {
+        val timeDialogPresentationModel = mapper.createTimeDialogPresentationModel(viewState)
+        presentationModel.value = timeDialogPresentationModel
+    }
+
+    // Fragment handlers
+
+    fun selectedStartedDate(date: Long?) {
+        viewState.startedDateInMilliseconds = date
+        updateDataUI()
+    }
+
+    fun selectedEndedDate(date: Long?) {
+        viewState.endedDateInMilliseconds = date
+        updateDataUI()
+    }
+
+    fun cancelledInputDate() {
+        updateDataUI()
+    }
+
+    fun selectedTime(hours: Int, minutes: Int) {
+        updateDataUI()
+    }
+
+    fun cancelledInputTime() {
+        updateDataUI()
     }
 }
 

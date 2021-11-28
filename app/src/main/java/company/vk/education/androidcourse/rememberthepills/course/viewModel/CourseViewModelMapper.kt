@@ -4,9 +4,11 @@ import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.form.model.AutocomplitedTextFieldDataItem
+import company.vk.education.androidcourse.rememberthepills.components.form.model.DatedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.components.form.model.NumberedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.components.form.model.SectionHeaderDataItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
+import java.text.SimpleDateFormat
 
 class CourseViewModelMapper(
     private val resourceProvider: ResourceProvider,
@@ -16,6 +18,10 @@ class CourseViewModelMapper(
         fun onMeasurementTypeSelectListener(item: TextedItem)
         fun onFoodAddictionTypeSelectListener(item: TextedItem)
         fun onQuantityChangeListener(quantity: Int?)
+        fun onFrequencyInDaysChangeListener(frequencyInDays: Int?)
+        fun onStartedDateSelectListener()
+        fun onEndedDateSelectListener()
+        fun onIntakeTimeAddListener()
     }
 
     enum class ViewId {
@@ -25,11 +31,40 @@ class CourseViewModelMapper(
         AMOUNT_TYPE,
         FOOD_ADDICTION_TYPE,
         MEDICATION_PERIOD_SECTION_HEADER,
+        STARTED_DATE_MEDICATION_TYPE,
+        ENDED_DATE_MEDICATION_TYPE,
+        FREQUENCY_IN_DAYS_MEDICATION_TYPE,
         TIME_MEDICATION_SECTION_HEADER
     }
 
-    fun createPresentationModel(viewState: CourseViewState): CoursePresentationModel {
-        return CoursePresentationModel(createDataItems(viewState))
+    //            val dateFormat = SimpleDateFormat("dd/MM/yyyy")
+//            val datePicked = dateFormat.format(datePicker.selection)
+//            inputCourseEnd.setText(datePicked)
+    fun createTimeDialogPresentationModel(viewState: CourseViewState): CourseTimeDialogPresentationModel {
+        return CourseTimeDialogPresentationModel(
+            selectedTimeInMinutes = null,
+            title = resourceProvider.getString(R.string.pick_intake_time)
+        )
+    }
+
+    fun createStartedDateDialogPresentationModel(viewState: CourseViewState): CourseDateDialogPresentationModel {
+        return CourseDateDialogPresentationModel(
+            dateType = CourseDateDialogPresentationModel.DateType.STARTED,
+            selectedDateInMilliseconds = viewState.startedDateInMilliseconds,
+            title = resourceProvider.getString(R.string.pick_course_start)
+        )
+    }
+
+    fun createEndedDateDialogPresentationModel(viewState: CourseViewState): CourseDateDialogPresentationModel {
+        return CourseDateDialogPresentationModel(
+            dateType = CourseDateDialogPresentationModel.DateType.ENDED,
+            selectedDateInMilliseconds = viewState.startedDateInMilliseconds,
+            title = resourceProvider.getString(R.string.pick_course_end)
+        )
+    }
+
+    fun createDataPresentationModel(viewState: CourseViewState): CourseDataPresentationModel {
+        return CourseDataPresentationModel(createDataItems(viewState))
     }
 
     private fun createDataItems(viewState: CourseViewState): List<BaseDataItem> {
@@ -72,6 +107,33 @@ class CourseViewModelMapper(
             id = ViewId.MEDICATION_PERIOD_SECTION_HEADER.ordinal,
             text = resourceProvider.getString(R.string.medication_period)
         )
+        val startedDateItem = DatedTextFieldDataItem(
+            id = ViewId.STARTED_DATE_MEDICATION_TYPE.ordinal,
+            hint = resourceProvider.getString(R.string.starting_medication),
+            dateInMilliseconds = viewState.startedDateInMilliseconds,
+            dateFormat = SimpleDateFormat("dd/MM/yyyy"),
+            startedSelectDateHandler = {
+                delegate.onStartedDateSelectListener()
+            }
+        )
+        val endedDateItem = DatedTextFieldDataItem(
+            id = ViewId.ENDED_DATE_MEDICATION_TYPE.ordinal,
+            hint = resourceProvider.getString(R.string.end_of_medication),
+            dateInMilliseconds = viewState.endedDateInMilliseconds,
+            dateFormat = SimpleDateFormat("dd/MM/yyyy"),
+            startedSelectDateHandler = {
+                delegate.onEndedDateSelectListener()
+            }
+        )
+        val frequencyInDaysItem = NumberedTextFieldDataItem(
+            id = ViewId.FREQUENCY_IN_DAYS_MEDICATION_TYPE.ordinal,
+            number = viewState.frequencyInDays,
+            hint = resourceProvider.getString(R.string.frequency_in_days_medication),
+            maxLength = resourceProvider.getInteger(R.integer.numbered_text_input_max_length),
+            editingNumberHandler = {
+                delegate.onFrequencyInDaysChangeListener(it)
+            }
+        )
         val timeMedicationSectionHeader = SectionHeaderDataItem(
             id = ViewId.TIME_MEDICATION_SECTION_HEADER.ordinal,
             text = resourceProvider.getString(R.string.time_medication)
@@ -83,6 +145,9 @@ class CourseViewModelMapper(
             amountItem,
             foodAddictionTypesItem,
             medicationPeriodSectionHeader,
+            startedDateItem,
+            endedDateItem,
+            frequencyInDaysItem,
             timeMedicationSectionHeader
         )
     }
