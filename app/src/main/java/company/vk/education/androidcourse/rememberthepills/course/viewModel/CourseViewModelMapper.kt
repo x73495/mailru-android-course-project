@@ -1,5 +1,6 @@
 package company.vk.education.androidcourse.rememberthepills.course.viewModel
 
+import android.view.View
 import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
@@ -8,6 +9,7 @@ import company.vk.education.androidcourse.rememberthepills.components.form.model
 import company.vk.education.androidcourse.rememberthepills.components.form.model.NumberedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.components.form.model.SectionHeaderDataItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
+import company.vk.education.androidcourse.rememberthepills.course.view.adapter.items.AddIntakeTimeDataItem
 import java.text.SimpleDateFormat
 
 class CourseViewModelMapper(
@@ -34,12 +36,11 @@ class CourseViewModelMapper(
         STARTED_DATE_MEDICATION_TYPE,
         ENDED_DATE_MEDICATION_TYPE,
         FREQUENCY_IN_DAYS_MEDICATION_TYPE,
-        TIME_MEDICATION_SECTION_HEADER
+        TIME_MEDICATION_SECTION_HEADER,
+        INTAKE_TIME_TYPE,
+        ADD_INTAKE_TIME_TYPE
     }
 
-    //            val dateFormat = SimpleDateFormat("dd/MM/yyyy")
-//            val datePicked = dateFormat.format(datePicker.selection)
-//            inputCourseEnd.setText(datePicked)
     fun createTimeDialogPresentationModel(viewState: CourseViewState): CourseTimeDialogPresentationModel {
         return CourseTimeDialogPresentationModel(
             selectedTimeInMinutes = null,
@@ -138,6 +139,12 @@ class CourseViewModelMapper(
             id = ViewId.TIME_MEDICATION_SECTION_HEADER.ordinal,
             text = resourceProvider.getString(R.string.time_medication)
         )
+        val addIntakeTimeItem = AddIntakeTimeDataItem(
+            id = ViewId.ADD_INTAKE_TIME_TYPE.ordinal,
+            addIntakeTimeHandler = {
+                delegate.onIntakeTimeAddListener()
+            }
+        )
         return listOf(
             drugNameSectionHeader,
             dosageSectionHeader,
@@ -148,7 +155,8 @@ class CourseViewModelMapper(
             startedDateItem,
             endedDateItem,
             frequencyInDaysItem,
-            timeMedicationSectionHeader
+            timeMedicationSectionHeader,
+            addIntakeTimeItem
         )
     }
 }

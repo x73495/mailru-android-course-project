@@ -10,7 +10,8 @@ class TextedTextFieldDataItem(
     val hint: String,
     val editingTextHandler: (String?) -> Unit
 ) : BaseDataItem, BasePayload {
-    override var viewType: Int = FormViewType.TEXTED_TEXT_FIELD.ordinal
+
+    override var viewType: Int = FormViewType.textedTextField.viewType
 
     override fun contentsTheSame(item: BaseDataItem): Boolean {
         return if (item is TextedTextFieldDataItem) {

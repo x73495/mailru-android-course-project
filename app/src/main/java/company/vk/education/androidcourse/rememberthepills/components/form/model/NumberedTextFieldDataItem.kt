@@ -10,7 +10,8 @@ class NumberedTextFieldDataItem(
     var maxLength: Int,
     val editingNumberHandler: (Int?) -> Unit
 ) : BaseDataItem, BasePayload {
-    override var viewType: Int = FormViewType.NUMBERED_TEXT_FIELD.ordinal
+
+    override var viewType: Int = FormViewType.numberedTextField.viewType
 
     override fun contentsTheSame(item: BaseDataItem): Boolean {
         return if (item is NumberedTextFieldDataItem) {

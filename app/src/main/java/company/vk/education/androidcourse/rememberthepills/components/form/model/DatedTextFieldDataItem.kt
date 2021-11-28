@@ -11,7 +11,8 @@ class DatedTextFieldDataItem(
     val dateFormat: DateFormat,
     val startedSelectDateHandler: () -> Unit
 ) : BaseDataItem, BasePayload {
-    override var viewType: Int = FormViewType.DATED_TEXT_FIELD.ordinal
+
+    override var viewType: Int = FormViewType.datedTextField.viewType
 
     override fun contentsTheSame(item: BaseDataItem): Boolean {
         return if (item is DatedTextFieldDataItem) {

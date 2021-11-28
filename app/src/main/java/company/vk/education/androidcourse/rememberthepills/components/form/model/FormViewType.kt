@@ -1,9 +1,19 @@
 package company.vk.education.androidcourse.rememberthepills.components.form.model
 
-enum class FormViewType {
-    AUTOCOMPLITED_TEXT_FIELD,
-    DATED_TEXT_FIELD,
-    NUMBERED_TEXT_FIELD,
-    TEXTED_TEXT_FIELD,
-    SECTION_HEADER
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseViewType
+
+class FormViewType {
+    class AutoComplitedTextField: BaseViewType()
+    class DatedTextField: BaseViewType()
+    class NumberedTextField: BaseViewType()
+    class TextedTextField: BaseViewType()
+    class SectionHeader: BaseViewType()
+
+    companion object {
+        val autoComplitedTextField = AutoComplitedTextField()
+        val datedTextField = DatedTextField()
+        val numberedTextField = NumberedTextField()
+        val textedTextField = TextedTextField()
+        val sectionHeader = SectionHeader()
+    }
 }

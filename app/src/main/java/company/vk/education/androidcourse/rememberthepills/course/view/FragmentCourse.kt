@@ -15,7 +15,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.adapt
 import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
-import company.vk.education.androidcourse.rememberthepills.components.form.viewHolder.FormViewHolderFactory
+import company.vk.education.androidcourse.rememberthepills.course.view.adapter.CourseViewHolderFactory
 import company.vk.education.androidcourse.rememberthepills.course.viewModel.*
 import company.vk.education.androidcourse.rememberthepills.databinding.FragmentCourseBinding
 
@@ -42,7 +42,7 @@ class FragmentCourse : Fragment() {
         val binding = FragmentCourseBinding.inflate(inflater, container, false)
         _binding = binding
 
-        val viewHolderFactory = FormViewHolderFactory()
+        val viewHolderFactory = CourseViewHolderFactory()
         val diffUtilCallback = BaseDiffCallback()
         val adapter = BaseRecyclerViewAdapter(viewHolderFactory, diffUtilCallback)
         val dividerItemDecoratorFactory = DividerItemDecorationFactory()
