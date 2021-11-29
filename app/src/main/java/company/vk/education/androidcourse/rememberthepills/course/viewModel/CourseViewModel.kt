@@ -20,6 +20,8 @@ class CourseViewModel(
     private val mapper = CourseViewModelMapper(resourceProvider, courseIntakeTimeFormatter, this)
     private var viewState: CourseViewState = CourseViewState(courseId = courseId,
         drugId = drugId,
+        drugName = "Фуфломицин",
+        drugType = "Таблетка",
         measurementItems = MeasurementItem.values(),
         selectedMeasurementItem = MeasurementItem.values().first(),
         quantity = null,

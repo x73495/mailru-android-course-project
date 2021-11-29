@@ -25,4 +25,8 @@
 
     <!-- Section header -->
     <attr name="section_header_text_color" format="color"/>
+
+    <!-- Drug header -->
+    <attr name="drug_title_headline_text_color" format="color"/>
+    <attr name="drug_title_description_text_color" format="color"/>
 </resources>

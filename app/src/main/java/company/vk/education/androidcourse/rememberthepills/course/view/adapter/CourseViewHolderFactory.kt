@@ -13,6 +13,7 @@ class CourseViewHolderFactory : BaseViewHolderAbstractFactory() {
         return when(viewType) {
             CourseViewType.addIntakeTime.viewType -> CourseAddIntakeTimeViewHolder.from(parent)
             CourseViewType.intakeTime.viewType -> CourseIntakeTimeViewHolder.from(parent)
+            CourseViewType.courseDrugTitle.viewType -> CourseDrugTitleViewHolder.from(parent)
             else -> formViewHolderFactory.makeViewHolder(viewType, parent)
         }
     }

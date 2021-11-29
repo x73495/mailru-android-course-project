@@ -42,5 +42,10 @@
 
         <!-- Section header -->
         <item name="section_header_text_color">@color/white</item>
+
+        <!-- Drug header -->
+        <item name="drug_title_headline_text_color">@color/white</item>
+        <item name="drug_title_description_text_color">@color/white</item>
+
     </style>
 </resources>

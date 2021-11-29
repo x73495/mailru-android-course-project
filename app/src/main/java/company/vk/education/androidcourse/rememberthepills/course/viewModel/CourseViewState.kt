@@ -5,6 +5,8 @@ import company.vk.education.androidcourse.rememberthepills.components.models.Tex
 
 data class CourseViewState(val drugId: Int?,
                            val courseId: Int?,
+                           val drugName: String,
+                           val drugType: String,
                            var measurementItems: Array<out TextedItem>,
                            var selectedMeasurementItem: TextedItem,
                            var quantity: Int?,

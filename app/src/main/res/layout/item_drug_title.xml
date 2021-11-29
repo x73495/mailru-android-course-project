@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        android:paddingHorizontal="@dimen/rtp_dp8"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+    <TextView
+            style="@style/TextAppearance.RTP.Title1"
+            android:textColor="?attr/drug_title_headline_text_color"
+            android:id="@+id/text_course_headline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+
+    <TextView
+            style="@style/TextAppearance.RTP.Caption2"
+            android:textColor="?attr/drug_title_description_text_color"
+            android:id="@+id/text_course_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+</LinearLayout>

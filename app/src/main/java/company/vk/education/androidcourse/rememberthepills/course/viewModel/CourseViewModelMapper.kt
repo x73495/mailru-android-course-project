@@ -9,6 +9,7 @@ import company.vk.education.androidcourse.rememberthepills.components.form.model
 import company.vk.education.androidcourse.rememberthepills.components.form.model.SectionHeaderDataItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 import company.vk.education.androidcourse.rememberthepills.course.view.adapter.items.AddIntakeTimeDataItem
+import company.vk.education.androidcourse.rememberthepills.course.view.adapter.items.CourseDrugTitleDataItem
 import company.vk.education.androidcourse.rememberthepills.course.view.adapter.items.IntakeTimeDataItem
 import java.text.SimpleDateFormat
 
@@ -30,6 +31,7 @@ class CourseViewModelMapper(
 
     enum class ViewId {
         DRUG_NAME_SECTION_HEADER,
+        DRUG_TITLE,
         DOSAGE_SECTION_HEADER,
         MEASUREMENT_TYPE,
         AMOUNT_TYPE,
@@ -76,6 +78,13 @@ class CourseViewModelMapper(
             id = ViewId.DRUG_NAME_SECTION_HEADER.name,
             text = resourceProvider.getString(R.string.drug)
         )
+
+        val drugTitleItem = CourseDrugTitleDataItem(
+            id = ViewId.DRUG_TITLE.name,
+            headline = viewState.drugName,
+            description = viewState.drugType
+        )
+
         val dosageSectionHeader = SectionHeaderDataItem(
             id = ViewId.DOSAGE_SECTION_HEADER.name,
             text = resourceProvider.getString(R.string.dosage)
@@ -163,6 +172,7 @@ class CourseViewModelMapper(
 
         val resultList = mutableListOf(
             drugNameSectionHeader,
+            drugTitleItem,
             dosageSectionHeader,
             measurementTypesItem,
             amountItem,
