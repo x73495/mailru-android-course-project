@@ -15,6 +15,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.adapt
 import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
+import company.vk.education.androidcourse.rememberthepills.course.view.adapter.CourseDiffUtilCallback
 import company.vk.education.androidcourse.rememberthepills.course.view.adapter.CourseViewHolderFactory
 import company.vk.education.androidcourse.rememberthepills.course.viewModel.*
 import company.vk.education.androidcourse.rememberthepills.databinding.FragmentCourseBinding
@@ -44,7 +45,7 @@ class FragmentCourse : Fragment() {
         _binding = binding
 
         val viewHolderFactory = CourseViewHolderFactory()
-        val diffUtilCallback = BaseDiffCallback()
+        val diffUtilCallback = CourseDiffUtilCallback()
         val adapter = BaseRecyclerViewAdapter(viewHolderFactory, diffUtilCallback)
         val dividerItemDecoratorFactory = DividerItemDecorationFactory()
         binding.courseFormRecyclerView.adapter = adapter
@@ -70,6 +71,8 @@ class FragmentCourse : Fragment() {
             when(it) {
                 is CourseDataPresentationModel -> {
                     adapter.submitList(it.listItems)
+                    binding.buttonCourseSave.text = it.applyButtonTitle
+                    binding.buttonCourseRemove.visibility = if (it.isRemoveButtonHidden) View.INVISIBLE else View.VISIBLE
                 }
                 is CourseDateDialogPresentationModel -> {
                     showDatePicker(it)

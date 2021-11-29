@@ -7,10 +7,12 @@ import company.vk.education.androidcourse.rememberthepills.components.form.model
 import company.vk.education.androidcourse.rememberthepills.components.form.model.DatedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.components.form.model.NumberedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.components.form.model.SectionHeaderDataItem
+import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 import company.vk.education.androidcourse.rememberthepills.course.view.adapter.items.AddIntakeTimeDataItem
 import company.vk.education.androidcourse.rememberthepills.course.view.adapter.items.CourseDrugTitleDataItem
 import company.vk.education.androidcourse.rememberthepills.course.view.adapter.items.IntakeTimeDataItem
+import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewState
 import java.text.SimpleDateFormat
 
 class CourseViewModelMapper(
@@ -70,7 +72,11 @@ class CourseViewModelMapper(
     }
 
     fun createDataPresentationModel(viewState: CourseViewState): CourseDataPresentationModel {
-        return CourseDataPresentationModel(createDataItems(viewState))
+        return CourseDataPresentationModel(
+            listItems = createDataItems(viewState),
+            applyButtonTitle = getApplyButtonTitle(viewState),
+            isRemoveButtonHidden = getRemoveButtonHidden(viewState)
+        )
     }
 
     private fun createDataItems(viewState: CourseViewState): List<BaseDataItem> {
@@ -186,5 +192,19 @@ class CourseViewModelMapper(
         resultList.addAll(intakeTimeItems)
         resultList.add(addIntakeTimeItem)
         return resultList
+    }
+
+    private fun getApplyButtonTitle(viewState: CourseViewState): String {
+        return when(viewState.screenMode) {
+            FormScreenMode.EDITING -> resourceProvider.getString(R.string.save)
+            FormScreenMode.CREATING -> resourceProvider.getString(R.string.add)
+        }
+    }
+
+    private fun getRemoveButtonHidden(viewState: CourseViewState): Boolean {
+        return when(viewState.screenMode) {
+            FormScreenMode.EDITING -> false
+            FormScreenMode.CREATING -> true
+        }
     }
 }

@@ -2,9 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-
-        tools:layout_marginTop="-500dp"
-
+        android:background="?attr/common_background_color"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -15,8 +13,35 @@
             android:padding="@dimen/rtp_dp16"
             android:clipToPadding="false"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@id/button_course_remove"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             android:background="?attr/common_background_color" />
+
+    <com.google.android.material.button.MaterialButton
+            android:textAppearance="@style/TextAppearance.RTP.Caption1"
+            android:textColor="@color/red_500"
+            android:text="@string/delete"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:id="@+id/button_course_remove"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/rtp_dp16"
+            android:layout_marginBottom="@dimen/rtp_dp16"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
+
+    <com.google.android.material.button.MaterialButton
+            tools:textStyle="italic"
+            android:textColor="@color/white"
+            tools:text="Действие"
+            android:textAppearance="@style/TextAppearance.RTP.Title3"
+            app:cornerRadius="@dimen/rtp_dp16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/button_course_save"
+            android:layout_marginEnd="@dimen/rtp_dp16"
+            android:layout_marginBottom="@dimen/rtp_dp16"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

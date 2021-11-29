@@ -7,7 +7,9 @@ sealed class CoursePresentationModel {
 }
 
 class CourseDataPresentationModel(
-    val listItems: List<BaseDataItem>
+    val listItems: List<BaseDataItem>,
+    val applyButtonTitle: String,
+    val isRemoveButtonHidden: Boolean
 ): CoursePresentationModel()
 
 class CourseDateDialogPresentationModel(
