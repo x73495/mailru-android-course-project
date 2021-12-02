@@ -49,7 +49,7 @@
     <string name="medication_period">Период приема</string>
     <string name="starting_medication">Начало</string>
     <string name="end_of_medication">Конец</string>
-    <string name="frequency_in_days_medication">Длительность приема в днях</string>
+    <string name="frequency_in_days_medication">Периодичность приема в днях</string>
     <string name="time_medication">Время приема</string>
     <string name="add_time_medication">Добавить время приема</string>
     <string name="missed_medication">Пропущено</string>
