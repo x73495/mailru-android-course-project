@@ -6,13 +6,14 @@ import company.vk.education.androidcourse.rememberthepills.components.models.Dru
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
 class AutocomplitedTextFieldDataItem(
-    val id: Int,
+    val id: String,
     var textedItems: Array<out TextedItem>,
     val selectedTextedItem: TextedItem,
     val hint: String,
     val selectedItemHandler: (TextedItem) -> Unit
 ) : BaseDataItem, BasePayload {
-    override var viewType: Int = FormViewType.AUTOCOMPLITED_TEXT_FIELD.ordinal
+
+    override var viewType: Int = FormViewType.autoComplitedTextField.viewType
 
     override fun contentsTheSame(item: BaseDataItem): Boolean {
         return if (item is AutocomplitedTextFieldDataItem) {

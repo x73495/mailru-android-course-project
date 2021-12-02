@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:paddingVertical="@dimen/rtp_dp4"
         android:id="@+id/layout_intake_time"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -11,27 +10,33 @@
             android:id="@+id/text_intake_time"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:textColor="?attr/intake_time_text_color"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@+id/button_intake_time_remove"
-            app:layout_constraintEnd_toStartOf="@+id/button_intake_time_remove"
-            app:layout_constraintBottom_toTopOf="@+id/underline_text_intake_time" />
+            app:layout_constraintTop_toTopOf="@+id/image_intake_time_remove"
+            app:layout_constraintEnd_toStartOf="@+id/image_intake_time_remove"
+            app:layout_constraintBottom_toTopOf="@+id/underline_text_intake_time"
+            android:layout_marginStart="@dimen/rtp_dp16" />
 
     <View
             android:id="@+id/underline_text_intake_time"
-            android:background="@color/gray_600"
-            android:layout_width="match_parent"
+            android:background="?attr/intake_time_underline_color"
+            android:layout_width="0dp"
             android:layout_height="1dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button_intake_time_remove" />
+            app:layout_constraintTop_toBottomOf="@+id/image_intake_time_remove"
+            android:layout_marginStart="@dimen/rtp_dp16" />
 
-    <Button
-            app:icon="@drawable/ic_baseline_cancel_24"
-            style="@style/Widget.RTP.Button.IconOnly"
+    <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:src="@drawable/ic_baseline_cancel_24"
+            app:tint="?attr/intake_time_cancel_icon_tint_color"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:id="@+id/button_intake_time_remove" />
+            android:paddingBottom="@dimen/rtp_dp8"
+            android:paddingTop="@dimen/rtp_dp8"
+            android:clickable="true"
+            android:id="@+id/image_intake_time_remove" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

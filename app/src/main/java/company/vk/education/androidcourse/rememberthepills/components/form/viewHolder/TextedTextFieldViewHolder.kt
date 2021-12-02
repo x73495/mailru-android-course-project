@@ -12,13 +12,14 @@ import company.vk.education.androidcourse.rememberthepills.databinding.ItemTexte
 
 class TextedTextFieldViewHolder private constructor(private val binding: ItemTextedTextInputBinding) : BaseViewHolder(binding.root) {
     override fun bind(item: BaseDataItem, payload: BasePayload?) {
+        // TODO: нужен ли весь payload ?
         val item = payload ?: item
         if (item is TextedTextFieldDataItem) {
-            binding.itemNumberedTextInputLayout.hint = item.hint
-            binding.itemNumberedTextInputEditText.setText(item.text)
+            binding.itemTextedTextInputLayout.hint = item.hint
+            binding.itemTextedTextInputEditText.setText(item.text)
             val cursorIndex = item.text?.length ?: 0
-            binding.itemNumberedTextInputEditText.setSelection(cursorIndex)
-            binding.itemNumberedTextInputEditText.doOnTextChanged { text, _, _, _ ->
+            binding.itemTextedTextInputEditText.setSelection(cursorIndex)
+            binding.itemTextedTextInputEditText.doOnTextChanged { text, _, _, _ ->
                 item.editingTextHandler(text.toString())
             }
         }

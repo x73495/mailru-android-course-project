@@ -33,6 +33,13 @@ class DrugViewModel(
         updateUI()
     }
 
+    private fun updateUI() {
+        val presentationModel = mapper.createPresentationModel(viewState)
+        this.presentationModel.value = presentationModel
+    }
+
+    // Mapper handlers
+
     override fun onDrugTypeSelectListener(item: TextedItem) {
         viewState.selectedDrugTypeItem = item
         updateUI()
@@ -41,11 +48,6 @@ class DrugViewModel(
     override fun onDrugNameChangeListener(text: String?) {
         viewState.drugNameText = text
         updateUI()
-    }
-
-    private fun updateUI() {
-        val presentationModel = mapper.createPresentationModel(viewState)
-        this.presentationModel.value = presentationModel
     }
 }
 

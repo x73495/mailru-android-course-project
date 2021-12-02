@@ -2,27 +2,28 @@ package company.vk.education.androidcourse.rememberthepills.components.form.mode
 
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BasePayload
-import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
+import java.text.DateFormat
 
-class TextedTextFieldDataItem(
+class DatedTextFieldDataItem(
     val id: String,
-    val text: String?,
     val hint: String,
-    val editingTextHandler: (String?) -> Unit
+    val dateInMilliseconds: Long?,
+    val dateFormat: DateFormat,
+    val startedSelectDateHandler: () -> Unit
 ) : BaseDataItem, BasePayload {
 
-    override var viewType: Int = FormViewType.textedTextField.viewType
+    override var viewType: Int = FormViewType.datedTextField.viewType
 
     override fun contentsTheSame(item: BaseDataItem): Boolean {
-        return if (item is TextedTextFieldDataItem) {
-            text == item.text && hint == item.hint
+        return if (item is DatedTextFieldDataItem) {
+            dateInMilliseconds == item.dateInMilliseconds && hint == item.hint
         } else {
             false
         }
     }
 
     override fun itemsTheSame(item: BaseDataItem): Boolean {
-        return if (item is TextedTextFieldDataItem) {
+        return if (item is DatedTextFieldDataItem) {
             id == item.id
         } else {
             false

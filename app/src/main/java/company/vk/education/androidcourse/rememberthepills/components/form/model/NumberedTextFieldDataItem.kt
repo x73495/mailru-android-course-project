@@ -2,27 +2,27 @@ package company.vk.education.androidcourse.rememberthepills.components.form.mode
 
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BasePayload
-import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
-class TextedTextFieldDataItem(
+class NumberedTextFieldDataItem(
     val id: String,
-    val text: String?,
+    val number: Int?,
     val hint: String,
-    val editingTextHandler: (String?) -> Unit
+    var maxLength: Int,
+    val editingNumberHandler: (Int?) -> Unit
 ) : BaseDataItem, BasePayload {
 
-    override var viewType: Int = FormViewType.textedTextField.viewType
+    override var viewType: Int = FormViewType.numberedTextField.viewType
 
     override fun contentsTheSame(item: BaseDataItem): Boolean {
-        return if (item is TextedTextFieldDataItem) {
-            text == item.text && hint == item.hint
+        return if (item is NumberedTextFieldDataItem) {
+            number == item.number && hint == item.hint
         } else {
             false
         }
     }
 
     override fun itemsTheSame(item: BaseDataItem): Boolean {
-        return if (item is TextedTextFieldDataItem) {
+        return if (item is NumberedTextFieldDataItem) {
             id == item.id
         } else {
             false

@@ -8,10 +8,11 @@ import company.vk.education.androidcourse.rememberthepills.components.form.model
 class FormViewHolderFactory : BaseViewHolderAbstractFactory() {
     override fun makeViewHolder(viewType: Int, parent: ViewGroup): BaseViewHolder {
         return when(viewType) {
-            FormViewType.AUTOCOMPLITED_TEXT_FIELD.ordinal -> AutocomplitedTextFieldViewHolder.from(parent)
-            FormViewType.DATED_TEXT_FIELD.ordinal -> DatedTextFieldViewHolder.from(parent)
-            FormViewType.NUMBERED_TEXT_FIELD.ordinal -> NumberedTextFieldViewHolder.from(parent)
-            FormViewType.TEXTED_TEXT_FIELD.ordinal -> TextedTextFieldViewHolder.from(parent)
+            FormViewType.autoComplitedTextField.viewType -> AutocomplitedTextFieldViewHolder.from(parent)
+            FormViewType.datedTextField.viewType -> DatedTextFieldViewHolder.from(parent)
+            FormViewType.numberedTextField.viewType -> NumberedTextFieldViewHolder.from(parent)
+            FormViewType.textedTextField.viewType -> TextedTextFieldViewHolder.from(parent)
+            FormViewType.sectionHeader.viewType -> SectionHeaderViewHolder.from(parent)
             else -> throw ClassCastException("Unknown viewType ${viewType}")
         }
     }

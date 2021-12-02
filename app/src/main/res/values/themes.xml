@@ -15,6 +15,8 @@
 
         <item name="colorAccent">@color/indigo_A700</item>
 
+        <item name="common_background_color">@color/white</item>
+
         <item name="course_entry_name_of_drug_color">@color/gray_900</item>
         <item name="course_entry_amount_of_drug_text_color">@color/gray_800</item>
         <item name="border_course_entry_color">@color/gray_400</item>
@@ -22,17 +24,25 @@
         <item name="drug_title_text_color">@color/black</item>
         <item name="drug_subtitle_text_color">@color/gray_800</item>
         <item name="edit_button_color">@color/white</item>
-        <item name="text_course_drug_name_text_color">@color/white</item>
-        <item name="text_course_drug_type_text_color">@color/gray_800</item>
-        <item name="text_course_section_color">@color/gray_500</item>
+
+        <!-- Intake time -->
+        <item name="intake_time_cancel_icon_tint_color">@color/black</item>
+        <item name="intake_time_underline_color">@color/gray_400</item>
+        <item name="intake_time_text_color">@color/black</item>
         <item name="button_course_add_time_medication_color">@color/indigo_A700</item>
-        <item name="common_background_color">@color/white</item>
 
         <!-- Text input -->
         <item name="text_field_hint_text_color">@color/gray_600</item>
         <item name="text_field_collapsed_hint_text_color">@color/indigo_A700</item>
         <item name="text_field_stroke_color">@color/text_field_stroke_light_color</item>
         <item name="text_field_drop_down_icon_color">@color/black</item>
+
+        <!-- Section header -->
+        <item name="section_header_text_color">@color/gray_500</item>
+
+        <!-- Drug header -->
+        <item name="drug_title_headline_text_color">@color/black</item>
+        <item name="drug_title_description_text_color">@color/gray_600</item>
 
     </style>
 

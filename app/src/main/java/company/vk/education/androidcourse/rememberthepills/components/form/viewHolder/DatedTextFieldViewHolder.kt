@@ -6,12 +6,22 @@ import android.view.ViewGroup
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BasePayload
 import company.vk.education.androidcourse.rememberthepills.components.base.viewHolder.BaseViewHolder
-import company.vk.education.androidcourse.rememberthepills.databinding.ItemAutocomplitedTextInputBinding
+import company.vk.education.androidcourse.rememberthepills.components.form.model.DatedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.databinding.ItemDatedTextInputBinding
 
 class DatedTextFieldViewHolder private constructor(private val binding: ItemDatedTextInputBinding) : BaseViewHolder(binding.root) {
     override fun bind(item: BaseDataItem, payload: BasePayload?) {
-        // TODO: must be implemented
+        // TODO: нужен ли весь payload ?
+        val item = payload ?: item
+        if (item is DatedTextFieldDataItem) {
+            binding.itemDatedTextInputLayout.hint = item.hint
+            if (item.dateInMilliseconds != null) {
+                binding.itemDatedTextInputEditText.setText(item.dateFormat.format(item.dateInMilliseconds))
+            }
+            binding.itemDatedTextInputEditText.setOnClickListener {
+                item.startedSelectDateHandler()
+            }
+        }
     }
 
     companion object {

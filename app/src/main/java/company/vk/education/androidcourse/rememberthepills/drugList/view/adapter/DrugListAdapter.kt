@@ -37,7 +37,8 @@ class DrugListAdapter(private val drugEntries: List<DrugEntry>, private val inte
             // TODO: do sth with all these hardcode values
             if (intentForEntries == "choose") {
                 itemView.findViewById<LinearLayout>(R.id.layout_drug_entry_info).setOnClickListener {
-                    val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentCourse("add", drugEntry.idOfDrug, -1)
+                    val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentCourse(FormScreenMode.CREATING)
+                        .setDrugId(drugEntry.idOfDrug)
                     it.findNavController().navigate(action)
                 }
             }
