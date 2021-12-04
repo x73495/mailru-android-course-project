@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.timepicker.MaterialTimePicker
 import com.google.android.material.timepicker.TimeFormat
+import company.vk.education.androidcourse.rememberthepills.RTPApplication
 import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseDiffCallback
 import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
@@ -32,7 +33,8 @@ class FragmentCourse : Fragment() {
             courseId = args.courseId,
             drugId = args.drugId,
             CourseIntakeTimeFormatter(),
-            ResourceProvider(requireContext())
+            ResourceProvider(requireContext()),
+            (activity?.application as RTPApplication).courseRepository
         )
     }
 

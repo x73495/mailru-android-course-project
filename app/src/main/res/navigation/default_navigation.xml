@@ -64,9 +64,6 @@
                 app:popExitAnim="@anim/slide_out_right"
                 android:id="@+id/action_fragmentDrugList_to_fragmentCourse"
                 app:destination="@id/fragmentCourse" />
-        <argument
-                android:name="intent"
-                app:argType="string" />
     </fragment>
     <fragment
             android:id="@+id/fragmentCourse"

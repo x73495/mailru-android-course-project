@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import company.vk.education.androidcourse.rememberthepills.RTPApplication
 import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
@@ -24,7 +25,12 @@ class FragmentDrug : Fragment() {
 
     private val args: FragmentDrugArgs by navArgs()
     private val drugViewModel: DrugViewModel by viewModels() {
-        DrugViewModelFactory(args.mode, args.drugId, ResourceProvider(requireContext()))
+        DrugViewModelFactory(
+            args.mode,
+            args.drugId,
+            ResourceProvider(requireContext()),
+            (activity?.application as RTPApplication).drugRepository
+        )
     }
 
     override fun onCreateView(
@@ -64,19 +70,4 @@ class FragmentDrug : Fragment() {
             binding.buttonDrugRemove.visibility = if (it.isRemoveButtonHidden) View.INVISIBLE else View.VISIBLE
         })
     }
-
-//
-//        view.findViewById<Button>(R.id.button_drug_remove).setOnClickListener {
-//            MaterialAlertDialogBuilder(requireContext())
-//                .setTitle(getString(R.string.drug_removal_confirmation_title))
-//                .setMessage(getString(R.string.drug_removal_confirmation_message))
-//                .setNegativeButton(getString(R.string.removal_confirmation_answer_no)) { dialog, _ ->
-//                    dialog.cancel()
-//                }
-//                .setPositiveButton(getString(R.string.removal_confirmation_answer_yes)) { _, _ ->
-//                    // TODO: actual deletion
-//                    it.findNavController().popBackStack()
-//                }
-//                .show()
-//        }
 }

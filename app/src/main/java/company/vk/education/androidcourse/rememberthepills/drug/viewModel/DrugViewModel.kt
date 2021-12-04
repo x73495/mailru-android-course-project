@@ -1,19 +1,20 @@
 package company.vk.education.androidcourse.rememberthepills.drug.viewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.models.DrugTypeItem
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
+import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
+import company.vk.education.androidcourse.rememberthepills.drug.model.DrugRepository
 
 class DrugViewModel(
     private val mode: FormScreenMode,
     private val id: Int?,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val drugRepository: DrugRepository
 ) : ViewModel(), DrugViewModelMapper.Delegate  {
 
     private val mapper = DrugViewModelMapper(resourceProvider, this)
@@ -22,7 +23,9 @@ class DrugViewModel(
         drugItems = DrugTypeItem.values(),
         screenMode = mode,
         selectedDrugTypeItem = DrugTypeItem.values().first(),
-        drugNameText = null
+        drugNameText = null,
+        measurementItems = MeasurementItem.values(),
+        selectedMeasurementItem = MeasurementItem.values().first(),
     )
 
     val presentationModel: MutableLiveData<DrugPresentationModel> by lazy {
@@ -49,14 +52,20 @@ class DrugViewModel(
         viewState.drugNameText = text
         updateUI()
     }
+
+    override fun onMeasurementTypeSelectListener(item: TextedItem) {
+        viewState.selectedMeasurementItem = item
+        updateUI()
+    }
 }
 
 class DrugViewModelFactory(
     private val mode: FormScreenMode,
     private val id: Int?,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val drugRepository: DrugRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return DrugViewModel(mode, id, resourceProvider) as T
+        return DrugViewModel(mode, id, resourceProvider, drugRepository) as T
     }
 }

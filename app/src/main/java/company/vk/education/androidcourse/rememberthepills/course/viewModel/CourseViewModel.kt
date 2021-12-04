@@ -8,13 +8,15 @@ import company.vk.education.androidcourse.rememberthepills.components.models.Foo
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
+import company.vk.education.androidcourse.rememberthepills.course.model.CourseRepository
 
 class CourseViewModel(
     private val mode: FormScreenMode,
     private val courseId: Int?,
     private val drugId: Int?,
     private val courseIntakeTimeFormatter: CourseIntakeTimeFormatter,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val courseRepository: CourseRepository
 ) : ViewModel(), CourseViewModelMapper.Delegate {
 
     private val mapper = CourseViewModelMapper(resourceProvider, courseIntakeTimeFormatter, this)
@@ -22,8 +24,6 @@ class CourseViewModel(
         drugId = drugId,
         drugName = "Фуфломицин",
         drugType = "Таблетка",
-        measurementItems = MeasurementItem.values(),
-        selectedMeasurementItem = MeasurementItem.values().first(),
         quantity = null,
         foodAddictionItems = FoodAddictionItem.values(),
         selectedFoodAddictionItem = FoodAddictionItem.values().first(),
@@ -48,11 +48,6 @@ class CourseViewModel(
     }
 
     // Mapper handlers
-
-    override fun onMeasurementTypeSelectListener(item: TextedItem) {
-        viewState.selectedMeasurementItem = item
-        updateDataUI()
-    }
 
     override fun onFoodAddictionTypeSelectListener(item: TextedItem) {
         viewState.selectedFoodAddictionItem = item
@@ -122,9 +117,17 @@ class CourseViewModelFactory(
     private val courseId: Int?,
     private val drugId: Int?,
     private val courseIntakeTimeFormatter: CourseIntakeTimeFormatter,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val courseRepository: CourseRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return CourseViewModel(mode, courseId, drugId, courseIntakeTimeFormatter, resourceProvider) as T
+        return CourseViewModel(
+            mode,
+            courseId,
+            drugId,
+            courseIntakeTimeFormatter,
+            resourceProvider,
+            courseRepository
+        ) as T
     }
 }

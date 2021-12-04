@@ -8,7 +8,9 @@ data class DrugViewState(
     val drugItems: Array<out TextedItem>,
     val screenMode: FormScreenMode,
     var selectedDrugTypeItem: TextedItem,
-    var drugNameText: String?
+    var drugNameText: String?,
+    var measurementItems: Array<out TextedItem>,
+    var selectedMeasurementItem: TextedItem,
 ) {
     override fun equals(other: Any?): Boolean {
         if (this === other) return true

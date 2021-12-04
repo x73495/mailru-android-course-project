@@ -15,11 +15,13 @@ class DrugViewModelMapper(
     interface Delegate {
         fun onDrugTypeSelectListener(item: TextedItem)
         fun onDrugNameChangeListener(text: String?)
+        fun onMeasurementTypeSelectListener(item: TextedItem)
     }
 
     enum class ViewId {
         DRUG_NAME,
-        DRUG_TYPE
+        DRUG_TYPE,
+        DRUG_MEASUREMENT_TYPE
     }
 
     fun createPresentationModel(viewState: DrugViewState): DrugPresentationModel {
@@ -50,7 +52,17 @@ class DrugViewModelMapper(
             }
         )
 
-        return listOf(drugNameItem, drugTypesItem)
+        val drugMeasurementTypeItem = AutocomplitedTextFieldDataItem(
+            id = ViewId.DRUG_MEASUREMENT_TYPE.name,
+            textedItems = viewState.measurementItems,
+            selectedTextedItem = viewState.selectedMeasurementItem,
+            hint = resourceProvider.getString(R.string.measurement),
+            selectedItemHandler = { newMeasurementTypeItem ->
+                delegate.onMeasurementTypeSelectListener(newMeasurementTypeItem)
+            }
+        )
+
+        return listOf(drugNameItem, drugTypesItem, drugMeasurementTypeItem)
     }
 
     private fun getApplyButtonTitle(viewState: DrugViewState): String {

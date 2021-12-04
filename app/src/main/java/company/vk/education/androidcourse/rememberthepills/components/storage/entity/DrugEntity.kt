@@ -8,5 +8,6 @@ import androidx.room.PrimaryKey
 data class DrugEntity(
     @PrimaryKey val id: Long,
     val name: String,
-    @ColumnInfo(name = "drug_type") val drugType: Int
+    @ColumnInfo(name = "drug_type") val drugType: Int,
+    @ColumnInfo(name = "measurement_type") val measurementType: Int
 )
