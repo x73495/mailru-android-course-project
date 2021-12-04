@@ -3,16 +3,18 @@ package company.vk.education.androidcourse.rememberthepills.drug.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.models.DrugTypeItem
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 import company.vk.education.androidcourse.rememberthepills.drug.model.DrugRepository
+import kotlinx.coroutines.launch
 
 class DrugViewModel(
     private val mode: FormScreenMode,
-    private val id: Int?,
+    private val id: Long,
     private val resourceProvider: ResourceProvider,
     private val drugRepository: DrugRepository
 ) : ViewModel(), DrugViewModelMapper.Delegate  {
@@ -57,11 +59,25 @@ class DrugViewModel(
         viewState.selectedMeasurementItem = item
         updateUI()
     }
+
+    // Fragment handlers
+
+    fun saveDrug() {
+        val drug = mapper.createModel(viewState)
+
+        viewModelScope.launch {
+            if (viewState.screenMode == FormScreenMode.CREATING) {
+                drugRepository.create(drug)
+            } else {
+                drugRepository.update(drug)
+            }
+        }
+    }
 }
 
 class DrugViewModelFactory(
     private val mode: FormScreenMode,
-    private val id: Int?,
+    private val id: Long,
     private val resourceProvider: ResourceProvider,
     private val drugRepository: DrugRepository
 ) : ViewModelProvider.Factory {

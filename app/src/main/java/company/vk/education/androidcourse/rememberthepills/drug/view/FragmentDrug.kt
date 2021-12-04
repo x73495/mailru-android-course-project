@@ -27,7 +27,7 @@ class FragmentDrug : Fragment() {
     private val drugViewModel: DrugViewModel by viewModels() {
         DrugViewModelFactory(
             args.mode,
-            args.drugId,
+            args.drugId.toLong(),
             ResourceProvider(requireContext()),
             (activity?.application as RTPApplication).drugRepository
         )
@@ -54,6 +54,7 @@ class FragmentDrug : Fragment() {
             )
         )
         subscribeViewModel()
+        setupHandlers()
         return binding.root
     }
 
@@ -69,5 +70,11 @@ class FragmentDrug : Fragment() {
             binding.buttonDrugSave.text = it.applyButtonTitle
             binding.buttonDrugRemove.visibility = if (it.isRemoveButtonHidden) View.INVISIBLE else View.VISIBLE
         })
+    }
+
+    private fun setupHandlers() {
+        binding.buttonDrugSave.setOnClickListener {
+            drugViewModel.saveDrug()
+        }
     }
 }

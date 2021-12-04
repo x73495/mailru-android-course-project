@@ -3,12 +3,15 @@ package company.vk.education.androidcourse.rememberthepills.drugList.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugPresentationModel
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModel
 import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListItem
 import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListRepository
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 class DrugListViewModel(
     private val resourceProvider: ResourceProvider,
@@ -16,13 +19,27 @@ class DrugListViewModel(
 ) : ViewModel(),
     DrugListViewModelMapper.Delegate {
 
+    init {
+        viewModelScope.launch {
+            drugListRepository.allDrugs.collect {
+                viewState.drugs = it
+                updateUI()
+            }
+        }
+    }
+
     private val mapper = DrugListViewModelMapper(resourceProvider, this)
     private var viewState: DrugListViewState = DrugListViewState(
         drugs = listOf()
     )
 
-    val presentationModel: MutableLiveData<DrugPresentationModel> by lazy {
-        MutableLiveData<DrugPresentationModel>()
+    val presentationModel: MutableLiveData<DrugListPresentationModel> by lazy {
+        MutableLiveData<DrugListPresentationModel>()
+    }
+
+    private fun updateUI() {
+        val presentationModel = mapper.createPresentationModel(viewState)
+        this.presentationModel.value = presentationModel
     }
 
     // Mapper handlers

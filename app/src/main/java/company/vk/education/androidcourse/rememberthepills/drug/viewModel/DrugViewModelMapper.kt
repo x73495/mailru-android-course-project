@@ -7,6 +7,7 @@ import company.vk.education.androidcourse.rememberthepills.components.form.model
 import company.vk.education.androidcourse.rememberthepills.components.form.model.TextedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
+import company.vk.education.androidcourse.rememberthepills.drug.model.Drug
 
 class DrugViewModelMapper(
     private val resourceProvider: ResourceProvider,
@@ -22,6 +23,15 @@ class DrugViewModelMapper(
         DRUG_NAME,
         DRUG_TYPE,
         DRUG_MEASUREMENT_TYPE
+    }
+
+    fun createModel(viewState: DrugViewState): Drug {
+        return Drug(
+            viewState.drugId,
+            viewState.drugNameText ?: "",
+            viewState.selectedMeasurementItem,
+            viewState.selectedDrugTypeItem
+        )
     }
 
     fun createPresentationModel(viewState: DrugViewState): DrugPresentationModel {

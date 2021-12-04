@@ -12,7 +12,7 @@
             android:id="@+id/drug_form_recycler_view"
             android:layout_width="0dp"
             android:layout_height="0dp"
-            android:padding="@dimen/rtp_dp16"
+            android:padding="48dp"
             android:clipToPadding="false"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toTopOf="@id/button_drug_remove"

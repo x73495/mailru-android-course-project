@@ -4,7 +4,7 @@ import company.vk.education.androidcourse.rememberthepills.components.models.For
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
 data class DrugViewState(
-    val drugId: Int?,
+    val drugId: Long,
     val drugItems: Array<out TextedItem>,
     val screenMode: FormScreenMode,
     var selectedDrugTypeItem: TextedItem,
@@ -23,16 +23,20 @@ data class DrugViewState(
         if (screenMode != other.screenMode) return false
         if (selectedDrugTypeItem != other.selectedDrugTypeItem) return false
         if (drugNameText != other.drugNameText) return false
+        if (!measurementItems.contentEquals(other.measurementItems)) return false
+        if (selectedMeasurementItem != other.selectedMeasurementItem) return false
 
         return true
     }
 
     override fun hashCode(): Int {
-        var result = drugId ?: 0
+        var result = drugId.hashCode()
         result = 31 * result + drugItems.contentHashCode()
         result = 31 * result + screenMode.hashCode()
         result = 31 * result + selectedDrugTypeItem.hashCode()
         result = 31 * result + (drugNameText?.hashCode() ?: 0)
+        result = 31 * result + measurementItems.contentHashCode()
+        result = 31 * result + selectedMeasurementItem.hashCode()
         return result
     }
 }
