@@ -3,8 +3,8 @@ package company.vk.education.androidcourse.rememberthepills.course.viewModel
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
-data class CourseViewState(val drugId: Int?,
-                           val courseId: Int?,
+data class CourseViewState(val drugId: Long,
+                           val courseId: Long,
                            val drugName: String,
                            val drugType: String,
                            var quantity: Int?,

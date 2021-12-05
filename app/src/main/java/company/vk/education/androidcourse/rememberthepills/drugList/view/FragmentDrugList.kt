@@ -10,12 +10,14 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import company.vk.education.androidcourse.rememberthepills.RTPApplication
 import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseRouting
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.databinding.FragmentDrugListBinding
 import company.vk.education.androidcourse.rememberthepills.drugList.view.adapter.DrugListDiffUtilCallback
 import company.vk.education.androidcourse.rememberthepills.drugList.view.adapter.DrugListViewHolderFactory
+import company.vk.education.androidcourse.rememberthepills.drugList.viewModel.DrugListRouting
 import company.vk.education.androidcourse.rememberthepills.drugList.viewModel.DrugListViewModel
 import company.vk.education.androidcourse.rememberthepills.drugList.viewModel.DrugListViewModelFactory
 
@@ -61,11 +63,14 @@ class FragmentDrugList : Fragment() {
         drugListViewModel.presentationModel.observe(viewLifecycleOwner, {
             adapter.submitList(it.listItems)
         })
+        drugListViewModel.routingModel.observe(viewLifecycleOwner, {
+            handleRouting(it)
+        })
     }
 
     private fun setupHandlers() {
         binding.buttonDrugAdd.setOnClickListener {
-            routeToCreateDrug()
+            handleRouting(DrugListRouting.drugCreation)
         }
     }
 
@@ -74,8 +79,32 @@ class FragmentDrugList : Fragment() {
         _binding = null
     }
 
-    private fun routeToCreateDrug() {
-        val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug(FormScreenMode.CREATING)
-        findNavController().navigate(action)
+    private fun handleRouting(routing: BaseRouting) {
+        when(routing) {
+            is DrugListRouting.CourseCreation -> {
+                routing.let {
+                    val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentCourse(
+                        FormScreenMode.CREATING
+                    ).setDrugId(it.drugId)
+                    findNavController().navigate(action)
+                }
+            }
+            is DrugListRouting.DrugCreation -> {
+                val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug(FormScreenMode.CREATING)
+                findNavController().navigate(action)
+            }
+            is DrugListRouting.DrugEditing -> {
+                routing.let {
+                    val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug(
+                        FormScreenMode.EDITING
+                    ).setDrugId(routing.drugId)
+                    findNavController().navigate(action)
+                }
+            }
+            else -> {
+                return
+            }
+        }
+        drugListViewModel.routingDidHandle()
     }
 }

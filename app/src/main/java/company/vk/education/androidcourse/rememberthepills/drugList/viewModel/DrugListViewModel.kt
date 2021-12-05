@@ -4,6 +4,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseRouting
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugPresentationModel
@@ -37,6 +38,10 @@ class DrugListViewModel(
         MutableLiveData<DrugListPresentationModel>()
     }
 
+    val routingModel: MutableLiveData<BaseRouting> by lazy {
+        MutableLiveData<BaseRouting>()
+    }
+
     private fun updateUI() {
         val presentationModel = mapper.createPresentationModel(viewState)
         this.presentationModel.value = presentationModel
@@ -45,7 +50,12 @@ class DrugListViewModel(
     // Mapper handlers
 
     override fun onDrugSelectListener(item: DrugListItem) {
+        routingModel.value = DrugListRouting.courseCreation(item.id)
+    }
 
+    // Fragment handlers
+    fun routingDidHandle() {
+        routingModel.value = DrugListRouting.none
     }
 }
 

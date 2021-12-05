@@ -4,12 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseRouting
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.models.DrugTypeItem
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 import company.vk.education.androidcourse.rememberthepills.drug.model.DrugRepository
+import company.vk.education.androidcourse.rememberthepills.drugList.viewModel.DrugListRouting
 import kotlinx.coroutines.launch
 
 class DrugViewModel(
@@ -32,6 +34,10 @@ class DrugViewModel(
 
     val presentationModel: MutableLiveData<DrugPresentationModel> by lazy {
         MutableLiveData<DrugPresentationModel>()
+    }
+
+    val routingModel: MutableLiveData<BaseRouting> by lazy {
+        MutableLiveData<BaseRouting>()
     }
 
     init {
@@ -71,7 +77,12 @@ class DrugViewModel(
             } else {
                 drugRepository.update(drug)
             }
+            routingModel.value = DrugRouting.back
         }
+    }
+
+    fun routingDidHandle() {
+        routingModel.value = DrugRouting.none
     }
 }
 

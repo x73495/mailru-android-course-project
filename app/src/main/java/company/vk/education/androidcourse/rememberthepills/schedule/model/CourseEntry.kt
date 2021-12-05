@@ -1,8 +1,8 @@
 package company.vk.education.androidcourse.rememberthepills.schedule.model
 
 data class CourseEntry(
-    val courseId: Int,
-    val drugId: Int,
+    val courseId: Long,
+    val drugId: Long,
     val nameOfDrug: String,
     val amountOfDrug: Int,
     val isDone: Boolean,

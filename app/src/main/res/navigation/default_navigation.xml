@@ -82,12 +82,12 @@
                 app:argType="company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode"/>
         <argument
                 android:name="courseId"
-                app:argType="integer"
-                android:defaultValue="0"/>
+                app:argType="long"
+                android:defaultValue="0L"/>
         <argument
                 android:name="drugId"
-                app:argType="integer"
-                android:defaultValue="0"/>
+                app:argType="long"
+                android:defaultValue="0L"/>
     </fragment>
     <fragment
             android:id="@+id/fragmentDrug"
@@ -99,8 +99,8 @@
                 app:argType="company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode"/>
         <argument
                 android:name="drugId"
-                app:argType="integer"
-                android:defaultValue="0" />
+                app:argType="long"
+                android:defaultValue="0L" />
     </fragment>
     <fragment
             android:id="@+id/fragmentCourseHistory"

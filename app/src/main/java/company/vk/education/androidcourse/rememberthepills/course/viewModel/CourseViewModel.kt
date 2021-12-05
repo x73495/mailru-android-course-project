@@ -12,8 +12,8 @@ import company.vk.education.androidcourse.rememberthepills.course.model.CourseRe
 
 class CourseViewModel(
     private val mode: FormScreenMode,
-    private val courseId: Int?,
-    private val drugId: Int?,
+    private val courseId: Long,
+    private val drugId: Long,
     private val courseIntakeTimeFormatter: CourseIntakeTimeFormatter,
     private val resourceProvider: ResourceProvider,
     private val courseRepository: CourseRepository
@@ -114,8 +114,8 @@ class CourseViewModel(
 
 class CourseViewModelFactory(
     private val mode: FormScreenMode,
-    private val courseId: Int?,
-    private val drugId: Int?,
+    private val courseId: Long,
+    private val drugId: Long,
     private val courseIntakeTimeFormatter: CourseIntakeTimeFormatter,
     private val resourceProvider: ResourceProvider,
     private val courseRepository: CourseRepository
