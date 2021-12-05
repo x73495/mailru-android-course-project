@@ -5,6 +5,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.*
+import company.vk.education.androidcourse.rememberthepills.components.base.utils.hideKeyboard
 
 class MainActivity : AppCompatActivity() {
 
@@ -31,5 +32,10 @@ class MainActivity : AppCompatActivity() {
 
         appBarConfiguration = AppBarConfiguration(navView.menu)
         setupActionBarWithNavController(navController, appBarConfiguration)
+
+        navController.addOnDestinationChangedListener { _, _ , _ ->
+            currentFocus?.clearFocus()
+            navView.hideKeyboard()
+        }
     }
 }
