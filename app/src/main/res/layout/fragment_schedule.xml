@@ -19,7 +19,7 @@
     </ScrollView>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/button_to_course_add"
+            android:id="@+id/button_schedule_save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -34,7 +34,7 @@
             android:layout_height="0dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:id="@+id/recycler_course_entries_by_date"
+            android:id="@+id/recycler_view_schedule"
             app:layout_constraintTop_toBottomOf="@+id/scroll_calendar_schedule"
             android:background="?attr/common_background_color" />
 

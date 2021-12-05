@@ -9,8 +9,8 @@ import company.vk.education.androidcourse.rememberthepills.drug.model.DrugReposi
 import company.vk.education.androidcourse.rememberthepills.drug.model.DrugRepositoryMapper
 import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListRepository
 import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListRepositoryMapper
-import company.vk.education.androidcourse.rememberthepills.schedule.model.ScheduleRepository
-import company.vk.education.androidcourse.rememberthepills.schedule.model.ScheduleRepositoryMapper
+import company.vk.education.androidcourse.rememberthepills.schedule.model.ScheduleListRepository
+import company.vk.education.androidcourse.rememberthepills.schedule.model.ScheduleListRepositoryMapper
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.SupervisorJob
 
@@ -36,10 +36,10 @@ class RTPApplication: Application() {
             CourseRepositoryMapper(DrugModelMapper())
         )
     }
-    val scheduleRepository by lazy {
-        ScheduleRepository(
+    val scheduleListRepository by lazy {
+        ScheduleListRepository(
             database.courseDao(),
-            ScheduleRepositoryMapper()
+            ScheduleListRepositoryMapper()
         )
     }
 }
