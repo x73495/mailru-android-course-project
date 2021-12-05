@@ -87,6 +87,12 @@ class FragmentCourse : Fragment() {
         })
     }
 
+    private fun setupHandlers() {
+        binding.buttonCourseSave.setOnClickListener {
+            courseViewModel.saveCourse()
+        }
+    }
+
     private fun showDatePicker(presentationModel: CourseDateDialogPresentationModel) {
         val datePicker = MaterialDatePicker.Builder.datePicker()
             .setTitleText(presentationModel.title)

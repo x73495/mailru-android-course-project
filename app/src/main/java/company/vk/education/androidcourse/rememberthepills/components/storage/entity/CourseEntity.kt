@@ -10,7 +10,7 @@ data class CourseEntity(
     @ColumnInfo(name = "drug_id") val drugId: Long,
     val quantity: Int,
     @ColumnInfo(name = "food_addiction_type") val foodAddictionTypeId: Int,
-    @ColumnInfo(name = "starting_date_timestamp") val startingDateTimestamp: Long,
-    @ColumnInfo(name = "ending_date_timestamp") val endingDateTimestamp: Long,
+    @ColumnInfo(name = "starting_date_in_milliseconds") val startingDateInMilliseconds: Long,
+    @ColumnInfo(name = "ending_date_in_milliseconds") val endingDateInMilliseconds: Long,
     val frequency: Int
 )

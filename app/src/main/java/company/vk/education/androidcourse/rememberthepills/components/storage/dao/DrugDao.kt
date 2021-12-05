@@ -14,4 +14,7 @@ interface DrugDao {
 
     @Query("SELECT * FROM drugs")
     fun getAllDrugs(): Flow<List<DrugEntity>>
+
+    @Query("Select * FROM drugs WHERE id = :id")
+    suspend fun drugById(id: Long): DrugEntity
 }

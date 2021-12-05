@@ -18,7 +18,7 @@ import kotlinx.coroutines.CoroutineScope
     entities = [DrugEntity::class,
         CourseDateTimeChecking::class,
         CourseEntity::class,
-        IntakeTimeEntity::class], version = 1
+        IntakeTimeEntity::class], version = 2
 )
 abstract class RTPRoomDatabase : RoomDatabase() {
 
@@ -36,6 +36,7 @@ abstract class RTPRoomDatabase : RoomDatabase() {
                     RTPRoomDatabase::class.java,
                     "rtp_database"
                 )
+                    .fallbackToDestructiveMigration()
                     .addCallback(RTPDatabaseCallback(scope))
                     .build()
                 INSTANCE = instance

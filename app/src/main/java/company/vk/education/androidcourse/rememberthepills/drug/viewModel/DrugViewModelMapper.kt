@@ -7,7 +7,7 @@ import company.vk.education.androidcourse.rememberthepills.components.form.model
 import company.vk.education.androidcourse.rememberthepills.components.form.model.TextedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
-import company.vk.education.androidcourse.rememberthepills.drug.model.Drug
+import company.vk.education.androidcourse.rememberthepills.components.models.Drug
 
 class DrugViewModelMapper(
     private val resourceProvider: ResourceProvider,

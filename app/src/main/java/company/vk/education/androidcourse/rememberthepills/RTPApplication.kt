@@ -1,6 +1,7 @@
 package company.vk.education.androidcourse.rememberthepills
 
 import android.app.Application
+import company.vk.education.androidcourse.rememberthepills.components.mapper.DrugModelMapper
 import company.vk.education.androidcourse.rememberthepills.components.storage.database.RTPRoomDatabase
 import company.vk.education.androidcourse.rememberthepills.course.model.CourseRepository
 import company.vk.education.androidcourse.rememberthepills.course.model.CourseRepositoryMapper
@@ -25,13 +26,14 @@ class RTPApplication: Application() {
     val drugRepository by lazy {
         DrugRepository(
             database.drugDao(),
-            DrugRepositoryMapper()
+            DrugRepositoryMapper(DrugModelMapper())
         )
     }
     val courseRepository by lazy {
         CourseRepository(
             database.courseDao(),
-            CourseRepositoryMapper()
+            database.drugDao(),
+            CourseRepositoryMapper(DrugModelMapper())
         )
     }
     val scheduleRepository by lazy {

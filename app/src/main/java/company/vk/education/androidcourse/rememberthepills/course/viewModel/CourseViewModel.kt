@@ -3,12 +3,14 @@ package company.vk.education.androidcourse.rememberthepills.course.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.models.FoodAddictionItem
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 import company.vk.education.androidcourse.rememberthepills.course.model.CourseRepository
+import kotlinx.coroutines.launch
 
 class CourseViewModel(
     private val mode: FormScreenMode,
@@ -20,10 +22,11 @@ class CourseViewModel(
 ) : ViewModel(), CourseViewModelMapper.Delegate {
 
     private val mapper = CourseViewModelMapper(resourceProvider, courseIntakeTimeFormatter, this)
-    private var viewState: CourseViewState = CourseViewState(courseId = courseId,
+    private var viewState: CourseViewState = CourseViewState(
+        courseId = courseId,
         drugId = drugId,
-        drugName = "Фуфломицин",
-        drugType = "Таблетка",
+        drugName = "",
+        drugType = "",
         quantity = null,
         foodAddictionItems = FoodAddictionItem.values(),
         selectedFoodAddictionItem = FoodAddictionItem.values().first(),
@@ -39,7 +42,16 @@ class CourseViewModel(
     }
 
     init {
-        updateDataUI()
+        viewModelScope.launch {
+            val drug = courseRepository.drugById(viewState.drugId)
+            val type =
+                resourceProvider.getString(drug.drugType.textId) + " / " + resourceProvider.getString(
+                    drug.measurementType.textId
+                )
+            viewState.drugName = drug.name
+            viewState.drugType = type
+            updateDataUI()
+        }
     }
 
     private fun updateDataUI() {
@@ -109,6 +121,10 @@ class CourseViewModel(
 
     fun cancelledInputTime() {
         updateDataUI()
+    }
+
+    fun saveCourse() {
+
     }
 }
 
