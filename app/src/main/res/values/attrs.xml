@@ -29,4 +29,9 @@
     <!-- Drug header -->
     <attr name="drug_title_headline_text_color" format="color"/>
     <attr name="drug_title_description_text_color" format="color"/>
+
+    <!-- Profile list -->
+    <attr name="profile_list_title_text_color" format="color"/>
+    <attr name="profile_list_icon_tint_color" format="color"/>
+
 </resources>

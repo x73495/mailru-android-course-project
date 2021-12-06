@@ -47,5 +47,9 @@
         <item name="drug_title_headline_text_color">@color/white</item>
         <item name="drug_title_description_text_color">@color/white</item>
 
+        <!-- Profile list -->
+        <item name="profile_list_icon_tint_color">@color/white</item>
+        <item name="profile_list_title_text_color">@color/white</item>
+
     </style>
 </resources>

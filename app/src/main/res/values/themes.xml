@@ -44,6 +44,10 @@
         <item name="drug_title_headline_text_color">@color/black</item>
         <item name="drug_title_description_text_color">@color/gray_600</item>
 
+        <!-- Profile list -->
+        <item name="profile_list_icon_tint_color">@color/black</item>
+        <item name="profile_list_title_text_color">@color/black</item>
+
     </style>
 
     <style name="Theme.RTP.Placeholder" parent="Theme.MaterialComponents.DayNight">
