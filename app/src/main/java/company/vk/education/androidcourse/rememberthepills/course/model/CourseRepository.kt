@@ -13,4 +13,20 @@ class CourseRepository(
     suspend fun drugById(id: Long): Drug {
         return mapper.drugModelMapper.convertToDrug(drugDao.drugById(id))
     }
+
+//    suspend fun courseAndTimesById(courseId: Long): Pair<Course, List<CourseIntakeTime>> {
+//
+//    }
+
+    suspend fun createCourse(course: Course, intakeTimes: List<CourseIntakeTime>) {
+
+    }
+
+    suspend fun deleteCourseById(id: Long) {
+
+    }
+
+    suspend fun updateCourse(course: Course, intakeTimes: List<CourseIntakeTime>) {
+
+    }
 }

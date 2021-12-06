@@ -9,7 +9,7 @@ class ScheduleListDataItem(
     val title: String,
     val subtitle: String,
     val failure: String?,
-    val checking: Boolean,
+    val checked: Boolean,
     val checkingHandler: () -> Unit,
     val editHandler: () -> Unit
 ) : BaseDataItem, BasePayload {
@@ -20,7 +20,7 @@ class ScheduleListDataItem(
             return title == item.title &&
                     subtitle == item.subtitle &&
                     failure == item.failure &&
-                    checking == item.checking
+                    checked == item.checked
         } else {
             false
         }

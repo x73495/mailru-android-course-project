@@ -7,7 +7,6 @@ import androidx.lifecycle.viewModelScope
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.models.FoodAddictionItem
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
-import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 import company.vk.education.androidcourse.rememberthepills.course.model.CourseRepository
 import kotlinx.coroutines.launch
@@ -33,7 +32,7 @@ class CourseViewModel(
         startedDateInMilliseconds = null,
         endedDateInMilliseconds = null,
         frequencyInDays = null,
-        intakeTimesInMinutes = mutableListOf(),
+        intakeTimesInMilliseconds = mutableListOf(),
         screenMode = mode
     )
 
@@ -50,7 +49,15 @@ class CourseViewModel(
                 )
             viewState.drugName = drug.name
             viewState.drugType = type
-            updateDataUI()
+            when (mode) {
+                FormScreenMode.EDITING -> {
+                    // TODO: загрузить курсы и время
+                    updateDataUI()
+                }
+                FormScreenMode.CREATING -> {
+                    updateDataUI()
+                }
+            }
         }
     }
 
@@ -92,7 +99,7 @@ class CourseViewModel(
     }
 
     override fun onIntakeTimeRemoveListener(position: Int) {
-        viewState.intakeTimesInMinutes.removeAt(position)
+        viewState.intakeTimesInMilliseconds.removeAt(position)
         updateDataUI()
     }
 
@@ -113,9 +120,10 @@ class CourseViewModel(
     }
 
     fun selectedTime(hours: Int, minutes: Int) {
-        val newTime = courseIntakeTimeFormatter.timeInMinutes(hours, minutes)
-        viewState.intakeTimesInMinutes.add(newTime)
-        viewState.intakeTimesInMinutes.sort()
+        val newTime = courseIntakeTimeFormatter.timeInMilliseconds(hours, minutes)
+        val newIntakeTime = mapper.createNewIntakeTimeModel(viewState, newTime)
+        viewState.intakeTimesInMilliseconds.add(newIntakeTime)
+        viewState.intakeTimesInMilliseconds.sortBy { it.timeInMilliseconds }
         updateDataUI()
     }
 
@@ -124,7 +132,24 @@ class CourseViewModel(
     }
 
     fun saveCourse() {
+        val course = mapper.createCourseModel(viewState)
+        val intakeTimes = viewState.intakeTimesInMilliseconds
+        viewModelScope.launch {
+            when (mode) {
+                FormScreenMode.CREATING -> {
+                    courseRepository.createCourse(course, intakeTimes)
+                }
+                FormScreenMode.EDITING -> {
+                    courseRepository.updateCourse(course, intakeTimes)
+                }
+            }
+        }
+    }
 
+    fun deleteCourse() {
+        viewModelScope.launch {
+            courseRepository.deleteCourseById(viewState.courseId)
+        }
     }
 }
 

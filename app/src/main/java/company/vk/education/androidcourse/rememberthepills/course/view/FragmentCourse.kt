@@ -59,6 +59,7 @@ class FragmentCourse : Fragment() {
             )
         )
         subscribeViewModel()
+        setupHandlers()
         return binding.root
     }
 
@@ -90,6 +91,9 @@ class FragmentCourse : Fragment() {
     private fun setupHandlers() {
         binding.buttonCourseSave.setOnClickListener {
             courseViewModel.saveCourse()
+        }
+        binding.buttonCourseRemove.setOnClickListener {
+            courseViewModel.deleteCourse()
         }
     }
 

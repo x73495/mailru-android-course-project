@@ -1,8 +1,10 @@
 package company.vk.education.androidcourse.rememberthepills.schedule.viewModel
 
+import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.schedule.model.ScheduleListItem
+import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.item.ScheduleListDataItem
 
 class ScheduleListViewModelMapper(
     private val resourceProvider: ResourceProvider,
@@ -10,6 +12,7 @@ class ScheduleListViewModelMapper(
 ) {
     interface Delegate {
         fun onScheduleListSelectListener(item: ScheduleListItem)
+        fun onScheduleListCheckListener(item: ScheduleListItem)
     }
 
     enum class ViewId {
@@ -18,11 +21,32 @@ class ScheduleListViewModelMapper(
 
     fun createPresentationModel(viewState: ScheduleListViewState): ScheduleListPresentationModel {
         return ScheduleListPresentationModel(
+            selectedDate = viewState.selectedDate,
             listItems = createDataItems(viewState)
         )
     }
 
     private fun createDataItems(viewState: ScheduleListViewState): List<BaseDataItem> {
-        return listOf() // TODO: доделать
+        return viewState.scheduleListItems.map {
+            val measurementString = resourceProvider.getString(it.drugMeasurementType.textId)
+            val subtitle = "${it.quantity} $measurementString" + " - " + it.time.toString()
+            val viewId =
+                ViewId.SCHEDULE_LIST_ITEM.name + it.courseId.toString() + it.drugId.toString() + it.time.toString()
+            val failure =
+                if (it.missed) resourceProvider.getString(R.string.missed_medication) else null
+            ScheduleListDataItem(
+                id = viewId,
+                title = it.drugName,
+                subtitle = subtitle,
+                failure = failure,
+                checked = it.checked,
+                checkingHandler = {
+                    delegate.onScheduleListCheckListener(it)
+                },
+                editHandler = {
+                    delegate.onScheduleListSelectListener(it)
+                }
+            )
+        }
     }
 }

@@ -18,7 +18,7 @@ import kotlinx.coroutines.CoroutineScope
     entities = [DrugEntity::class,
         CourseDateTimeChecking::class,
         CourseEntity::class,
-        IntakeTimeEntity::class], version = 2
+        IntakeTimeEntity::class], version = 3
 )
 abstract class RTPRoomDatabase : RoomDatabase() {
 

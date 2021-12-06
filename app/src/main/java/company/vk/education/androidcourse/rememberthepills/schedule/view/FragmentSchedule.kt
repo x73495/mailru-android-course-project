@@ -13,6 +13,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.adapt
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseRouting
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
+import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.databinding.FragmentScheduleBinding
 import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListSourceType
 import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.ScheduleDiffUtilCallback
@@ -79,6 +80,14 @@ class FragmentSchedule : Fragment() {
             is ScheduleListRouting.DrugList -> {
                 val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentDrugList(DrugListSourceType.SCHEDULE)
                 findNavController().navigate(action)
+            }
+            is ScheduleListRouting.EditingCourse -> {
+                routing.let {
+                    val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse(
+                        FormScreenMode.EDITING
+                    ).setCourseId(it.courseId).setDrugId(it.drugId)
+                    findNavController().navigate(action)
+                }
             }
             else -> {
                 return

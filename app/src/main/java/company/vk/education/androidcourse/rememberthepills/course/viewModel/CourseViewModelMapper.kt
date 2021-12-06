@@ -9,6 +9,8 @@ import company.vk.education.androidcourse.rememberthepills.components.form.model
 import company.vk.education.androidcourse.rememberthepills.components.form.model.SectionHeaderDataItem
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
+import company.vk.education.androidcourse.rememberthepills.course.model.Course
+import company.vk.education.androidcourse.rememberthepills.course.model.CourseIntakeTime
 import company.vk.education.androidcourse.rememberthepills.course.view.adapter.items.AddIntakeTimeDataItem
 import company.vk.education.androidcourse.rememberthepills.course.view.adapter.items.CourseDrugTitleDataItem
 import company.vk.education.androidcourse.rememberthepills.course.view.adapter.items.IntakeTimeDataItem
@@ -42,6 +44,28 @@ class CourseViewModelMapper(
         TIME_MEDICATION_SECTION_HEADER,
         INTAKE_TIME_TYPE,
         ADD_INTAKE_TIME_TYPE
+    }
+
+    fun createNewIntakeTimeModel(
+        viewState: CourseViewState,
+        newTimeInMilliseconds: Long
+    ): CourseIntakeTime {
+        return CourseIntakeTime(
+            courseId = viewState.courseId,
+            timeInMilliseconds = newTimeInMilliseconds
+        )
+    }
+
+    fun createCourseModel(viewState: CourseViewState): Course {
+        return Course(
+            id = viewState.courseId,
+            drugId = viewState.drugId,
+            quantity = viewState.quantity ?: 0,
+            foodAddictionType = viewState.selectedFoodAddictionItem,
+            startingDateInMilliseconds = viewState.startedDateInMilliseconds ?: 0,
+            endingDateInMilliseconds = viewState.endedDateInMilliseconds ?: 0,
+            frequency = viewState.frequencyInDays ?: 0
+        )
     }
 
     fun createTimeDialogPresentationModel(viewState: CourseViewState): CourseTimeDialogPresentationModel {
@@ -146,11 +170,10 @@ class CourseViewModelMapper(
             text = resourceProvider.getString(R.string.time_medication)
         )
 
-
-        val intakeTimeItems = viewState.intakeTimesInMinutes.mapIndexed { index, timeInMinutes ->
+        val intakeTimeItems = viewState.intakeTimesInMilliseconds.mapIndexed { index, intakeTime ->
             IntakeTimeDataItem(
                 id = ViewId.INTAKE_TIME_TYPE.name + "$index",
-                timeString = courseIntakeTimeFormatter.hoursAndMinutesString(timeInMinutes),
+                timeString = courseIntakeTimeFormatter.hoursAndMinutesString(intakeTime.timeInMilliseconds),
                 removeTimeHandler = {
                     delegate.onIntakeTimeRemoveListener(index)
                 }

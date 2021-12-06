@@ -1,6 +1,7 @@
 package company.vk.education.androidcourse.rememberthepills.schedule.view.adapter
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BasePayload
@@ -13,7 +14,21 @@ class ScheduleListViewHolder private constructor(private val binding: ItemViewCo
         // TODO: нужен ли весь payload ?
         val item = payload ?: item
         if (item is ScheduleListDataItem) {
-            // TODO: доделать
+            binding.textTitle.text = item.title
+            binding.textSubtitle.text = item.subtitle
+            binding.checkboxCourseEntryIsDone.isChecked = item.checked
+            if (item.failure != null) {
+                binding.textCourseEntryMissed.visibility = View.VISIBLE
+                binding.textCourseEntryMissed.text = item.failure
+            } else {
+                binding.textCourseEntryMissed.visibility = View.GONE
+            }
+            binding.checkboxCourseEntryIsDone.setOnCheckedChangeListener { _, _ ->
+                item.checkingHandler()
+            }
+            binding.buttonCourseEntryEdit.setOnClickListener {
+                item.editHandler()
+            }
         }
     }
 

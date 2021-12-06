@@ -7,6 +7,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.model
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.schedule.model.ScheduleListItem
 import company.vk.education.androidcourse.rememberthepills.schedule.model.ScheduleListRepository
+import java.util.*
 
 class ScheduleListViewModel(
     private val resourceProvider: ResourceProvider,
@@ -14,6 +15,7 @@ class ScheduleListViewModel(
 ): ViewModel(), ScheduleListViewModelMapper.Delegate {
     private val mapper = ScheduleListViewModelMapper(resourceProvider, this)
     private var viewState: ScheduleListViewState = ScheduleListViewState(
+        selectedDate = Date(),
         scheduleListItems = listOf()
     )
 
@@ -25,6 +27,10 @@ class ScheduleListViewModel(
         MutableLiveData<BaseRouting>()
     }
 
+    init {
+        updateUI()
+    }
+
     private fun updateUI() {
         val presentationModel = mapper.createPresentationModel(viewState)
         this.presentationModel.value = presentationModel
@@ -33,10 +39,15 @@ class ScheduleListViewModel(
     // Mapper handlers
 
     override fun onScheduleListSelectListener(item: ScheduleListItem) {
+        routingModel.value = ScheduleListRouting.courseEditing(item.courseId, item.drugId)
+    }
 
+    override fun onScheduleListCheckListener(item: ScheduleListItem) {
+        // TODO: изменить чекбокс в бд
     }
 
     // Fragment handlers
+
     fun routingDidHandle() {
         routingModel.value = ScheduleListRouting.none
     }

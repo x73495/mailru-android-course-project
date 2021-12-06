@@ -8,5 +8,5 @@ import androidx.room.PrimaryKey
 data class IntakeTimeEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
     @ColumnInfo(name = "course_id") val courseId: Int,
-    val time: Long
+    val timeInMilliseconds: Long
 )
