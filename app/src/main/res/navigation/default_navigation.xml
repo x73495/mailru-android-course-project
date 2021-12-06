@@ -50,6 +50,9 @@
             android:name="company.vk.education.androidcourse.rememberthepills.drugList.view.FragmentDrugList"
             android:label="@string/drugs"
             tools:layout="@layout/fragment_drug_list">
+        <argument
+                android:name="sourceType"
+                app:argType="company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListSourceType"/>
         <action
                 app:enterAnim="@anim/slide_in_right"
                 app:exitAnim="@anim/slide_out_left"

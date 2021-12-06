@@ -11,10 +11,12 @@ import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugPr
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModel
 import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListItem
 import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListRepository
+import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListSourceType
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class DrugListViewModel(
+    private val sourceType: DrugListSourceType,
     private val resourceProvider: ResourceProvider,
     private val drugListRepository: DrugListRepository
 ) : ViewModel(),
@@ -50,7 +52,14 @@ class DrugListViewModel(
     // Mapper handlers
 
     override fun onDrugSelectListener(item: DrugListItem) {
-        routingModel.value = DrugListRouting.courseCreation(item.id)
+        when (sourceType) {
+            DrugListSourceType.PROFILE -> {
+                routingModel.value = DrugListRouting.drugEditing(item.id)
+            }
+            DrugListSourceType.SCHEDULE -> {
+                routingModel.value = DrugListRouting.courseCreation(item.id)
+            }
+        }
     }
 
     // Fragment handlers
@@ -60,10 +69,11 @@ class DrugListViewModel(
 }
 
 class DrugListViewModelFactory(
+    private val sourceType: DrugListSourceType,
     private val resourceProvider: ResourceProvider,
     private val drugListRepository: DrugListRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return DrugListViewModel(resourceProvider, drugListRepository) as T
+        return DrugListViewModel(sourceType, resourceProvider, drugListRepository) as T
     }
 }

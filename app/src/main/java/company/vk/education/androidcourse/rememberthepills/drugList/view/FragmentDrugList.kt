@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import company.vk.education.androidcourse.rememberthepills.RTPApplication
 import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
@@ -14,6 +15,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.model
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
+import company.vk.education.androidcourse.rememberthepills.course.view.FragmentCourseArgs
 import company.vk.education.androidcourse.rememberthepills.databinding.FragmentDrugListBinding
 import company.vk.education.androidcourse.rememberthepills.drugList.view.adapter.DrugListDiffUtilCallback
 import company.vk.education.androidcourse.rememberthepills.drugList.view.adapter.DrugListViewHolderFactory
@@ -26,8 +28,11 @@ class FragmentDrugList : Fragment() {
     private var _binding: FragmentDrugListBinding? = null
     private val binding: FragmentDrugListBinding get() = _binding!!
 
+    private val args: FragmentDrugListArgs by navArgs()
+
     private val drugListViewModel: DrugListViewModel by viewModels() {
         DrugListViewModelFactory(
+            args.sourceType,
             ResourceProvider(requireContext()),
             (activity?.application as RTPApplication).drugListRepository
         )

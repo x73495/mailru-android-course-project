@@ -82,6 +82,9 @@ class FragmentDrug : Fragment() {
         binding.buttonDrugSave.setOnClickListener {
             drugViewModel.saveDrug()
         }
+        binding.buttonDrugRemove.setOnClickListener {
+            drugViewModel.deleteDrug()
+        }
     }
 
     private fun handleRouting(routing: BaseRouting) {

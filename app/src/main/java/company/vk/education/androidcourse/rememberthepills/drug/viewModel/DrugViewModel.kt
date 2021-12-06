@@ -11,7 +11,6 @@ import company.vk.education.androidcourse.rememberthepills.components.models.For
 import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 import company.vk.education.androidcourse.rememberthepills.drug.model.DrugRepository
-import company.vk.education.androidcourse.rememberthepills.drugList.viewModel.DrugListRouting
 import kotlinx.coroutines.launch
 
 class DrugViewModel(
@@ -41,7 +40,20 @@ class DrugViewModel(
     }
 
     init {
-        updateUI()
+        when(mode) {
+            FormScreenMode.EDITING -> {
+                viewModelScope.launch {
+                    val drug = drugRepository.drugById(id)
+                    viewState.drugNameText = drug.name
+                    viewState.selectedDrugTypeItem = drug.drugType
+                    viewState.selectedMeasurementItem = drug.measurementType
+                    updateUI()
+                }
+            }
+            FormScreenMode.CREATING -> {
+                updateUI()
+            }
+        }
     }
 
     private fun updateUI() {
@@ -77,6 +89,13 @@ class DrugViewModel(
             } else {
                 drugRepository.update(drug)
             }
+            routingModel.value = DrugRouting.back
+        }
+    }
+
+    fun deleteDrug() {
+        viewModelScope.launch {
+            drugRepository.delete(mapper.createModel(viewState))
             routingModel.value = DrugRouting.back
         }
     }

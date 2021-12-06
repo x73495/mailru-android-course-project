@@ -13,6 +13,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.model
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.databinding.FragmentProfileBinding
+import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListSourceType
 import company.vk.education.androidcourse.rememberthepills.profile.view.adapter.ProfileDiffUtilCallback
 import company.vk.education.androidcourse.rememberthepills.profile.view.adapter.ProfileViewHolderFactory
 import company.vk.education.androidcourse.rememberthepills.profile.viewModel.ProfileRouting
@@ -67,7 +68,7 @@ class FragmentProfile : Fragment() {
     private fun handleRouting(routing: BaseRouting) {
         when(routing) {
             is ProfileRouting.DrugList -> {
-                val action = FragmentProfileDirections.actionFragmentProfileToFragmentDrugList()
+                val action = FragmentProfileDirections.actionFragmentProfileToFragmentDrugList(DrugListSourceType.PROFILE)
                 findNavController().navigate(action)
             }
             else -> {

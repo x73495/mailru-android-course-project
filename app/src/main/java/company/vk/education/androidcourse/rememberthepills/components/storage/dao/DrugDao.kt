@@ -12,6 +12,9 @@ interface DrugDao {
     @Update
     suspend fun update(drug: DrugEntity)
 
+    @Delete
+    suspend fun delete(drug: DrugEntity)
+
     @Query("SELECT * FROM drugs")
     fun getAllDrugs(): Flow<List<DrugEntity>>
 

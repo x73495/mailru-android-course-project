@@ -17,4 +17,13 @@ class DrugRepository(
         val drugEntity = mapper.drugModelMapper.convertToDrugEntity(drug)
         drugDao.update(drugEntity)
     }
+
+    suspend fun delete(drug: Drug) {
+        drugDao.delete(mapper.drugModelMapper.convertToDrugEntity(drug))
+    }
+
+    suspend fun drugById(id: Long): Drug {
+        val drugEntity = drugDao.drugById(id)
+        return mapper.drugModelMapper.convertToDrug(drugEntity)
+    }
 }

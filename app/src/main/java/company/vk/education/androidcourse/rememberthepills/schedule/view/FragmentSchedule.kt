@@ -14,6 +14,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.model
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.databinding.FragmentScheduleBinding
+import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListSourceType
 import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.ScheduleDiffUtilCallback
 import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.ScheduleListViewHolderFactory
 import company.vk.education.androidcourse.rememberthepills.schedule.viewModel.ScheduleListRouting
@@ -76,7 +77,7 @@ class FragmentSchedule : Fragment() {
     private fun handleRouting(routing: BaseRouting) {
         when(routing) {
             is ScheduleListRouting.DrugList -> {
-                val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentDrugList()
+                val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentDrugList(DrugListSourceType.SCHEDULE)
                 findNavController().navigate(action)
             }
             else -> {
