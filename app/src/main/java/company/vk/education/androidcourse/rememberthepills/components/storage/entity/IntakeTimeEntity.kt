@@ -7,6 +7,6 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "intake_times")
 data class IntakeTimeEntity(
     @PrimaryKey(autoGenerate = true) val id: Long = 0,
-    @ColumnInfo(name = "course_id") val courseId: Int,
-    val timeInMilliseconds: Long
+    @ColumnInfo(name = "course_id") val courseId: Long,
+    val timeInMilliseconds: Long,
 )

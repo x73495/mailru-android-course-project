@@ -8,17 +8,14 @@ import androidx.room.RoomDatabase
 import androidx.sqlite.db.SupportSQLiteDatabase
 import company.vk.education.androidcourse.rememberthepills.components.storage.dao.CourseDao
 import company.vk.education.androidcourse.rememberthepills.components.storage.dao.DrugDao
-import company.vk.education.androidcourse.rememberthepills.components.storage.entity.CourseDateTimeChecking
-import company.vk.education.androidcourse.rememberthepills.components.storage.entity.CourseEntity
-import company.vk.education.androidcourse.rememberthepills.components.storage.entity.DrugEntity
-import company.vk.education.androidcourse.rememberthepills.components.storage.entity.IntakeTimeEntity
+import company.vk.education.androidcourse.rememberthepills.components.storage.entity.*
 import kotlinx.coroutines.CoroutineScope
 
 @Database(
     entities = [DrugEntity::class,
-        CourseDateTimeChecking::class,
+        CourseCheckingEntity::class,
         CourseEntity::class,
-        IntakeTimeEntity::class], version = 3
+        IntakeTimeEntity::class], version = 5
 )
 abstract class RTPRoomDatabase : RoomDatabase() {
 

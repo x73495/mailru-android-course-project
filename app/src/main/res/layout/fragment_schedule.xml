@@ -4,19 +4,19 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-    <ScrollView
-            android:id="@+id/scroll_calendar_schedule"
-            app:layout_constraintTop_toTopOf="parent"
+    <com.michalsvec.singlerowcalendar.calendar.SingleRowCalendar
             app:layout_constraintStart_toStartOf="parent"
-            android:layout_width="match_parent"
-            android:layout_height="142dp">
-
-        <CalendarView
-                android:id="@+id/calendar_schedule"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-    </ScrollView>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:id="@+id/main_single_row_calendar"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            app:deselection="false"
+            app:longPress="false"
+            app:multiSelection="false" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/button_schedule_save"
@@ -35,7 +35,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:id="@+id/recycler_view_schedule"
-            app:layout_constraintTop_toBottomOf="@+id/scroll_calendar_schedule"
+            app:layout_constraintTop_toBottomOf="@+id/main_single_row_calendar"
             android:background="?attr/common_background_color" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -3,6 +3,10 @@ package company.vk.education.androidcourse.rememberthepills.course.model
 import company.vk.education.androidcourse.rememberthepills.components.storage.dao.CourseDao
 import company.vk.education.androidcourse.rememberthepills.components.storage.dao.DrugDao
 import company.vk.education.androidcourse.rememberthepills.components.models.Drug
+import company.vk.education.androidcourse.rememberthepills.components.storage.entity.CourseEntity
+import company.vk.education.androidcourse.rememberthepills.components.storage.entity.DrugEntity
+import company.vk.education.androidcourse.rememberthepills.components.storage.entity.IntakeTimeEntity
+import java.util.*
 
 class CourseRepository(
     private val courseDao: CourseDao,
@@ -19,7 +23,15 @@ class CourseRepository(
 //    }
 
     suspend fun createCourse(course: Course, intakeTimes: List<CourseIntakeTime>) {
-
+        val courseEntity = mapper.convertToCourseEntity(course)
+        val intakeTimeEntities = intakeTimes.map {
+            mapper.convertToIntakeTimeEntity(
+                courseId = course.id,
+                intakeTime = it
+            )
+        }
+        val courseCheckings = mapper.createCheckingEntities(course, intakeTimes)
+        courseDao.insert(courseEntity, intakeTimeEntities, courseCheckings)
     }
 
     suspend fun deleteCourseById(id: Long) {
