@@ -27,6 +27,7 @@ abstract class CourseDao {
         val intakeTimes = times.map { it.copy(courseId = courseId) }
         val timeIds = insertTimes(intakeTimes)
         val updatedCourseCheckings = courseCheckings.mapIndexed { index, item ->
+            // очень сложный костыль, переделать
             item.copy(courseId = courseId, intakeTimeId = timeIds[index % timeIds.size])
         }
         insertCheckings(updatedCourseCheckings)
