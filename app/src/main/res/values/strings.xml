@@ -66,4 +66,5 @@
 
     <string name="removal_confirmation_answer_yes">Да</string>
     <string name="removal_confirmation_answer_no">Отмена</string>
+    <string name="select_date">Изменить дату</string>
 </resources>

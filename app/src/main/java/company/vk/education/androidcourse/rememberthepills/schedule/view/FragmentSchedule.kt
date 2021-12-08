@@ -4,17 +4,21 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.CalendarView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.CourseListAdapter
 import company.vk.education.androidcourse.rememberthepills.schedule.model.CourseEntry
 import company.vk.education.androidcourse.rememberthepills.schedule.viewModel.ScheduleViewModel
+import java.text.SimpleDateFormat
 import java.util.*
 
 class FragmentSchedule : Fragment() {
@@ -50,7 +54,7 @@ class FragmentSchedule : Fragment() {
         // TODO TEMPORARY
         val tempCalendar = Calendar.getInstance()
         tempCalendar.set(2021, 10, 3)
-        view.findViewById<CalendarView>(R.id.calendar_schedule).date = tempCalendar.timeInMillis
+//        view.findViewById<CalendarView>(R.id.calendar_schedule).date = tempCalendar.timeInMillis
 
         recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
             override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
@@ -60,6 +64,25 @@ class FragmentSchedule : Fragment() {
                     fab.show()
             }
         })
+
+
+        view.findViewById<Button>(R.id.button_schedule_select_date).setOnClickListener {
+            val datePicker = MaterialDatePicker.Builder.datePicker()
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build()
+
+            datePicker.addOnPositiveButtonClickListener {
+                val dateFormat = SimpleDateFormat("dd/MMMM/yyyy")
+                val datePicked = dateFormat.format(datePicker.selection)
+                val datePickedSplit = datePicked.split('/')
+
+                view.findViewById<TextView>(R.id.text_schedule_date_d).text = datePickedSplit[0]
+                view.findViewById<TextView>(R.id.text_schedule_date_m).text = datePickedSplit[1]
+                view.findViewById<TextView>(R.id.text_schedule_date_y).text = datePickedSplit[2]
+            }
+
+            datePicker.show(requireActivity().supportFragmentManager, datePicker.toString())
+        }
     }
 
     // TODO TEMPORARY
