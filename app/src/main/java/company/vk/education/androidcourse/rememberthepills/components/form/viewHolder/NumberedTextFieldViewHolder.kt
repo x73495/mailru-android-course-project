@@ -3,6 +3,7 @@ package company.vk.education.androidcourse.rememberthepills.components.form.view
 import android.text.InputFilter
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.view.inputmethod.EditorInfo
 import androidx.core.widget.doOnTextChanged
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BasePayload
@@ -27,6 +28,7 @@ class NumberedTextFieldViewHolder private constructor(private val binding: ItemN
             binding.itemNumberedTextInputEditText.doOnTextChanged { text, _, _, _ ->
                 item.editingNumberHandler(text.toString().toIntOrNull())
             }
+            binding.itemNumberedTextInputEditText.imeOptions = EditorInfo.IME_ACTION_DONE
         }
     }
 
