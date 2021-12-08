@@ -3,34 +3,39 @@ package company.vk.education.androidcourse.rememberthepills.course.viewModel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseRouting
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.models.FoodAddictionItem
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
-import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
+import company.vk.education.androidcourse.rememberthepills.course.model.CourseRepository
+import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugRouting
+import company.vk.education.androidcourse.rememberthepills.drugList.viewModel.DrugListPresentationModel
+import kotlinx.coroutines.launch
 
 class CourseViewModel(
     private val mode: FormScreenMode,
-    private val courseId: Int?,
-    private val drugId: Int?,
+    private val courseId: Long,
+    private val drugId: Long,
     private val courseIntakeTimeFormatter: CourseIntakeTimeFormatter,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val courseRepository: CourseRepository
 ) : ViewModel(), CourseViewModelMapper.Delegate {
 
     private val mapper = CourseViewModelMapper(resourceProvider, courseIntakeTimeFormatter, this)
-    private var viewState: CourseViewState = CourseViewState(courseId = courseId,
+    private var viewState: CourseViewState = CourseViewState(
+        courseId = courseId,
         drugId = drugId,
-        drugName = "Фуфломицин",
-        drugType = "Таблетка",
-        measurementItems = MeasurementItem.values(),
-        selectedMeasurementItem = MeasurementItem.values().first(),
+        drugName = "",
+        drugType = "",
         quantity = null,
         foodAddictionItems = FoodAddictionItem.values(),
         selectedFoodAddictionItem = FoodAddictionItem.values().first(),
         startedDateInMilliseconds = null,
         endedDateInMilliseconds = null,
         frequencyInDays = null,
-        intakeTimesInMinutes = mutableListOf(),
+        intakeTimesInMilliseconds = mutableListOf(),
         screenMode = mode
     )
 
@@ -38,8 +43,37 @@ class CourseViewModel(
         MutableLiveData<CoursePresentationModel>()
     }
 
+    val routingModel: MutableLiveData<BaseRouting> by lazy {
+        MutableLiveData<BaseRouting>()
+    }
+
     init {
-        updateDataUI()
+        viewModelScope.launch {
+            val drug = courseRepository.drugById(viewState.drugId)
+            val type =
+                resourceProvider.getString(drug.drugType.textId) + " / " + resourceProvider.getString(
+                    drug.measurementType.textId
+                )
+            viewState.drugName = drug.name
+            viewState.drugType = type
+            when (mode) {
+                FormScreenMode.EDITING -> {
+                    val courseAndTimes = courseRepository.courseAndTimesById(viewState.courseId)
+                    val course = courseAndTimes.first
+                    val intakeTimes = courseAndTimes.second
+                    viewState.quantity = course.quantity
+                    viewState.frequencyInDays = course.frequency
+                    viewState.selectedFoodAddictionItem = course.foodAddictionType
+                    viewState.startedDateInMilliseconds = course.startingDateInMilliseconds
+                    viewState.endedDateInMilliseconds = course.endingDateInMilliseconds
+                    viewState.intakeTimesInMilliseconds = intakeTimes.toMutableList()
+                    updateDataUI()
+                }
+                FormScreenMode.CREATING -> {
+                    updateDataUI()
+                }
+            }
+        }
     }
 
     private fun updateDataUI() {
@@ -48,11 +82,6 @@ class CourseViewModel(
     }
 
     // Mapper handlers
-
-    override fun onMeasurementTypeSelectListener(item: TextedItem) {
-        viewState.selectedMeasurementItem = item
-        updateDataUI()
-    }
 
     override fun onFoodAddictionTypeSelectListener(item: TextedItem) {
         viewState.selectedFoodAddictionItem = item
@@ -85,7 +114,7 @@ class CourseViewModel(
     }
 
     override fun onIntakeTimeRemoveListener(position: Int) {
-        viewState.intakeTimesInMinutes.removeAt(position)
+        viewState.intakeTimesInMilliseconds.removeAt(position)
         updateDataUI()
     }
 
@@ -106,25 +135,61 @@ class CourseViewModel(
     }
 
     fun selectedTime(hours: Int, minutes: Int) {
-        val newTime = courseIntakeTimeFormatter.timeInMinutes(hours, minutes)
-        viewState.intakeTimesInMinutes.add(newTime)
-        viewState.intakeTimesInMinutes.sort()
+        val newTime = courseIntakeTimeFormatter.timeInMilliseconds(hours, minutes)
+        val newIntakeTime = mapper.createNewIntakeTimeModel(viewState, newTime)
+        viewState.intakeTimesInMilliseconds.add(newIntakeTime)
+        viewState.intakeTimesInMilliseconds.sortBy { it.timeInMilliseconds }
         updateDataUI()
     }
 
     fun cancelledInputTime() {
         updateDataUI()
     }
+
+    fun saveCourse() {
+        val course = mapper.createCourseModel(viewState)
+        val intakeTimes = viewState.intakeTimesInMilliseconds
+        viewModelScope.launch {
+            when (mode) {
+                FormScreenMode.CREATING -> {
+                    courseRepository.createCourse(course, intakeTimes)
+                }
+                FormScreenMode.EDITING -> {
+                    courseRepository.updateCourse(course, intakeTimes)
+                }
+            }
+            routingModel.value = CourseRoutingModel.startScheduleDestination
+        }
+    }
+
+    fun deleteCourse() {
+        viewModelScope.launch {
+            courseRepository.deleteCourseById(viewState.courseId)
+            routingModel.value = CourseRoutingModel.startScheduleDestination
+        }
+    }
+
+    fun routingDidHandle() {
+        routingModel.value = CourseRoutingModel.none
+    }
 }
 
 class CourseViewModelFactory(
     private val mode: FormScreenMode,
-    private val courseId: Int?,
-    private val drugId: Int?,
+    private val courseId: Long,
+    private val drugId: Long,
     private val courseIntakeTimeFormatter: CourseIntakeTimeFormatter,
-    private val resourceProvider: ResourceProvider
+    private val resourceProvider: ResourceProvider,
+    private val courseRepository: CourseRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return CourseViewModel(mode, courseId, drugId, courseIntakeTimeFormatter, resourceProvider) as T
+        return CourseViewModel(
+            mode,
+            courseId,
+            drugId,
+            courseIntakeTimeFormatter,
+            resourceProvider,
+            courseRepository
+        ) as T
     }
 }

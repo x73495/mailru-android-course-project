@@ -20,8 +20,8 @@
 
         <item name="common_background_color">@color/gray_900</item>
 
-        <item name="course_entry_name_of_drug_color">@color/white</item>
-        <item name="course_entry_amount_of_drug_text_color">@color/white</item>
+        <item name="schedule_list_title_text_color">@color/white</item>
+        <item name="schedule_list_subtitle_text_color">@color/white</item>
         <item name="border_course_entry_color">@color/white</item>
         <item name="button_course_entry_info_color">@color/white</item>
         <item name="drug_title_text_color">@color/white</item>
@@ -46,6 +46,10 @@
         <!-- Drug header -->
         <item name="drug_title_headline_text_color">@color/white</item>
         <item name="drug_title_description_text_color">@color/white</item>
+
+        <!-- Profile list -->
+        <item name="profile_list_icon_tint_color">@color/white</item>
+        <item name="profile_list_title_text_color">@color/white</item>
 
     </style>
 </resources>

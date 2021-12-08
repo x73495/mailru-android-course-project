@@ -50,6 +50,9 @@
             android:name="company.vk.education.androidcourse.rememberthepills.drugList.view.FragmentDrugList"
             android:label="@string/drugs"
             tools:layout="@layout/fragment_drug_list">
+        <argument
+                android:name="sourceType"
+                app:argType="company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListSourceType"/>
         <action
                 app:enterAnim="@anim/slide_in_right"
                 app:exitAnim="@anim/slide_out_left"
@@ -64,9 +67,6 @@
                 app:popExitAnim="@anim/slide_out_right"
                 android:id="@+id/action_fragmentDrugList_to_fragmentCourse"
                 app:destination="@id/fragmentCourse" />
-        <argument
-                android:name="intent"
-                app:argType="string" />
     </fragment>
     <fragment
             android:id="@+id/fragmentCourse"
@@ -79,18 +79,20 @@
                 app:popEnterAnim="@anim/slide_in_left"
                 app:popExitAnim="@anim/slide_out_right"
                 android:id="@+id/action_fragmentCourse_to_fragmentSchedule"
-                app:destination="@id/fragmentSchedule" />
+                app:destination="@id/fragmentSchedule"
+                app:popUpToInclusive="true"
+                app:popUpTo="@id/fragmentSchedule"/>
         <argument
                 android:name="mode"
                 app:argType="company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode"/>
         <argument
                 android:name="courseId"
-                app:argType="integer"
-                android:defaultValue="-1"/>
+                app:argType="long"
+                android:defaultValue="0L"/>
         <argument
                 android:name="drugId"
-                app:argType="integer"
-                android:defaultValue="-1"/>
+                app:argType="long"
+                android:defaultValue="0L"/>
     </fragment>
     <fragment
             android:id="@+id/fragmentDrug"
@@ -102,8 +104,8 @@
                 app:argType="company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode"/>
         <argument
                 android:name="drugId"
-                app:argType="integer"
-                android:defaultValue="-1" />
+                app:argType="long"
+                android:defaultValue="0L" />
     </fragment>
     <fragment
             android:id="@+id/fragmentCourseHistory"

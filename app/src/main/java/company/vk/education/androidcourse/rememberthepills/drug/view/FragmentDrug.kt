@@ -6,14 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import company.vk.education.androidcourse.rememberthepills.RTPApplication
 import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseRouting
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.form.viewHolder.FormViewHolderFactory
 import company.vk.education.androidcourse.rememberthepills.databinding.FragmentDrugBinding
 import company.vk.education.androidcourse.rememberthepills.drug.view.adapter.DrugDiffUtilCallback
+import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugRouting
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModel
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModelFactory
 
@@ -24,7 +28,12 @@ class FragmentDrug : Fragment() {
 
     private val args: FragmentDrugArgs by navArgs()
     private val drugViewModel: DrugViewModel by viewModels() {
-        DrugViewModelFactory(args.mode, args.drugId, ResourceProvider(requireContext()))
+        DrugViewModelFactory(
+            args.mode,
+            args.drugId.toLong(),
+            ResourceProvider(requireContext()),
+            (activity?.application as RTPApplication).drugRepository
+        )
     }
 
     override fun onCreateView(
@@ -48,6 +57,7 @@ class FragmentDrug : Fragment() {
             )
         )
         subscribeViewModel()
+        setupHandlers()
         return binding.root
     }
 
@@ -63,20 +73,29 @@ class FragmentDrug : Fragment() {
             binding.buttonDrugSave.text = it.applyButtonTitle
             binding.buttonDrugRemove.visibility = if (it.isRemoveButtonHidden) View.INVISIBLE else View.VISIBLE
         })
+        drugViewModel.routingModel.observe(viewLifecycleOwner, {
+            handleRouting(it)
+        })
     }
 
-//
-//        view.findViewById<Button>(R.id.button_drug_remove).setOnClickListener {
-//            MaterialAlertDialogBuilder(requireContext())
-//                .setTitle(getString(R.string.drug_removal_confirmation_title))
-//                .setMessage(getString(R.string.drug_removal_confirmation_message))
-//                .setNegativeButton(getString(R.string.removal_confirmation_answer_no)) { dialog, _ ->
-//                    dialog.cancel()
-//                }
-//                .setPositiveButton(getString(R.string.removal_confirmation_answer_yes)) { _, _ ->
-//                    // TODO: actual deletion
-//                    it.findNavController().popBackStack()
-//                }
-//                .show()
-//        }
+    private fun setupHandlers() {
+        binding.buttonDrugSave.setOnClickListener {
+            drugViewModel.saveDrug()
+        }
+        binding.buttonDrugRemove.setOnClickListener {
+            drugViewModel.deleteDrug()
+        }
+    }
+
+    private fun handleRouting(routing: BaseRouting) {
+        when(routing) {
+            is DrugRouting.Back -> {
+                findNavController().popBackStack()
+            }
+            else -> {
+                return
+            }
+        }
+        drugViewModel.routingDidHandle()
+    }
 }

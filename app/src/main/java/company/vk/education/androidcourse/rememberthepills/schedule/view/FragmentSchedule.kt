@@ -4,137 +4,101 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.google.android.material.floatingactionbutton.FloatingActionButton
-import company.vk.education.androidcourse.rememberthepills.R
-import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.CourseListAdapter
-import company.vk.education.androidcourse.rememberthepills.schedule.model.CourseEntry
-import company.vk.education.androidcourse.rememberthepills.schedule.viewModel.ScheduleViewModel
-import java.util.*
+import company.vk.education.androidcourse.rememberthepills.RTPApplication
+import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseRouting
+import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
+import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
+import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
+import company.vk.education.androidcourse.rememberthepills.course.viewModel.CourseRoutingModel
+import company.vk.education.androidcourse.rememberthepills.databinding.FragmentScheduleBinding
+import company.vk.education.androidcourse.rememberthepills.drugList.model.DrugListSourceType
+import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.ScheduleDiffUtilCallback
+import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.ScheduleListViewHolderFactory
+import company.vk.education.androidcourse.rememberthepills.schedule.viewModel.ScheduleListRouting
+import company.vk.education.androidcourse.rememberthepills.schedule.viewModel.ScheduleListViewModel
+import company.vk.education.androidcourse.rememberthepills.schedule.viewModel.ScheduleListViewModelFactory
 
 class FragmentSchedule : Fragment() {
 
-    private val scheduleViewModel: ScheduleViewModel by viewModels()
+    private var _binding: FragmentScheduleBinding? = null
+    private val binding: FragmentScheduleBinding get() = _binding!!
+
+    private val scheduleListViewModel: ScheduleListViewModel by viewModels() {
+        ScheduleListViewModelFactory(
+            ResourceProvider(requireContext()),
+            (activity?.application as RTPApplication).scheduleListRepository
+        )
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        return inflater.inflate(R.layout.fragment_schedule, container, false)
-    }
+        val binding = FragmentScheduleBinding.inflate(inflater, container, false)
+        _binding = binding
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        view.findViewById<FloatingActionButton>(R.id.button_to_course_add).setOnClickListener {
-            val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentDrugList(
-                "choose"
-            )
-            it.findNavController().navigate(action)
-        }
-
-        // TODO TEMPORARY
-        val courseEntries = generateCourseEntries().toMutableList()
-
-        val recycler: RecyclerView = view.findViewById(R.id.recycler_course_entries_by_date)
-        val adapter = CourseListAdapter(courseEntries)
-        recycler.adapter = adapter
-        recycler.layoutManager = LinearLayoutManager(requireContext())
-
-        // TODO TEMPORARY
-        val tempCalendar = Calendar.getInstance()
-        tempCalendar.set(2021, 10, 3)
-        view.findViewById<CalendarView>(R.id.calendar_schedule).date = tempCalendar.timeInMillis
-    }
-
-    // TODO TEMPORARY
-    private fun generateCourseEntries(): List<CourseEntry> {
-        return listOf(
-            CourseEntry(
-                0,
-                0,
-                "\$названиеПрепарата0",
-                12,
-                isDone = false,
-                isMissed = true,
-                "шт"
-            ),
-            CourseEntry(
-                0,
-                0,
-                "\$названиеПрепарата1",
-                11,
-                isDone = true,
-                isMissed = false,
-                "шт"
-            ),
-            CourseEntry(
-                0,
-                0,
-                "\$названиеПрепарата2",
-                10,
-                isDone = false,
-                isMissed = false,
-                "шт"
-            ),
-            CourseEntry(
-                0,
-                0,
-                "\$названиеПрепарата3",
-                1337,
-                isDone = true,
-                isMissed = false,
-                "мг"
-            ),
-            CourseEntry(
-                0,
-                0,
-                "\$названиеПрепарата4",
-                9,
-                isDone = false,
-                isMissed = true,
-                "ед"
-            ),
-            CourseEntry(
-                0,
-                0,
-                "\$названиеПрепарата5",
-                888,
-                isDone = false,
-                isMissed = false,
-                "ед"
-            ),
-            CourseEntry(
-                0,
-                0,
-                "\$названиеПрепарата5",
-                777777777,
-                isDone = true,
-                isMissed = false,
-                "ед"
-            ),
-            CourseEntry(
-                0,
-                0,
-                "\$названиеПрепарата6",
-                654,
-                isDone = false,
-                isMissed = true,
-                "мл"
-            ),
-            CourseEntry(
-                0,
-                0,
-                "\$названиеПрепарата7",
-                321,
-                isDone = false,
-                isMissed = false,
-                "ед"
+        val viewHolderFactory = ScheduleListViewHolderFactory()
+        val diffUtilCallback = ScheduleDiffUtilCallback()
+        val adapter = BaseRecyclerViewAdapter(viewHolderFactory, diffUtilCallback)
+        val dividerItemDecoratorFactory = DividerItemDecorationFactory()
+        binding.recyclerViewSchedule.adapter = adapter
+        binding.recyclerViewSchedule.layoutManager = LinearLayoutManager(requireContext())
+        binding.recyclerViewSchedule.addItemDecoration(
+            dividerItemDecoratorFactory.create(
+                requireContext(),
+                LinearLayoutManager.VERTICAL
             )
         )
+        subscribeViewModel()
+        setupHandlers()
+        return binding.root
+    }
+
+    private fun subscribeViewModel() {
+        val adapter = binding.recyclerViewSchedule.adapter as BaseRecyclerViewAdapter
+        scheduleListViewModel.presentationModel.observe(viewLifecycleOwner, {
+            adapter.submitList(it.listItems)
+        })
+        scheduleListViewModel.routingModel.observe(viewLifecycleOwner, {
+            handleRouting(it)
+        })
+    }
+
+    private fun setupHandlers() {
+        binding.buttonScheduleSave.setOnClickListener {
+            handleRouting(ScheduleListRouting.drugList)
+        }
+    }
+
+    private fun handleRouting(routing: BaseRouting) {
+        when(routing) {
+            is ScheduleListRouting.DrugList -> {
+                val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentDrugList(DrugListSourceType.SCHEDULE)
+                findNavController().navigate(action)
+            }
+            is ScheduleListRouting.EditingCourse -> {
+                routing.let {
+                    val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentCourse(
+                        FormScreenMode.EDITING
+                    ).setCourseId(it.courseId).setDrugId(it.drugId)
+                    findNavController().navigate(action)
+                }
+            }
+            else -> {
+                return
+            }
+        }
+        scheduleListViewModel.routingDidHandle()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

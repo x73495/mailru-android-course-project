@@ -1,12 +1,16 @@
 package company.vk.education.androidcourse.rememberthepills.course.viewModel
 
 class CourseIntakeTimeFormatter {
-    fun hoursAndMinutes(timeInMinutes: Int): Pair<Int, Int> {
-        return Pair(timeInMinutes / 60, timeInMinutes % 60)
+    val millisecondsInMinute: Long = 60 * 1000
+    fun hoursAndMinutes(timeInMilliseconds: Long): Pair<Int, Int> {
+        val timeInMinutes: Long = timeInMilliseconds / millisecondsInMinute
+        val minutes: Int = (timeInMinutes % 60).toInt()
+        val hours: Int = (timeInMinutes / 60).toInt()
+        return Pair(hours, minutes)
     }
 
-    fun hoursAndMinutesString(timeInMinutes: Int): String {
-        val values = hoursAndMinutes(timeInMinutes)
+    fun hoursAndMinutesString(timeInMilliseconds: Long): String {
+        val values = hoursAndMinutes(timeInMilliseconds)
         val hours = values.first
         var minutes = values.second
 
@@ -15,7 +19,7 @@ class CourseIntakeTimeFormatter {
         return resultString
     }
 
-    fun timeInMinutes(hours: Int, minutes: Int): Int {
-        return hours * 60 + minutes
+    fun timeInMilliseconds(hours: Int, minutes: Int): Long {
+        return (hours.toLong() * 60L + minutes.toLong()) * millisecondsInMinute
     }
 }

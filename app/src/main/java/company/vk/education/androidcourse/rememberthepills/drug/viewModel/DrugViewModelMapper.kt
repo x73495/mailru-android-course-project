@@ -7,6 +7,7 @@ import company.vk.education.androidcourse.rememberthepills.components.form.model
 import company.vk.education.androidcourse.rememberthepills.components.form.model.TextedTextFieldDataItem
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
+import company.vk.education.androidcourse.rememberthepills.components.models.Drug
 
 class DrugViewModelMapper(
     private val resourceProvider: ResourceProvider,
@@ -15,11 +16,22 @@ class DrugViewModelMapper(
     interface Delegate {
         fun onDrugTypeSelectListener(item: TextedItem)
         fun onDrugNameChangeListener(text: String?)
+        fun onMeasurementTypeSelectListener(item: TextedItem)
     }
 
     enum class ViewId {
         DRUG_NAME,
-        DRUG_TYPE
+        DRUG_TYPE,
+        DRUG_MEASUREMENT_TYPE
+    }
+
+    fun createModel(viewState: DrugViewState): Drug {
+        return Drug(
+            viewState.drugId,
+            viewState.drugNameText ?: "",
+            viewState.selectedMeasurementItem,
+            viewState.selectedDrugTypeItem
+        )
     }
 
     fun createPresentationModel(viewState: DrugViewState): DrugPresentationModel {
@@ -50,7 +62,17 @@ class DrugViewModelMapper(
             }
         )
 
-        return listOf(drugNameItem, drugTypesItem)
+        val drugMeasurementTypeItem = AutocomplitedTextFieldDataItem(
+            id = ViewId.DRUG_MEASUREMENT_TYPE.name,
+            textedItems = viewState.measurementItems,
+            selectedTextedItem = viewState.selectedMeasurementItem,
+            hint = resourceProvider.getString(R.string.measurement),
+            selectedItemHandler = { newMeasurementTypeItem ->
+                delegate.onMeasurementTypeSelectListener(newMeasurementTypeItem)
+            }
+        )
+
+        return listOf(drugNameItem, drugTypesItem, drugMeasurementTypeItem)
     }
 
     private fun getApplyButtonTitle(viewState: DrugViewState): String {

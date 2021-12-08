@@ -2,9 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="@drawable/border_course_entry"
-        android:layout_marginHorizontal="@dimen/rtp_dp16"
-        android:layout_marginVertical="@dimen/rtp_dp8"
+        android:background="@drawable/border_list_item"
         android:padding="@dimen/rtp_dp16"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -57,10 +55,10 @@
             <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/text_course_entry_name_of_drug"
+                    android:id="@+id/text_title"
                     style="@style/TextAppearance.RTP.Title2"
                     tools:text="name of drug"
-                    android:textColor="?attr/course_entry_name_of_drug_color" />
+                    android:textColor="?attr/schedule_list_title_text_color" />
 
             <LinearLayout
                     android:orientation="horizontal"
@@ -70,19 +68,10 @@
                 <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/text_course_entry_amount_of_drug"
+                        android:id="@+id/text_subtitle"
                         style="@style/TextAppearance.RTP.Caption2"
-                        android:textColor="?attr/course_entry_amount_of_drug_text_color"
+                        android:textColor="?attr/schedule_list_subtitle_text_color"
                         tools:text="amount of drug" />
-
-                <TextView
-                        android:layout_width="0dp"
-                        android:layout_height="wrap_content"
-                        android:id="@+id/text_course_entry_measurement_of_drug"
-                        android:layout_weight="1"
-                        android:layout_marginStart="@dimen/rtp_dp4"
-                        android:textColor="?attr/course_entry_amount_of_drug_text_color"
-                        tools:text="msrmnt of drug" />
             </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

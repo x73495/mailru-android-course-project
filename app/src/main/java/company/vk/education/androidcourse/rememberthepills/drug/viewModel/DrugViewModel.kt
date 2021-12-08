@@ -1,19 +1,23 @@
 package company.vk.education.androidcourse.rememberthepills.drug.viewModel
 
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseDataItem
+import androidx.lifecycle.viewModelScope
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseRouting
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.models.DrugTypeItem
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
+import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
+import company.vk.education.androidcourse.rememberthepills.drug.model.DrugRepository
+import kotlinx.coroutines.launch
 
 class DrugViewModel(
     private val mode: FormScreenMode,
-    private val id: Int?,
-    private val resourceProvider: ResourceProvider
+    private val id: Long,
+    private val resourceProvider: ResourceProvider,
+    private val drugRepository: DrugRepository
 ) : ViewModel(), DrugViewModelMapper.Delegate  {
 
     private val mapper = DrugViewModelMapper(resourceProvider, this)
@@ -22,15 +26,34 @@ class DrugViewModel(
         drugItems = DrugTypeItem.values(),
         screenMode = mode,
         selectedDrugTypeItem = DrugTypeItem.values().first(),
-        drugNameText = null
+        drugNameText = null,
+        measurementItems = MeasurementItem.values(),
+        selectedMeasurementItem = MeasurementItem.values().first(),
     )
 
     val presentationModel: MutableLiveData<DrugPresentationModel> by lazy {
         MutableLiveData<DrugPresentationModel>()
     }
 
+    val routingModel: MutableLiveData<BaseRouting> by lazy {
+        MutableLiveData<BaseRouting>()
+    }
+
     init {
-        updateUI()
+        when(mode) {
+            FormScreenMode.EDITING -> {
+                viewModelScope.launch {
+                    val drug = drugRepository.drugById(id)
+                    viewState.drugNameText = drug.name
+                    viewState.selectedDrugTypeItem = drug.drugType
+                    viewState.selectedMeasurementItem = drug.measurementType
+                    updateUI()
+                }
+            }
+            FormScreenMode.CREATING -> {
+                updateUI()
+            }
+        }
     }
 
     private fun updateUI() {
@@ -49,14 +72,46 @@ class DrugViewModel(
         viewState.drugNameText = text
         updateUI()
     }
+
+    override fun onMeasurementTypeSelectListener(item: TextedItem) {
+        viewState.selectedMeasurementItem = item
+        updateUI()
+    }
+
+    // Fragment handlers
+
+    fun saveDrug() {
+        val drug = mapper.createModel(viewState)
+
+        viewModelScope.launch {
+            if (viewState.screenMode == FormScreenMode.CREATING) {
+                drugRepository.create(drug)
+            } else {
+                drugRepository.update(drug)
+            }
+            routingModel.value = DrugRouting.back
+        }
+    }
+
+    fun deleteDrug() {
+        viewModelScope.launch {
+            drugRepository.delete(mapper.createModel(viewState))
+            routingModel.value = DrugRouting.back
+        }
+    }
+
+    fun routingDidHandle() {
+        routingModel.value = DrugRouting.none
+    }
 }
 
 class DrugViewModelFactory(
     private val mode: FormScreenMode,
-    private val id: Int?,
-    private val resourceProvider: ResourceProvider
+    private val id: Long,
+    private val resourceProvider: ResourceProvider,
+    private val drugRepository: DrugRepository
 ) : ViewModelProvider.Factory {
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        return DrugViewModel(mode, id, resourceProvider) as T
+        return DrugViewModel(mode, id, resourceProvider, drugRepository) as T
     }
 }
