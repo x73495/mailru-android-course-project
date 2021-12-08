@@ -10,6 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.profile.viewModel.ProfileViewModel
+import company.vk.education.androidcourse.rememberthepills.schedule.view.FragmentScheduleDirections
 
 class FragmentProfile : Fragment() {
 
@@ -25,7 +26,10 @@ class FragmentProfile : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         view.findViewById<Button>(R.id.button_to_drug_list).setOnClickListener {
-            it.findNavController().navigate(R.id.action_fragmentProfile_to_fragmentDrugList)
+            val action = FragmentProfileDirections.actionFragmentProfileToFragmentDrugList(
+                "edit"
+            )
+            it.findNavController().navigate(action)
         }
 
         view.findViewById<Button>(R.id.button_to_course_history).setOnClickListener {
