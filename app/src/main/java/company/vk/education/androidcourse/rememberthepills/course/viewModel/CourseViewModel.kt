@@ -157,6 +157,7 @@ class CourseViewModel(
     fun deleteCourse() {
         viewModelScope.launch {
             courseRepository.deleteCourseById(viewState.courseId)
+            routingModel.value = CourseRoutingModel.startScheduleDestination
         }
     }
 

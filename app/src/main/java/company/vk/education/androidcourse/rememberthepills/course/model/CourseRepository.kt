@@ -35,10 +35,10 @@ class CourseRepository(
     }
 
     suspend fun deleteCourseById(id: Long) {
-
+        courseDao.deleteCourseById(id)
     }
 
     suspend fun updateCourse(course: Course, intakeTimes: List<CourseIntakeTime>) {
-
+        // TODO: обновление доделать
     }
 }

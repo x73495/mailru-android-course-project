@@ -19,6 +19,9 @@ abstract class CourseDao {
     @Delete
     abstract fun deleteCourse(course: CourseEntity)
 
+    @Query("DELETE FROM courses WHERE id = :id")
+    abstract suspend fun deleteCourseById(id: Long)
+
     @Insert
     abstract suspend fun insertCourse(course: CourseEntity): Long
 
