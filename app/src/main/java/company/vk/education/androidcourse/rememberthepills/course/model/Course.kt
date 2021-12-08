@@ -1,6 +1,5 @@
 package company.vk.education.androidcourse.rememberthepills.course.model
 
-import androidx.room.ColumnInfo
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 
 data class Course(

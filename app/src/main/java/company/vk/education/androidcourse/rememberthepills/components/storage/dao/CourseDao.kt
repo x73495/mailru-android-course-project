@@ -14,10 +14,7 @@ abstract class CourseDao {
     abstract fun courseCheckings(dateStart: Long, dateEnd: Long): Flow<List<CourseCheckingAndTimes>>
 
     @Query("Select * FROM courses WHERE id = :courseId")
-    abstract fun courseAndTimes(courseId: Long): CourseAndTimes
-
-    @Delete
-    abstract fun deleteCourse(course: CourseEntity)
+    abstract suspend fun courseAndTimes(courseId: Long): CourseAndTimes
 
     @Query("DELETE FROM courses WHERE id = :id")
     abstract suspend fun deleteCourseById(id: Long)

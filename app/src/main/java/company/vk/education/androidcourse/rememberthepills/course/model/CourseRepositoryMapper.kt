@@ -1,11 +1,38 @@
 package company.vk.education.androidcourse.rememberthepills.course.model
 
 import company.vk.education.androidcourse.rememberthepills.components.mapper.DrugModelMapper
+import company.vk.education.androidcourse.rememberthepills.components.models.FoodAddictionItem
+import company.vk.education.androidcourse.rememberthepills.components.models.MeasurementItem
+import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 import company.vk.education.androidcourse.rememberthepills.components.storage.entity.CourseCheckingEntity
 import company.vk.education.androidcourse.rememberthepills.components.storage.entity.CourseEntity
 import company.vk.education.androidcourse.rememberthepills.components.storage.entity.IntakeTimeEntity
 
 class CourseRepositoryMapper(val drugModelMapper: DrugModelMapper) {
+
+    fun convertToCourse(courseEntity: CourseEntity): Course {
+        val foodAddictionType =
+            FoodAddictionItem.values().find { it.id == courseEntity.foodAddictionTypeId }
+                ?: FoodAddictionItem.NotDepend
+        return Course(
+            id = courseEntity.id,
+            drugId = courseEntity.drugId,
+            quantity = courseEntity.quantity,
+            foodAddictionType = foodAddictionType,
+            startingDateInMilliseconds = courseEntity.startingDateInMilliseconds,
+            endingDateInMilliseconds = courseEntity.endingDateInMilliseconds,
+            frequency = courseEntity.frequency
+        )
+    }
+
+    fun convertToCourseIntakeTime(courseId: Long, intakeTimeEntity: IntakeTimeEntity): CourseIntakeTime {
+        return CourseIntakeTime(
+            id = intakeTimeEntity.id,
+            courseId = intakeTimeEntity.courseId,
+            timeInMilliseconds = intakeTimeEntity.timeInMilliseconds
+        )
+    }
+
     fun convertToCourseEntity(course: Course): CourseEntity {
         return CourseEntity(
             id = course.id,

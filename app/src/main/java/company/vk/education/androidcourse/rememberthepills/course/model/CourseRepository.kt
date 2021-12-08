@@ -18,9 +18,14 @@ class CourseRepository(
         return mapper.drugModelMapper.convertToDrug(drugDao.drugById(id))
     }
 
-//    suspend fun courseAndTimesById(courseId: Long): Pair<Course, List<CourseIntakeTime>> {
-//
-//    }
+    suspend fun courseAndTimesById(courseId: Long): Pair<Course, List<CourseIntakeTime>> {
+        val courseAndTimes = courseDao.courseAndTimes(courseId)
+        val course = mapper.convertToCourse(courseAndTimes.course)
+        val intakeTimes = courseAndTimes.intakeTimes.map {
+            mapper.convertToCourseIntakeTime(courseId, it)
+        }
+        return Pair(course, intakeTimes)
+    }
 
     suspend fun createCourse(course: Course, intakeTimes: List<CourseIntakeTime>) {
         val courseEntity = mapper.convertToCourseEntity(course)

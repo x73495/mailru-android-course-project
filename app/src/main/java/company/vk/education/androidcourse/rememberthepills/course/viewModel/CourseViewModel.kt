@@ -58,7 +58,15 @@ class CourseViewModel(
             viewState.drugType = type
             when (mode) {
                 FormScreenMode.EDITING -> {
-                    // TODO: загрузить курсы и время
+                    val courseAndTimes = courseRepository.courseAndTimesById(viewState.courseId)
+                    val course = courseAndTimes.first
+                    val intakeTimes = courseAndTimes.second
+                    viewState.quantity = course.quantity
+                    viewState.frequencyInDays = course.frequency
+                    viewState.selectedFoodAddictionItem = course.foodAddictionType
+                    viewState.startedDateInMilliseconds = course.startingDateInMilliseconds
+                    viewState.endedDateInMilliseconds = course.endingDateInMilliseconds
+                    viewState.intakeTimesInMilliseconds = intakeTimes.toMutableList()
                     updateDataUI()
                 }
                 FormScreenMode.CREATING -> {
