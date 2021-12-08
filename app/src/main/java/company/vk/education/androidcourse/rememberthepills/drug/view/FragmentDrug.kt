@@ -12,6 +12,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 import company.vk.education.androidcourse.rememberthepills.R
 import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugViewModel
 
@@ -34,10 +35,8 @@ class FragmentDrug : Fragment() {
                 view.findViewById<Button>(R.id.button_drug_save).setText(R.string.add)
             }
             "edit" -> {
-                view.findViewById<AutoCompleteTextView>(R.id.input_text_drug_name)
+                view.findViewById<TextInputEditText>(R.id.input_text_drug_name)
                     .setText("Препарат с ID ${args.idOfDrug}")
-                view.findViewById<AutoCompleteTextView>(R.id.input_text_drug_type)
-                    .setText("Тип препарата с ID ${args.idOfDrug}")
 
                 view.findViewById<Button>(R.id.button_drug_save).setText(R.string.save)
             }
