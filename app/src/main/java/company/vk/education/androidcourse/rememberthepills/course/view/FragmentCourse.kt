@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.datepicker.MaterialDatePicker
@@ -14,6 +15,7 @@ import com.google.android.material.timepicker.TimeFormat
 import company.vk.education.androidcourse.rememberthepills.RTPApplication
 import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseDiffCallback
 import company.vk.education.androidcourse.rememberthepills.components.base.adapter.BaseRecyclerViewAdapter
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseRouting
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.DividerItemDecorationFactory
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.course.view.adapter.CourseDiffUtilCallback
@@ -86,6 +88,23 @@ class FragmentCourse : Fragment() {
                 else -> {}
             }
         })
+
+        courseViewModel.routingModel.observe(viewLifecycleOwner, {
+            handleRouting(it)
+        })
+    }
+
+    private fun handleRouting(routing: BaseRouting) {
+        when (routing) {
+            is CourseRoutingModel.StartScheduleDestination -> {
+                val action = FragmentCourseDirections.actionFragmentCourseToFragmentSchedule()
+                findNavController().navigate(action)
+            }
+            else -> {
+                return
+            }
+        }
+        courseViewModel.routingDidHandle()
     }
 
     private fun setupHandlers() {

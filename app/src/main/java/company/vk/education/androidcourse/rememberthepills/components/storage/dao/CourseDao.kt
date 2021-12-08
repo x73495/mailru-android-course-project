@@ -1,14 +1,23 @@
 package company.vk.education.androidcourse.rememberthepills.components.storage.dao
 
-import androidx.room.Dao
-import androidx.room.Insert
-import androidx.room.Transaction
-import company.vk.education.androidcourse.rememberthepills.components.storage.entity.CourseCheckingEntity
-import company.vk.education.androidcourse.rememberthepills.components.storage.entity.CourseEntity
-import company.vk.education.androidcourse.rememberthepills.components.storage.entity.IntakeTimeEntity
+import androidx.room.*
+import company.vk.education.androidcourse.rememberthepills.components.storage.entity.*
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 abstract class CourseDao {
+
+    // TODO: доделать корректное удаление времени из курса
+
+    @Query("Select * FROM course_checkings WHERE date BETWEEN :dateStart AND :dateEnd")
+    @Transaction
+    abstract fun courseCheckings(dateStart: Long, dateEnd: Long): Flow<List<CourseCheckingAndTimes>>
+
+    @Query("Select * FROM courses WHERE id = :courseId")
+    abstract fun courseAndTimes(courseId: Long): CourseAndTimes
+
+    @Delete
+    abstract fun deleteCourse(course: CourseEntity)
 
     @Insert
     abstract suspend fun insertCourse(course: CourseEntity): Long
@@ -17,7 +26,7 @@ abstract class CourseDao {
     abstract suspend fun insertTimes(intakeTimes: List<IntakeTimeEntity>): List<Long>
 
     @Insert
-    abstract suspend fun insertCheckings(courseCheckings: List<CourseCheckingEntity>): List<Long>
+    abstract suspend fun insertCourseCheckings(courseCheckings: List<CourseCheckingEntity>): List<Long>
 
     @Transaction
     open suspend fun insert(course: CourseEntity,
@@ -30,6 +39,6 @@ abstract class CourseDao {
             // очень сложный костыль, переделать
             item.copy(courseId = courseId, intakeTimeId = timeIds[index % timeIds.size])
         }
-        insertCheckings(updatedCourseCheckings)
+        insertCourseCheckings(updatedCourseCheckings)
     }
 }

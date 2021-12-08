@@ -4,11 +4,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseRouting
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.components.models.FoodAddictionItem
 import company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode
 import company.vk.education.androidcourse.rememberthepills.components.models.TextedItem
 import company.vk.education.androidcourse.rememberthepills.course.model.CourseRepository
+import company.vk.education.androidcourse.rememberthepills.drug.viewModel.DrugRouting
+import company.vk.education.androidcourse.rememberthepills.drugList.viewModel.DrugListPresentationModel
 import kotlinx.coroutines.launch
 
 class CourseViewModel(
@@ -38,6 +41,10 @@ class CourseViewModel(
 
     val presentationModel: MutableLiveData<CoursePresentationModel> by lazy {
         MutableLiveData<CoursePresentationModel>()
+    }
+
+    val routingModel: MutableLiveData<BaseRouting> by lazy {
+        MutableLiveData<BaseRouting>()
     }
 
     init {
@@ -143,6 +150,7 @@ class CourseViewModel(
                     courseRepository.updateCourse(course, intakeTimes)
                 }
             }
+            routingModel.value = CourseRoutingModel.startScheduleDestination
         }
     }
 
@@ -150,6 +158,10 @@ class CourseViewModel(
         viewModelScope.launch {
             courseRepository.deleteCourseById(viewState.courseId)
         }
+    }
+
+    fun routingDidHandle() {
+        routingModel.value = CourseRoutingModel.none
     }
 }
 

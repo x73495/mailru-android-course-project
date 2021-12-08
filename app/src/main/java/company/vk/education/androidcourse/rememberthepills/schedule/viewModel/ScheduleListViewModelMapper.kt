@@ -5,6 +5,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.model
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.schedule.model.ScheduleListItem
 import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.item.ScheduleListDataItem
+import java.text.SimpleDateFormat
 
 class ScheduleListViewModelMapper(
     private val resourceProvider: ResourceProvider,
@@ -28,8 +29,10 @@ class ScheduleListViewModelMapper(
 
     private fun createDataItems(viewState: ScheduleListViewState): List<BaseDataItem> {
         return viewState.scheduleListItems.map {
+            val dateFormat = SimpleDateFormat("H:mm")
+            val dateString = dateFormat.format(it.time)
             val measurementString = resourceProvider.getString(it.drugMeasurementType.textId)
-            val subtitle = "${it.quantity} $measurementString" + " - " + it.time.toString()
+            val subtitle = "${it.quantity} $measurementString" + " - " + dateString
             val viewId =
                 ViewId.SCHEDULE_LIST_ITEM.name + it.courseId.toString() + it.drugId.toString() + it.time.toString()
             val failure =

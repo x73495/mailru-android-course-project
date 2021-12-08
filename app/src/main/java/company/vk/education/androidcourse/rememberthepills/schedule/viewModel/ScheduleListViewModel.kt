@@ -1,12 +1,16 @@
 package company.vk.education.androidcourse.rememberthepills.schedule.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.viewModelScope
 import company.vk.education.androidcourse.rememberthepills.components.base.model.BaseRouting
 import company.vk.education.androidcourse.rememberthepills.components.base.utils.ResourceProvider
 import company.vk.education.androidcourse.rememberthepills.schedule.model.ScheduleListItem
 import company.vk.education.androidcourse.rememberthepills.schedule.model.ScheduleListRepository
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 import java.util.*
 
 class ScheduleListViewModel(
@@ -28,7 +32,12 @@ class ScheduleListViewModel(
     }
 
     init {
-        updateUI()
+        viewModelScope.launch {
+            scheduleListListRepository.scheduleList(viewState.selectedDate.time).collect {
+                viewState.scheduleListItems = it
+                updateUI()
+            }
+        }
     }
 
     private fun updateUI() {

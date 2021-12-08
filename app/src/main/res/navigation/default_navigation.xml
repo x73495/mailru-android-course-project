@@ -79,7 +79,9 @@
                 app:popEnterAnim="@anim/slide_in_left"
                 app:popExitAnim="@anim/slide_out_right"
                 android:id="@+id/action_fragmentCourse_to_fragmentSchedule"
-                app:destination="@id/fragmentSchedule" />
+                app:destination="@id/fragmentSchedule"
+                app:popUpToInclusive="true"
+                app:popUpTo="@id/fragmentSchedule"/>
         <argument
                 android:name="mode"
                 app:argType="company.vk.education.androidcourse.rememberthepills.components.models.FormScreenMode"/>

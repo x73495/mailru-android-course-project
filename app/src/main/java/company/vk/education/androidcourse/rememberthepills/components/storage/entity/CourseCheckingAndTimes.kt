@@ -11,9 +11,9 @@ data class CourseCheckingAndTimes(
         parentColumn = "course_id",
         entityColumn = "id"
     )
-    val course: CourseEntity,
+    val course: CourseAndDrug,
     @Relation(
-        entity = CourseEntity::class,
+        entity = IntakeTimeEntity::class,
         parentColumn = "intake_time_id",
         entityColumn = "id"
     )
