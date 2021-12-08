@@ -30,7 +30,9 @@ class FragmentSchedule : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        view.findViewById<FloatingActionButton>(R.id.button_to_course_add).setOnClickListener {
+        val fab = view.findViewById<FloatingActionButton>(R.id.button_to_course_add)
+
+        fab.setOnClickListener {
             val action = FragmentScheduleDirections.actionFragmentScheduleToFragmentDrugList(
                 "choose"
             )
@@ -49,6 +51,15 @@ class FragmentSchedule : Fragment() {
         val tempCalendar = Calendar.getInstance()
         tempCalendar.set(2021, 10, 3)
         view.findViewById<CalendarView>(R.id.calendar_schedule).date = tempCalendar.timeInMillis
+
+        recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0)
+                    fab.hide()
+                else if (dy < 0)
+                    fab.show()
+            }
+        })
     }
 
     // TODO TEMPORARY

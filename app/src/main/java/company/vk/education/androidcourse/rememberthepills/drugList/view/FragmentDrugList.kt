@@ -30,11 +30,12 @@ class FragmentDrugList : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        view.findViewById<FloatingActionButton>(R.id.button_to_drug_add).setOnClickListener {
+        val fab = view.findViewById<FloatingActionButton>(R.id.button_to_drug_add)
+        fab.setOnClickListener {
             val action = FragmentDrugListDirections.actionFragmentDrugListToFragmentDrug(
-                    "add",
-                    -1
-                )
+                "add",
+                -1
+            )
             it.findNavController().navigate(action)
         }
 
@@ -44,6 +45,15 @@ class FragmentDrugList : Fragment() {
         val adapter = DrugListAdapter(drugEntries, args.intent)
         recycler.adapter = adapter
         recycler.layoutManager = LinearLayoutManager(requireContext())
+
+        recycler.addOnScrollListener(object : RecyclerView.OnScrollListener() {
+            override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+                if (dy > 0)
+                    fab.hide()
+                else if (dy < 0)
+                    fab.show()
+            }
+        })
     }
 
     // TODO TEMPORARY
