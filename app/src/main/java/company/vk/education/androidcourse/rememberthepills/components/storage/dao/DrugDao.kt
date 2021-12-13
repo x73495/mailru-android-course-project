@@ -7,7 +7,7 @@ import kotlinx.coroutines.flow.Flow
 @Dao
 interface DrugDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(drug: DrugEntity)
+    suspend fun insert(drug: DrugEntity): Long
 
     @Update
     suspend fun update(drug: DrugEntity)

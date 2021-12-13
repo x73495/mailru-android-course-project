@@ -1,5 +1,9 @@
 package company.vk.education.androidcourse.rememberthepills.schedule.model
 
+import company.vk.education.androidcourse.rememberthepills.components.api.AnalyticService
+import company.vk.education.androidcourse.rememberthepills.components.api.ApiModel.DauResponse
+import company.vk.education.androidcourse.rememberthepills.components.api.ApiModel.ScheduleClickAnalyticRequest
+import company.vk.education.androidcourse.rememberthepills.components.api.ApiModel.ScheduleClickAnalyticResponse
 import company.vk.education.androidcourse.rememberthepills.components.storage.dao.CourseDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
@@ -7,7 +11,8 @@ import java.util.*
 
 class ScheduleListRepository(
     private val courseDao: CourseDao,
-    private val scheduleListRepositoryMapper: ScheduleListRepositoryMapper
+    private val scheduleListRepositoryMapper: ScheduleListRepositoryMapper,
+    private val analyticService: AnalyticService
 ) {
     fun scheduleList(selectedDate: Long): Flow<List<ScheduleListItem>> {
         val startDate = startDateInMilliseconds(selectedDate)
@@ -35,5 +40,13 @@ class ScheduleListRepository(
         calendar.set(Calendar.SECOND, 0)
         calendar.set(Calendar.MILLISECOND, 0)
         return calendar.timeInMillis
+    }
+
+    suspend fun sendDauAnalytic(): DauResponse {
+        return analyticService.sendDau()
+    }
+
+    suspend fun sendScheduleClickAnalytic(drugId: Long, courseId: Long, checked: Boolean): ScheduleClickAnalyticResponse {
+        return analyticService.sendScheduleClick(ScheduleClickAnalyticRequest(drugId, courseId, checked))
     }
 }

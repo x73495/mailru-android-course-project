@@ -1,5 +1,6 @@
 package company.vk.education.androidcourse.rememberthepills.drug.viewModel
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -85,7 +86,11 @@ class DrugViewModel(
 
         viewModelScope.launch {
             if (viewState.screenMode == FormScreenMode.CREATING) {
-                drugRepository.create(drug)
+                val drugId = drugRepository.create(drug)
+                launch {
+                    val analyticResponse = drugRepository.sendDrugCreateAnalytic(drugId)
+                    Log.d("Analytics drug create", analyticResponse.toString())
+                }
             } else {
                 drugRepository.update(drug)
             }

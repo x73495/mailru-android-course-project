@@ -19,6 +19,8 @@ buildscript {
 
 ext {
     roomVersion = '2.3.0'
+    moshiVersion = '1.13.0'
+    retrofitVersion = '2.9.0'
 }
 
 task clean(type: Delete) {

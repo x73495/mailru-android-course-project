@@ -38,6 +38,10 @@ class ScheduleListViewModel(
                 updateUI()
             }
         }
+        viewModelScope.launch {
+            val analyticResponse = scheduleListListRepository.sendDauAnalytic()
+            Log.d("Analytics dau", analyticResponse.toString())
+        }
     }
 
     private fun updateUI() {
@@ -49,6 +53,14 @@ class ScheduleListViewModel(
 
     override fun onScheduleListSelectListener(item: ScheduleListItem) {
         routingModel.value = ScheduleListRouting.courseEditing(item.courseId, item.drugId)
+        viewModelScope.launch {
+            val analyticResponse = scheduleListListRepository.sendScheduleClickAnalytic(
+                item.drugId,
+                item.courseId,
+                item.checked
+            )
+            Log.d("Analytics schedule click", analyticResponse.toString())
+        }
     }
 
     override fun onScheduleListCheckListener(item: ScheduleListItem) {
@@ -59,6 +71,16 @@ class ScheduleListViewModel(
 
     fun routingDidHandle() {
         routingModel.value = ScheduleListRouting.none
+    }
+
+    fun changeDate(date: Date) {
+        viewState.selectedDate = date
+        viewModelScope.launch {
+            scheduleListListRepository.scheduleList(viewState.selectedDate.time).collect {
+                viewState.scheduleListItems = it
+                updateUI()
+            }
+        }
     }
 }
 

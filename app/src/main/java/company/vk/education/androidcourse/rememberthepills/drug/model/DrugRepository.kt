@@ -1,16 +1,19 @@
 package company.vk.education.androidcourse.rememberthepills.drug.model
 
+import company.vk.education.androidcourse.rememberthepills.components.api.AnalyticService
+import company.vk.education.androidcourse.rememberthepills.components.api.ApiModel.DrugCreateAnalyticResponse
 import company.vk.education.androidcourse.rememberthepills.components.models.Drug
 import company.vk.education.androidcourse.rememberthepills.components.storage.dao.DrugDao
 
 class DrugRepository(
     private val drugDao: DrugDao,
-    private val mapper: DrugRepositoryMapper
+    private val mapper: DrugRepositoryMapper,
+    private val analyticService: AnalyticService
 ) {
 
-    suspend fun create(drug: Drug) {
+    suspend fun create(drug: Drug): Long {
         val drugEntity = mapper.drugModelMapper.convertToDrugEntity(drug)
-        drugDao.insert(drugEntity)
+        return drugDao.insert(drugEntity)
     }
 
     suspend fun update(drug: Drug) {
@@ -25,5 +28,9 @@ class DrugRepository(
     suspend fun drugById(id: Long): Drug {
         val drugEntity = drugDao.drugById(id)
         return mapper.drugModelMapper.convertToDrug(drugEntity)
+    }
+
+    suspend fun sendDrugCreateAnalytic(drugId: Long): DrugCreateAnalyticResponse {
+        return analyticService.sendDrugCreate(drugId)
     }
 }
