@@ -9,7 +9,7 @@ abstract class CourseDao {
 
     // TODO: доделать корректное удаление времени из курса
 
-    @Query("Select * FROM course_checkings WHERE date BETWEEN :dateStart AND :dateEnd")
+    @Query("Select * FROM course_checkings WHERE date BETWEEN :dateStart AND :dateEnd ORDER BY date ASC")
     @Transaction
     abstract fun courseCheckings(dateStart: Long, dateEnd: Long): Flow<List<CourseCheckingAndTimes>>
 

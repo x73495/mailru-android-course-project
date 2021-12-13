@@ -1,12 +1,8 @@
 package company.vk.education.androidcourse.rememberthepills.schedule.model
 
-import android.text.format.DateUtils
 import company.vk.education.androidcourse.rememberthepills.components.storage.dao.CourseDao
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
-import java.time.LocalDate
-import java.time.LocalDateTime
-import java.time.ZoneId
 import java.util.*
 
 class ScheduleListRepository(

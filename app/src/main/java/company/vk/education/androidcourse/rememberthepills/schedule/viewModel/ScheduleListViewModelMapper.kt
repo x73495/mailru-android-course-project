@@ -6,6 +6,7 @@ import company.vk.education.androidcourse.rememberthepills.components.base.utils
 import company.vk.education.androidcourse.rememberthepills.schedule.model.ScheduleListItem
 import company.vk.education.androidcourse.rememberthepills.schedule.view.adapter.item.ScheduleListDataItem
 import java.text.SimpleDateFormat
+import java.util.*
 
 class ScheduleListViewModelMapper(
     private val resourceProvider: ResourceProvider,
@@ -30,6 +31,7 @@ class ScheduleListViewModelMapper(
     private fun createDataItems(viewState: ScheduleListViewState): List<BaseDataItem> {
         return viewState.scheduleListItems.map {
             val dateFormat = SimpleDateFormat("H:mm")
+            dateFormat.timeZone = TimeZone.getTimeZone("UTC")
             val dateString = dateFormat.format(it.time)
             val measurementString = resourceProvider.getString(it.drugMeasurementType.textId)
             val subtitle = "${it.quantity} $measurementString" + " - " + dateString
