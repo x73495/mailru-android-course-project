@@ -58,7 +58,7 @@
 
         <com.google.android.material.button.MaterialButton
                 android:textAppearance="@style/TextAppearance.RTP.Caption1"
-                android:textColor="@color/red_500"
+                android:textColor="@color/secondaryDarkColor"
                 android:text="@string/delete"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:id="@+id/button_drug_remove"

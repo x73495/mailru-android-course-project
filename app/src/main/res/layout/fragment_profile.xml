@@ -7,7 +7,7 @@
         android:layout_height="match_parent">
 
     <Button
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_forward"
             app:strokeColor="@color/gray_400"
@@ -20,12 +20,13 @@
             android:textAppearance="@style/TextAppearance.RTP.Title2"
             android:textColor="@color/gray_900"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:id="@+id/button_to_course_history"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:layout_weight="1" />
 
     <Button
-            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
+            style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
             app:cornerRadius="8dp"
             app:icon="@drawable/ic_forward"
             app:strokeColor="@color/gray_400"
@@ -38,8 +39,9 @@
             android:textAppearance="@style/TextAppearance.RTP.Title2"
             android:textColor="@color/gray_900"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="fill_parent"
             android:id="@+id/button_to_drug_list"
-            android:textAlignment="viewStart" />
+            android:textAlignment="viewStart"
+            android:layout_weight="1" />
 
 </LinearLayout>

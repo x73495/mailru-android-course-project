@@ -16,39 +16,7 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintEnd_toEndOf="parent">
 
-        <LinearLayout
-                app:layout_constraintTop_toBottomOf="@+id/layout_drug_info"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                app:layout_constraintStart_toStartOf="@+id/layout_drug_info">
 
-            <TextView
-                    android:id="@+id/course_history_entry_date_start"
-                    android:layout_height="wrap_content"
-                    style="@style/TextAppearance.RTP.Caption2"
-                    tools:text="11.11.1111"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/indigo_A700_light" />
-
-            <TextView
-                    android:text="-"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="4dp"
-                    android:id="@+id/textView4"
-                    android:textColor="@color/indigo_A700_light" />
-
-            <TextView
-                    android:id="@+id/course_history_entry_date_end"
-                    android:layout_height="wrap_content"
-                    style="@style/TextAppearance.RTP.Caption2"
-                    tools:text="11.11.1111"
-                    android:layout_width="wrap_content"
-                    android:textColor="@color/indigo_A700_light" />
-
-        </LinearLayout>
 
         <LinearLayout
                 android:orientation="vertical"
@@ -59,14 +27,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent">
 
-            <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/text_course_history_entry_name_of_drug"
-                    style="@style/TextAppearance.RTP.Title2"
-                    tools:text="name of drug"
-                    android:textColor="?attr/course_entry_name_of_drug_color" />
-
             <LinearLayout
                     android:orientation="horizontal"
                     android:layout_width="wrap_content"
@@ -76,48 +36,115 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/text_course_history_entry_amount_of_drug"
-                        style="@style/TextAppearance.RTP.Caption2"
-                        android:textColor="?attr/course_entry_amount_of_drug_text_color"
+                        style="@style/TextAppearance.RTP.Title2"
+                        android:textColor="@color/gray_900"
                         tools:text="amount of drug" />
 
                 <TextView
                         android:id="@+id/text_course_history_entry_measure_of_drug"
-                        android:layout_marginLeft="4dp"
+                        style="@style/TextAppearance.RTP.Title2"
+                        android:layout_marginLeft="4sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="?attr/course_entry_amount_of_drug_text_color"
+                        android:textColor="@color/gray_900"
                         tools:text="шт" />
 
                 <TextView
-                        android:text="/"
-                        android:layout_marginHorizontal="4dp"
+                        android:layout_marginLeft="4sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_course_history_entry_name_of_drug"
+                        style="@style/TextAppearance.RTP.Title2"
+                        tools:text="name of drug"
+                        android:textColor="@color/gray_900" />
+            </LinearLayout>
+
+            <LinearLayout
+                    app:layout_constraintTop_toBottomOf="@+id/layout_drug_info"
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="@+id/layout_drug_info">
+
+                <TextView
+                        android:text="с"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/textView2"
+                        android:textColor="@color/gray_800"
+                        style="@style/TextAppearance.RTP.Title3" />
+
+                <TextView
+                        android:layout_marginStart="4sp"
+                        style="@style/TextAppearance.RTP.Title3"
+                        android:id="@+id/course_history_entry_date_start"
+                        android:layout_height="wrap_content"
+                        tools:text="11.11.1111"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/gray_800" />
+
+                <TextView
+                        android:text="по"
+                        style="@style/TextAppearance.RTP.Title3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="4sp"
+                        android:id="@+id/textView4"
+                        android:textColor="@color/gray_800" />
+
+                <TextView
+                        android:layout_marginLeft="4sp"
+                        android:id="@+id/course_history_entry_date_end"
+                        android:layout_height="wrap_content"
+                        style="@style/TextAppearance.RTP.Title3"
+                        tools:text="11.11.1111"
+                        android:layout_width="wrap_content"
+                        android:textColor="@color/gray_800" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                <TextView
+                        android:text="раз в"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/textView"
-                        android:textColor="?attr/course_entry_amount_of_drug_text_color" />
+                        android:textAppearance="@style/TextAppearance.RTP.Caption1"
+                        android:textColor="@color/gray_600" />
 
                 <TextView
+                        android:layout_marginStart="4sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/course_history_entry_frequency_amount"
-                        android:textColor="?attr/course_entry_amount_of_drug_text_color"
+                        android:id="@+id/course_history_entry_frequency_in_days"
+                        android:textAppearance="@style/TextAppearance.RTP.Caption1"
+                        android:textColor="@color/gray_600"
                         tools:text="1337" />
 
                 <TextView
-                        android:text="в"
-                        android:layout_marginHorizontal="4dp"
+                        android:text="д."
+                        android:layout_marginStart="4sp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/textView3"
-                        android:textColor="?attr/course_entry_amount_of_drug_text_color" />
+                        android:textAppearance="@style/TextAppearance.RTP.Caption1"
+                        android:textColor="@color/gray_600" />
 
                 <TextView
+                        android:layout_marginStart="4sp"
+                        android:visibility="gone"
+                        tools:visibility="visible"
+                        tools:text="[после еды]"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:id="@+id/course_history_entry_frequency_measure"
-                        android:textColor="?attr/course_entry_amount_of_drug_text_color"
-                        tools:text="день" />
+                        android:textAppearance="@style/TextAppearance.RTP.Caption1"
+                        android:id="@+id/text_course_history_food_dependency" />
+
             </LinearLayout>
+
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

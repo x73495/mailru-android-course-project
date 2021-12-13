@@ -2,10 +2,11 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
-        android:background="@drawable/border_course_entry"
+        android:background="@drawable/shadow_entry"
         android:layout_marginHorizontal="16dp"
         android:layout_marginVertical="8dp"
         android:padding="16dp"
+        android:elevation="4dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -23,20 +24,23 @@
                 android:id="@+id/checkbox_course_entry_is_done"
                 app:layout_constraintTop_toTopOf="@+id/layout_drug_info"
                 app:layout_constraintStart_toStartOf="parent"
+                android:buttonTint="@color/button_tint"
                 android:text="@null"
                 android:minWidth="0dp"
                 android:minHeight="0dp"
                 android:background="@android:color/transparent"
-                app:layout_constraintBottom_toBottomOf="@+id/layout_drug_info" />
+                app:layout_constraintBottom_toBottomOf="@+id/layout_drug_info"
+                android:visibility="gone" />
 
         <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/text_course_entry_missed"
                 android:text="@string/missed_medication"
-                android:textColor="@color/red_500"
+                android:textColor="@color/warning"
                 android:visibility="gone"
                 tools:visibility="visible"
+                android:textStyle="bold"
                 style="@style/TextAppearance.RTP.Caption2"
                 app:layout_constraintTop_toBottomOf="@+id/layout_drug_info"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -60,7 +64,15 @@
                     android:id="@+id/text_course_entry_name_of_drug"
                     style="@style/TextAppearance.RTP.Title2"
                     tools:text="name of drug"
-                    android:textColor="?attr/course_entry_name_of_drug_color" />
+                    android:textColor="@color/gray_900" />
+
+            <TextView
+                    tools:text="11:11"
+                    style="@style/TextAppearance.RTP.Title3"
+                    android:id="@+id/text_course_entry_intake_time"
+                    android:layout_width="wrap_content"
+                    android:textColor="@color/gray_800"
+                    android:layout_height="wrap_content" />
 
             <LinearLayout
                     android:orientation="horizontal"
@@ -71,18 +83,24 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/text_course_entry_amount_of_drug"
-                        style="@style/TextAppearance.RTP.Caption2"
-                        android:textColor="?attr/course_entry_amount_of_drug_text_color"
+                        android:textColor="@color/gray_600"
                         tools:text="amount of drug" />
 
                 <TextView
-                        android:layout_width="0dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/text_course_entry_measurement_of_drug"
-                        android:layout_weight="1"
                         android:layout_marginStart="4dp"
-                        android:textColor="?attr/course_entry_amount_of_drug_text_color"
+                        android:textColor="@color/gray_600"
                         tools:text="msrmnt of drug" />
+
+                <TextView
+                        android:layout_marginStart="4dp"
+                        tools:text="[после еды]"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/text_course_food_dependency" />
+
             </LinearLayout>
         </LinearLayout>
     </androidx.constraintlayout.widget.ConstraintLayout>

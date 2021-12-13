@@ -3,7 +3,7 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
 
-        tools:layout_marginTop="-500dp"
+        tools:layout_marginTop="0dp"
 
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -41,8 +41,8 @@
                         app:layout_constraintStart_toStartOf="parent" />
 
                 <LinearLayout
-                        android:layout_marginTop="16dp"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginStart="8dp"
                         android:orientation="vertical"
                         android:layout_width="match_parent"
                         android:layout_height="match_parent"
@@ -116,7 +116,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                                 android:inputType="numberDecimal"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:id="@+id/input_text_course_quantity" />
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
@@ -126,7 +127,7 @@
 
                         <AutoCompleteTextView
                                 android:id="@+id/input_text_course_food_dependency"
-                                android:hint="@string/food_addiction"
+                                android:hint="@string/food_dependency"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:inputType="none" />
@@ -160,7 +161,7 @@
 
                     <com.google.android.material.textfield.TextInputLayout
                             android:id="@+id/input_layout_course_start"
-                            android:hint="@string/starting_medication"
+                            android:hint="@string/start_of_medication"
                             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
@@ -198,7 +199,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                                 android:inputType="numberDecimal"
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content" />
+                                android:layout_height="wrap_content"
+                                android:id="@+id/input_edit_text_course_frequency" />
                     </com.google.android.material.textfield.TextInputLayout>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
@@ -247,6 +249,8 @@
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@drawable/shadow_course_bottom_bar"
+            android:elevation="8dp"
             android:paddingHorizontal="16dp"
             android:paddingVertical="16dp"
             android:orientation="horizontal"
@@ -258,7 +262,7 @@
 
         <com.google.android.material.button.MaterialButton
                 android:textAppearance="@style/TextAppearance.RTP.Caption1"
-                android:textColor="@color/red_500"
+                android:textColor="@color/secondaryColor"
                 android:text="@string/delete"
                 style="@style/Widget.MaterialComponents.Button.TextButton"
                 android:id="@+id/button_course_remove"

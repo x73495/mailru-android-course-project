@@ -7,7 +7,7 @@
 
     <fragment
             android:id="@+id/fragmentSchedule"
-            android:name="company.vk.education.androidcourse.rememberthepills.schedule.view.FragmentSchedule"
+            android:name="company.vk.education.androidcourse.rememberthepills.fragments.schedule.FragmentSchedule"
             tools:layout="@layout/fragment_schedule"
             android:label="@string/schedule">
         <action
@@ -27,7 +27,7 @@
     </fragment>
     <fragment
             android:id="@+id/fragmentProfile"
-            android:name="company.vk.education.androidcourse.rememberthepills.profile.view.FragmentProfile"
+            android:name="company.vk.education.androidcourse.rememberthepills.fragments.profile.FragmentProfile"
             tools:layout="@layout/fragment_profile"
             android:label="@string/profile">
         <action
@@ -47,7 +47,7 @@
     </fragment>
     <fragment
             android:id="@+id/fragmentDrugList"
-            android:name="company.vk.education.androidcourse.rememberthepills.drugList.view.FragmentDrugList"
+            android:name="company.vk.education.androidcourse.rememberthepills.fragments.drugList.FragmentDrugList"
             android:label="@string/drugs"
             tools:layout="@layout/fragment_drug_list">
         <action
@@ -70,7 +70,7 @@
     </fragment>
     <fragment
             android:id="@+id/fragmentCourse"
-            android:name="company.vk.education.androidcourse.rememberthepills.course.view.FragmentCourse"
+            android:name="company.vk.education.androidcourse.rememberthepills.fragments.course.FragmentCourse"
             android:label="@string/course"
             tools:layout="@layout/fragment_course">
         <argument
@@ -92,7 +92,7 @@
     </fragment>
     <fragment
             android:id="@+id/fragmentDrug"
-            android:name="company.vk.education.androidcourse.rememberthepills.drug.view.FragmentDrug"
+            android:name="company.vk.education.androidcourse.rememberthepills.fragments.drug.FragmentDrug"
             android:label="@string/drug"
             tools:layout="@layout/fragment_drug">
         <argument
@@ -104,7 +104,7 @@
     </fragment>
     <fragment
             android:id="@+id/fragmentCourseHistory"
-            android:name="company.vk.education.androidcourse.rememberthepills.courseHistory.view.FragmentCourseHistory"
+            android:name="company.vk.education.androidcourse.rememberthepills.fragments.courseHistory.FragmentCourseHistory"
             android:label="@string/course_history"
             tools:layout="@layout/fragment_course_history" />
 </navigation>

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RememberThePills</string>
+    <string name="app_name">Remember The Pills</string>
     <string name="profile">Профиль</string>
     <string name="course_history">История приёмов</string>
     <string name="add_drug">Добавление препарата</string>
@@ -25,7 +25,7 @@
     <string name="drug_type_ointment">Мазь</string>
     <string name="drug_type_powder">Порошок</string>
     <string name="drug_type_suppository">Свеча</string>
-    <string name="drug_type_potion">Микстура</string>
+    <string name="drug_type_mixture">Микстура</string>
 
     <string name="drug_type_unit_pieces">Штуки</string>
     <string name="drug_type_unit_milligrams">Миллиграммы</string>
@@ -35,19 +35,27 @@
     <string name="drug_type_unit_teaspoons">Чайные ложки</string>
     <string name="drug_type_unit_tablespoons">Столовые ложки</string>
 
+    <string name="drug_type_unit_pieces_short">шт</string>
+    <string name="drug_type_unit_milligrams_short">мг</string>
+    <string name="drug_type_unit_milliliters_short">мл</string>
+    <string name="drug_type_unit_units_short">ед</string>
+    <string name="drug_type_unit_doses_short">д</string>
+    <string name="drug_type_unit_teaspoons_short">чл</string>
+    <string name="drug_type_unit_tablespoons_short">стл</string>
+
     <string name="drug_name_short">Препарат</string>
     <string name="dosage">Дозировка</string>
     <string name="measurement">Измерение</string>
     <string name="quantity">Количество</string>
-    <string name="food_addiction">Зависимость от еды</string>
+    <string name="food_dependency">Зависимость от еды</string>
 
-    <string name="food_addiction_before_meals">До еды</string>
-    <string name="food_addiction_after_meal">После еды</string>
-    <string name="food_addiction_while_eating">Во время еды</string>
-    <string name="food_addiction_not_depend">Не зависит</string>
+    <string name="food_dependency_before_meals">До еды</string>
+    <string name="food_dependency_after_meal">После еды</string>
+    <string name="food_dependency_while_eating">Во время еды</string>
+    <string name="food_dependency_no">Не зависит</string>
 
     <string name="medication_period">Период приема</string>
-    <string name="starting_medication">Начало</string>
+    <string name="start_of_medication">Начало</string>
     <string name="end_of_medication">Конец</string>
     <string name="frequency_in_days_medication">Периодичность в днях</string>
     <string name="time_medication">Время приема</string>

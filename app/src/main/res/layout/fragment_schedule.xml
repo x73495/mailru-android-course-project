@@ -6,6 +6,8 @@
         android:layout_height="match_parent">
 
     <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@drawable/shadow_date_bar"
+            android:elevation="2dp"
             android:paddingHorizontal="48dp"
             android:paddingVertical="16dp"
             android:layout_width="match_parent"
@@ -31,7 +33,7 @@
                 <TextView
                         android:textColor="@color/gray_900"
                         android:textAppearance="@style/TextAppearance.RTP.Title1"
-                        android:text="8"
+                        tools:text="N"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:id="@+id/text_schedule_date_d" />
@@ -39,7 +41,7 @@
                 <TextView
                         android:textColor="@color/gray_900"
                         android:textAppearance="@style/TextAppearance.RTP.Title1"
-                        android:text="декабря"
+                        tools:text="месяца"
                         android:layout_marginStart="4dp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -53,7 +55,7 @@
                     android:layout_gravity="center">
 
                 <TextView
-                        android:textColor="?attr/course_entry_amount_of_drug_text_color"
+                        android:textColor="@color/gray_600"
                         android:text="2021"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -61,7 +63,7 @@
                         android:layout_gravity="center" />
 
                 <TextView
-                        android:textColor="?attr/course_entry_amount_of_drug_text_color"
+                        android:textColor="@color/gray_600"
                         android:layout_marginStart="4dp"
                         android:text="г."
                         android:layout_width="wrap_content"
@@ -73,7 +75,8 @@
         <Button
                 android:text="@string/select_date"
                 android:textAppearance="@style/TextAppearance.RTP.Caption1"
-                android:textColor="?attr/button_course_add_time_medication_color"
+                android:textColor="@color/secondaryColor"
+                app:iconTint="@color/secondaryColor"
                 style="@style/Widget.MaterialComponents.Button.TextButton.Icon"
                 app:icon="@drawable/ic_baseline_calendar_month_24"
                 android:layout_width="wrap_content"
