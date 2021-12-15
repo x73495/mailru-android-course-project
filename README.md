@@ -9,8 +9,6 @@
 
 - [Артём Давыдов](https://github.com/x73495)
 - [Андрей Опарин](https://github.com/airdron)
-- [Чернова Мария](https://github.com/Mashhch)
-- [Алексей Боженко](https://github.com/Entuazism)
 
 ## Материалы
 - [Макеты](https://www.figma.com/file/aeNSef7fdikzzQVh3JLjxP/Основной-дизайн)
