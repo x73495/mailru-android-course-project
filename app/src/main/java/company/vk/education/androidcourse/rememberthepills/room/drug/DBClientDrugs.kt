@@ -1,12 +1,13 @@
 package company.vk.education.androidcourse.rememberthepills.room.drug
 
+import android.util.Log
 import androidx.fragment.app.FragmentActivity
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
 import company.vk.education.androidcourse.rememberthepills.MainActivity
-import company.vk.education.androidcourse.rememberthepills.room.drug.EntityDrug
+import company.vk.education.androidcourse.rememberthepills.analytics.Analytics
+import company.vk.education.androidcourse.rememberthepills.analytics.models.drug.DrugAdditionRequest
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Thread.sleep
 
@@ -40,6 +41,14 @@ class DBClientDrugs(mainActivity: FragmentActivity) {
     suspend fun insertAll(vararg entitiesDrug: EntityDrug) = withContext(Dispatchers.IO) {
         db.daoDrug().insertAll(*entitiesDrug)
         result = true
+
+        val api = Analytics()
+        entitiesDrug.forEach { entity ->
+            CoroutineScope(Dispatchers.IO).launch {
+                val request = api.retrofitAnalyticService.postDrug(DrugAdditionRequest(entity.name, entity.type))
+                Log.i("analytics", request.message)
+            }
+        }
     }
 
     suspend fun delete(entityDrug: EntityDrug) = withContext(Dispatchers.IO) {

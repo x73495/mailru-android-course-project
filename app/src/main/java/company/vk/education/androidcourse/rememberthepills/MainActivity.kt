@@ -15,7 +15,13 @@ import android.content.Context
 import android.content.Intent
 import android.content.IntentFilter
 import android.net.ConnectivityManager
+import android.util.Log
+import company.vk.education.androidcourse.rememberthepills.analytics.Analytics
+import company.vk.education.androidcourse.rememberthepills.analytics.models.drug.DrugAdditionRequest
 import company.vk.education.androidcourse.rememberthepills.notifications.NotificationsReceiver
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
 class MainActivity : AppCompatActivity() {
@@ -23,8 +29,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     lateinit var db: RTPDatabase
     lateinit var notificationsReceiver: NotificationsReceiver
-    // TODO should this be here..?
-    var listOfNotificationIDs: MutableList<Int> = mutableListOf()
 
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment)
@@ -63,7 +67,7 @@ class MainActivity : AppCompatActivity() {
         val name = "Приём таблеток"
         val descriptionText = "Уведомления о приёмах таблеток"
         val importance = NotificationManager.IMPORTANCE_DEFAULT
-        val channel = NotificationChannel("lol", name, importance).apply {
+        val channel = NotificationChannel("default", name, importance).apply {
             description = descriptionText
         }
         val notificationManager: NotificationManager =
@@ -75,5 +79,18 @@ class MainActivity : AppCompatActivity() {
             addAction(Intent.ACTION_AIRPLANE_MODE_CHANGED)
         }
         registerReceiver(notificationsReceiver, filter)
+    }
+
+    private fun sendViewAnalytics() {
+        val api = Analytics()
+        CoroutineScope(Dispatchers.IO).launch {
+            val request = api.retrofitAnalyticService.getViewApp()
+            Log.i("analytics", request.message)
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        sendViewAnalytics()
     }
 }

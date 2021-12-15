@@ -19,7 +19,9 @@ class NotificationsReceiver : BroadcastReceiver() {
         val title = intent.getStringExtra("title")
         val text = intent.getStringExtra("text")
 
-        val builder = NotificationCompat.Builder(context, "lol")
+        if ((title == null) or (text == null)) return
+
+        val builder = NotificationCompat.Builder(context, "default")
             .setContentTitle(title)
             .setContentText(text)
             .setSmallIcon(R.drawable.ic_notification)

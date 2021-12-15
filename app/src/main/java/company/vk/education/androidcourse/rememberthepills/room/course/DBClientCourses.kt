@@ -3,7 +3,12 @@ package company.vk.education.androidcourse.rememberthepills.room.course
 import android.util.Log
 import androidx.fragment.app.FragmentActivity
 import company.vk.education.androidcourse.rememberthepills.MainActivity
+import company.vk.education.androidcourse.rememberthepills.analytics.Analytics
+import company.vk.education.androidcourse.rememberthepills.analytics.models.course.CourseAdditionRequest
+import company.vk.education.androidcourse.rememberthepills.analytics.models.drug.DrugAdditionRequest
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.lang.Thread.sleep
 
@@ -33,6 +38,30 @@ class DBClientCourses(mainActivity: FragmentActivity) {
     suspend fun insertAll(vararg entitiesCourse: EntityCourse) = withContext(Dispatchers.IO) {
         db.daoCourse().insertAll(*entitiesCourse)
         result = true
+
+        val api = Analytics()
+        entitiesCourse.forEach { entity ->
+            val drugName = db.daoDrug().findByID(entity.drugID).name
+
+            var intakeTimesAsString = entity.intakeTimes.toString()
+            intakeTimesAsString = intakeTimesAsString.substring(1, intakeTimesAsString.length - 1)
+
+            CoroutineScope(Dispatchers.IO).launch {
+                val request = api.retrofitAnalyticService.postCourse(
+                    CourseAdditionRequest(
+                        drugName,
+                        entity.measurement,
+                        entity.amount.toString(),
+                        entity.foodDependency,
+                        entity.dateStart.toString(),
+                        entity.dateEnd.toString(),
+                        entity.frequencyInDays.toString(),
+                        intakeTimesAsString
+                    )
+                )
+                Log.i("analytics", request.message)
+            }
+        }
     }
 
     suspend fun delete(entityCourse: EntityCourse) = withContext(Dispatchers.IO) {
